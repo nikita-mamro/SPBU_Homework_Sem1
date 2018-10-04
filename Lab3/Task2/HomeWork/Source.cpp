@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <conio.h>
 
 void swap(int& a, int& b)
 {
@@ -138,6 +137,5 @@ int main()
 		}
 	}
 	delete[] arr;
-	_getch();
 	return 0;
 }
