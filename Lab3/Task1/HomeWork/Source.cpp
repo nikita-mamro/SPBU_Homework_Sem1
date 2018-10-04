@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <conio.h>
 
 void swap(int& a, int& b)
 {
@@ -41,9 +40,9 @@ void insertionSort(int* arr, int firstIndex, int lastIndex)
 	}
 }
 
-void quickSort(int* arr, int firstIndex, int lastIndex, int length)
+void quickSort(int* arr, int firstIndex, int lastIndex)
 {
-	if (length < 10) 
+	if (lastIndex - firstIndex < 10) 
 	{
 		insertionSort(arr, firstIndex, lastIndex);
 	}
@@ -63,8 +62,8 @@ void quickSort(int* arr, int firstIndex, int lastIndex, int length)
 		{
 			++index;
 		}
-		quickSort(arr, firstIndex, index - 1, length / 2);
-		quickSort(arr, index, lastIndex, length / 2);
+		quickSort(arr, firstIndex, index - 1);
+		quickSort(arr, index, lastIndex);
 	}
 }
 
@@ -106,10 +105,9 @@ int main()
 	scanf("%d", &length);
 	int *arr = initArray(length);
 	printArray(arr, length);
-	quickSort(arr, 0, length - 1, length);
+	quickSort(arr, 0, length - 1);
 	printf("Sorted array:\n");
 	printArray(arr, length);
 	delete[] arr;
-	_getch();
 	return 0;
 }
