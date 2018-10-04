@@ -1,6 +1,5 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <conio.h>
 #include <stdlib.h>
 #include <time.h>
 
@@ -173,6 +172,5 @@ int main()
 	printf("The array after Count Sort:");
 	printArray(arr, length);
 	delete[] arr;
-	_getch();
 	return 0;
 }
