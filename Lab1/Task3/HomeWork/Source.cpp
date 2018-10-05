@@ -1,11 +1,11 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 void swap(int &a, int &b)
 {
-	a = a^b;
-	b = a^b;
-	a = a^b;
+	a = a ^ b;
+	b = a ^ b;
+	a = a ^ b;
 }
 
 void reverseArray(int* arr, int first, int last)
