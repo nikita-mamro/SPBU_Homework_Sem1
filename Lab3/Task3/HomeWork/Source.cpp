@@ -92,12 +92,12 @@ int mostFrequentElement(int *theArray, int length)
 
 void test()
 {
-	printf("Running test...\n\n");
+	printf("Тестируем...\n\n");
 	int* testArray = new int[16] {100, 8123, 31, 8213, 52, 3, 8123, 3, 24803, 24803, 3, 1, 90, 90, 8123, 8123};
 	printArray(testArray, 16);
 	int result = mostFrequentElement(testArray, 16);
-	printf("Calculated element: %d\n", result);
-	result == 8123 ? printf("Passed test!\n\n") : printf("Failed test, the answer is 8123\n\n");
+	printf("Подсчитанный элемент: %d\n", result);
+	result == 8123 ? printf("Тест пройден!\n\n") : printf("Тест не пройден, ответ 8123\n\n");
 }
 
 int main()
@@ -106,12 +106,12 @@ int main()
 	srand(time(nullptr));
 	test();
 	int length = 0;
-	printf("Ââåäèòå äëèíó ìàññèâà: ");
+	printf("Введите длину массива: ");
 	scanf("%d", &length);
 	int *myArray = initArray(length);
-	printf("Âàø ìàññèâ:");
+	printf("Ваш массив:");
 	printArray(myArray, length);
-	printf("Íàèáîëåå ÷àñòî âñòðå÷àþùèéñÿ ýëåìåíò â ìàññèâå: %d", mostFrequentElement(myArray, length));
+	printf("Наиболее часто встречающийся элемент в массиве: %d", mostFrequentElement(myArray, length));
 	delete[] myArray;
 	return 0;
 }
