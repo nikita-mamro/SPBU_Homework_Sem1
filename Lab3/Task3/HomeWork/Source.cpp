@@ -4,7 +4,6 @@
 #include <time.h>
 #include <conio.h>
 #include <locale.h>
-#include <conio.h>
 
 void swap(int &a, int &b)
 {
@@ -107,13 +106,12 @@ int main()
 	srand(time(nullptr));
 	test();
 	int length = 0;
-	printf("Введите длину массива: ");
+	printf("Г‚ГўГҐГ¤ГЁГІГҐ Г¤Г«ГЁГ­Гі Г¬Г Г±Г±ГЁГўГ : ");
 	scanf("%d", &length);
 	int *myArray = initArray(length);
-	printf("Ваш массив:");
+	printf("Г‚Г Гё Г¬Г Г±Г±ГЁГў:");
 	printArray(myArray, length);
-	printf("Наиболее часто встречающийся элемент в массиве: %d", mostFrequentElement(myArray, length));
+	printf("ГЌГ ГЁГЎГ®Г«ГҐГҐ Г·Г Г±ГІГ® ГўГ±ГІГ°ГҐГ·Г ГѕГ№ГЁГ©Г±Гї ГЅГ«ГҐГ¬ГҐГ­ГІ Гў Г¬Г Г±Г±ГЁГўГҐ: %d", mostFrequentElement(myArray, length));
 	delete[] myArray;
-	_getch();
 	return 0;
 }
