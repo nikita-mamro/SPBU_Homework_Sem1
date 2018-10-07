@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <conio.h>
 #include <locale.h>
 
 void swap(int &a, int &b)
@@ -32,19 +31,19 @@ void printArray(int *theArray, int length)
 	printf("\n\n");
 }
 
-void quickSort(int* arr, int firstIndex, int lastIndex)
+void quickSort(int* theArray, int firstIndex, int lastIndex)
 {
 	if (firstIndex >= lastIndex)
 	{
 		return;
 	}
 	int index = firstIndex;
-	int element = arr[firstIndex];
+	int element = theArray[firstIndex];
 	for (int i = firstIndex; i <= lastIndex; ++i)
 	{
-		if (arr[i] < element)
+		if (theArray[i] < element)
 		{
-			swap(arr[i], arr[index]);
+			swap(theArray[i], theArray[index]);
 			++index;
 		}
 	}
@@ -52,8 +51,8 @@ void quickSort(int* arr, int firstIndex, int lastIndex)
 	{
 		++index;
 	}
-	quickSort(arr, firstIndex, index - 1);
-	quickSort(arr, index, lastIndex);
+	quickSort(theArray, firstIndex, index - 1);
+	quickSort(theArray, index, lastIndex);
 }
 
 int mostFrequentElement(int *theArray, int length)
