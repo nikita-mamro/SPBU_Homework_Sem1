@@ -53,13 +53,13 @@ bool isSorted(int *theArray, int length)
 	{
 		if (theArray[i] > theArray[i + 1])
 		{
-			printf("Тест не пройден!\n");
+			printf("РўРµСЃС‚ РЅРµ РїСЂРѕР№РґРµРЅ!\n");
 			delete[] theArray;
 			return false;
 		}
 	}
 	delete[] theArray;
-	printf("Тест пройден!\n\n");
+	printf("РўРµСЃС‚ РїСЂРѕР№РґРµРЅ!\n\n");
 	return true;
 }
 
@@ -67,7 +67,7 @@ bool test()
 {
 	int length = 10;
 	int* testArray = initArray(length);
-	printf("Изначальный массив: \n");
+	printf("РР·РЅР°С‡Р°Р»СЊРЅС‹Р№ Рё РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ РјР°СЃСЃРёРІС‹: \n");
 	printArray(testArray, length);
 	selectionSort(testArray, length);
 	printArray(testArray, length);
@@ -79,19 +79,19 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 	srand(time(nullptr));
-	printf("Проводим тесты...\n\n");
+	printf("РџСЂРѕРІРѕРґРёРј С‚РµСЃС‚С‹...\n\n");
 	test();
 	test();
 	int *theArray = new int[10]{};
-	printf("Введите 10 элементов массива:\n");
+	printf("Р’РІРµРґРёС‚Рµ 10 СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°:\n");
 	for (int i = 0; i < 10; ++i)
 	{
 		scanf("%d", &theArray[i]);
 	}
-	printf("Ваш массив: \n");
+	printf("Р’Р°С€ РјР°СЃСЃРёРІ: \n");
 	printArray(theArray, 10);
 	selectionSort(theArray, 10);
-	printf("\nОтсортированный массив: \n");
+	printf("\nРћС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ РјР°СЃСЃРёРІ: \n");
 	printArray(theArray, 10);
 	delete[] theArray;
 	return 0;
