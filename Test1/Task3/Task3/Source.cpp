@@ -40,6 +40,7 @@ void writeToFile(int *data, int length)
 	{
 		of << buffer[i] << ' ';
 	}
+	//вылетаю за границы вроде, не успел исправить
 }
 
 int main()
