@@ -144,11 +144,14 @@
   <ItemGroup>
     <ClCompile Include="File.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Phonebook.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ContactStruct.hpp" />
     <ClInclude Include="File.hpp" />
     <ClInclude Include="Menu.hpp" />
+    <ClInclude Include="Phonebook.hpp" />
     <ClInclude Include="stdafx.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
