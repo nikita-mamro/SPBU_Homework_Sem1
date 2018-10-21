@@ -4,7 +4,8 @@
 #include <stdlib.h>
 
 
-bool* toBits(int num) {
+bool* toBits(int num) 
+{
 	bool* res = new bool[32];
 	for (int i = 0; i < 32; ++i)
 	{
@@ -39,7 +40,8 @@ bool* sumNumbers(bool* firstNumber, bool* secondNumber)
 
 void printBiNum(bool* num)
 {
-	for (int i = 31; i >= 0; --i) {
+	for (int i = 31; i >= 0; --i)
+	{
 		printf("%d", num[i]);
 	}
 	printf("\n");
