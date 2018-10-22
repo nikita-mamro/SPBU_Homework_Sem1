@@ -2,15 +2,14 @@
 
 void writeToFile(char name[30], char phoneNumber[30])
 {
-	FILE *out = fopen("phonebook.txt", "w");
-	fwrite(name, sizeof(name), 1, out);
-	fwrite(" ", sizeof(" "), 1, out);
-	fwrite(&phoneNumber, sizeof(phoneNumber), 1, out);
-	fwrite("\n", sizeof("\n"), 1, out);
+	printf("Добавляем %s %s...\n", name, phoneNumber);
+	FILE *out = fopen("phonebook.txt", "a+");
+	fprintf(out, "%s\n%s\n", name, phoneNumber);
 	fclose(out);
 }
 
-void readFromFile()
+Contact *readFromFile()
 {
-
+	Contact contactsList[100];
+	return contactsList;
 }

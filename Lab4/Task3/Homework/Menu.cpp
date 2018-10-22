@@ -2,7 +2,6 @@
 #include "Menu.hpp"
 #include "File.hpp"
 #include "Phonebook.hpp"
-#include "ContactStruct.hpp"
 
 void printMenu()
 {
@@ -18,20 +17,19 @@ void printMenu()
 }
 
 
-void solveTask(int choice)
+void solveTask(int choice, Contact* contactsBuffer, int& addCounter)
 {
-	Contact contactsBuffer[100];
-	int counter = 0;
 	int phoneNumber = 0;
 	char *name = new char[50]{};
 	switch (choice) 
 	{
 	case 1:
 		printf("Введите имя : ");
-		scanf("%s", contactsBuffer[counter].name);
+		scanf("%s", contactsBuffer[addCounter].name);
 		printf("Введите номер телефона : ");
-		scanf("%s", contactsBuffer[counter].phone);
-		counter++;
+		scanf("%s", contactsBuffer[addCounter].phone);
+		addCounter++;
+		printf("Записей к сохранению : %d\n", addCounter);
 		break;
 	case 2:
 		printAll();
@@ -47,7 +45,8 @@ void solveTask(int choice)
 		getName(phoneNumber);
 		break;
 	case 5:
-		saveData(contactsBuffer, counter);
+		saveData(contactsBuffer, addCounter);
+		addCounter = 0;
 		break;
 	default:
 		printf("Выберите опцию от 1 до 5\n");
@@ -58,9 +57,12 @@ void solveTask(int choice)
 
 void proceedTask()
 {
+	Contact contactsBuffer[100];
 	char c;
+	int addCounter = 0;
 	do {
 		c = getch();
-		solveTask(c - '0');
+		solveTask(c - '0', contactsBuffer, addCounter);
 	} while (c != 27);
+	delete[] contactsBuffer;
 }

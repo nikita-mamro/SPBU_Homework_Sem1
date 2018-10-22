@@ -16,13 +16,12 @@ void getName(int phoneNumber)
 
 }
 
-void saveData(Contact *buffer, int numberOfRecords)
+void saveData(Contact* buffer, int numberOfRecords)
 {
+	printf("Сохранено записей: %d\n", numberOfRecords);
 	for (int i = 0; i < numberOfRecords; ++i)
 	{
 		writeToFile(buffer[i].name, buffer[i].phone);
-		printf("%s hello %s", buffer[i].name, buffer[i].phone);//ничего
 	}
-	printf("%s hello %s", buffer[0].name, buffer[0].phone);//много ММММ....
 	printf("Данные записаны!\n");
 }
