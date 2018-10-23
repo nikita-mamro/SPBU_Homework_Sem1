@@ -8,4 +8,4 @@
 #include <string>
 #include <stdlib.h>
 #include <time.h>
-#include <iostream> // для cls, чтоб красивше
+#include <iostream> // РґР»СЏ cls, С‡С‚РѕР± РєСЂР°СЃРёРІС€Рµ СЂР°Р±РѕС‚Р°Р»Рѕ
