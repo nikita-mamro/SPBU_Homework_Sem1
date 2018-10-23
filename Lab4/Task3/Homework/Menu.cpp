@@ -36,7 +36,8 @@ void solveTask(int choice, Contact* contactsBuffer, int& addCounter)
 		printf("Записей к сохранению : %d\n", addCounter);
 		break;
 	case 2:
-		printAll();
+		Contact contactsList[100];
+		printAll(contactsList);
 		break;
 	case 3:
 		printf("Введите имя : ");
