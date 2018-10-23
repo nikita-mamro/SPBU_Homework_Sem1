@@ -2,5 +2,5 @@
 #include "stdafx.hpp"
 #include "ContactStruct.hpp"
 
-void writeToFile(char [30], char [30]);
+void writeToFile(char [MAX_LENGTH], char [MAX_LENGTH]);
 int readFromFile(Contact*);

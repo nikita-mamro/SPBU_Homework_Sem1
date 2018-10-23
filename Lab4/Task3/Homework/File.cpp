@@ -1,6 +1,6 @@
 #include "File.hpp"
 
-void writeToFile(char name[30], char phoneNumber[30])
+void writeToFile(char name[MAX_LENGTH], char phoneNumber[MAX_LENGTH])
 {
 	printf("ƒÓ·‡‚ÎˇÂÏ %s %s...\n", name, phoneNumber);
 	FILE *out = fopen("phonebook.txt", "a+");
@@ -12,10 +12,18 @@ int readFromFile(Contact* contactsList)
 {
 	int linesRead = 0;
 	int contactIndex = 0;
-	FILE *file = fopen("phonebook.txt", "r");
+
+	FILE *file;
+	if ((file = fopen("phonebook.txt", "r")) == NULL)
+	{
+		file = fopen("phonebook.txt", "a+");// is this  Œ—“€À‹? hm
+		fclose(file);						// is this  Œ—“€À‹? hm
+		file = fopen("phonebook.txt", "r");	// is this  Œ—“€À‹? hm
+	}
+
 	while (!feof(file))
 	{
-		char *buffer = new char[30];
+		char *buffer = new char[MAX_LENGTH];
 		const int readBytes = fscanf(file, "%s", buffer);
 		if (readBytes < 0) 
 		{
@@ -33,6 +41,8 @@ int readFromFile(Contact* contactsList)
 			++linesRead;
 		}
 	}
+
 	fclose(file);
+
 	return linesRead;
 }

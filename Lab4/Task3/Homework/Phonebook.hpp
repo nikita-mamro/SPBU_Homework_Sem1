@@ -2,7 +2,7 @@
 #include "stdafx.hpp"
 #include "ContactStruct.hpp"
 
-void printAll(Contact*);
-void getPhoneNumber(char*);
-void getName(int);
+void printAll();
+void getPhoneNumber();
+void getName();
 void saveData(Contact*, int);

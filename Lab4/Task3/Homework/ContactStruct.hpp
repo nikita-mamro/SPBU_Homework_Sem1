@@ -1,7 +1,8 @@
 #pragma once
+#include "stdafx.hpp"
 
 struct Contact
 {
-	char name[30];
-	char phone[30];
+	char name[MAX_LENGTH];
+	char phone[MAX_LENGTH];
 };
