@@ -73,6 +73,7 @@ void solveTask(int choice, Contact* contactsBuffer, int& addCounter)
 	case 6:
 		system("cls");
 		printMenu();
+		break;
 	default:
 		printf("Выберите опцию от 1 до 6\n");
 		break;
