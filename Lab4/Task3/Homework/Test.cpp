@@ -4,13 +4,19 @@ void askForTests()
 {
 	printf("Вы уверены, что хотите проводить тесты?\nОни стирают данные из файла справочника, если у вас таковой имеется.\n");
 	srand(time(nullptr));
-	int key = (rand() % 1000) * (rand() % 1000);
+	int key = (rand() % 1000 + 1) * (rand() % 1000 + 1);
 	int input = 0;
-	printf("Введите ключ %d для подтверждения начала тестов: ", key);
+	printf("Введите ключ %d для подтверждения начала тестов для тестирования\n", key);
+	printf("Введите любое другое число для запуска без тестирования\n");
+	printf("Ожидание ввода... ");
 	scanf("%d", &input);
 	if (input == key)
 	{
 		test();
+	}
+	else
+	{
+		system("cls");
 	}
 }
 
@@ -39,6 +45,21 @@ bool test()
 	if (strcmp(contactsFileBufferTest[0].name, name) != 0 || strcmp(contactsFileBufferTest[0].phone, phone) != 0)
 	{
 		printf("Ошибка в readFromFile()!\n");
+		printf("Ожидался ответ name 8888, полученный: %s %s\n", contactsFileBufferTest[0].name, contactsFileBufferTest[0].phone);
+		return false;
+	}
+
+	if (strcmp(getName(phone), name) != 0)
+	{
+		printf("Ошибка в getName()!\n");
+		printf("Ожидался ответ name, полученный: %s\n", getName(phone));
+		return false;
+	}
+
+	if (strcmp(getPhoneNumber(name), phone) != 0)
+	{
+		printf("Ошибка в getPhoneNumber()!\n");
+		printf("Ожидался ответ 8888, полученный: %s\n", getPhoneNumber(name));
 		return false;
 	}
 	

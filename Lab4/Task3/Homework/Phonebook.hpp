@@ -3,6 +3,6 @@
 #include "ContactStruct.hpp"
 
 void printAll();
-void getPhoneNumber();
-void getName();
+char* getPhoneNumber(char*);
+char* getName(char*);
 void saveData(Contact*, int);

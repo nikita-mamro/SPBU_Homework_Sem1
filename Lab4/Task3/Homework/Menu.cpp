@@ -27,6 +27,7 @@ void solveTask(int choice, Contact* contactsBuffer, int& addCounter)
 {
 	char* phoneNumber = new char[MAX_LENGTH]{};
 	char *name = new char[MAX_LENGTH]{};
+	char *phone = new char[MAX_LENGTH] {};
 
 	switch (choice) 
 	{
@@ -42,10 +43,28 @@ void solveTask(int choice, Contact* contactsBuffer, int& addCounter)
 		printAll();
 		break;
 	case 3:
-		getPhoneNumber();
+		printf("Введите имя: ");
+		scanf("%s", name);
+		if (getPhoneNumber(name) != NULL)
+		{
+			printf("Номер: %s\n", getPhoneNumber(name));
+		}
+		else
+		{
+			printf("Нет совпадений, проверьте правильность введённых данных.\n");
+		}
 		break;
 	case 4:
-		getName();
+		printf("Введите номер: ");
+		scanf("%s", phone);
+		if (getName(phone) != NULL)
+		{
+			printf("Номер: %s\n", getName(phone));
+		}
+		else
+		{
+			printf("Нет совпадений, проверьте правильность введённых данных.\n");
+		}
 		break;
 	case 5:
 		saveData(contactsBuffer, addCounter);
@@ -60,6 +79,7 @@ void solveTask(int choice, Contact* contactsBuffer, int& addCounter)
 	}
 
 	delete[] name;
+	delete[] phone;
 }
 
 void proceedTask()
@@ -72,6 +92,4 @@ void proceedTask()
 		c = getch();
 		solveTask(c - '0', contactsBuffer, addCounter);
 	} while (c != 27);
-
-	delete[] contactsBuffer;
 }

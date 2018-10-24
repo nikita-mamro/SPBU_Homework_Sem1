@@ -21,12 +21,8 @@ void printAll()
 	}
 }
 
-void getPhoneNumber()
+char* getPhoneNumber(char *name)
 {
-	printf("Введите имя:");
-	char *name = new char[MAX_LENGTH] {};
-	scanf("%s", name);
-
 	Contact contactsList[BOOK_SIZE];
 
 	int numberOfContacts = readFromFile(contactsList) / 2;
@@ -35,21 +31,14 @@ void getPhoneNumber()
 	{
 		if (!strcmp(contactsList[i].name, name))
 		{
-			printf("Найденный номер: %s\n", contactsList[i].phone);
-			delete[] name;
-			return;
+			return contactsList[i].phone;
 		}
 	}
-	printf("Нет совпадений\n");
-	delete[] name;
+	return NULL;
 }
 
-void getName()
+char* getName(char* phone)
 {
-	printf("Введите номер:");
-	char *phone = new char[MAX_LENGTH] {};
-	scanf("%s", phone);
-
 	Contact contactsList[BOOK_SIZE];
 
 	int numberOfContacts = readFromFile(contactsList) / 2;
@@ -58,13 +47,10 @@ void getName()
 	{
 		if (!strcmp(contactsList[i].phone, phone))
 		{
-			printf("Найденный человек: %s\n", contactsList[i].name);
-			delete[] phone;
-			return;
+			return contactsList[i].name;
 		}
 	}
-	printf("Нет совпадений\n");
-	delete[] phone;
+	return NULL;
 }
 
 void saveData(Contact* buffer, int numberOfRecords)
