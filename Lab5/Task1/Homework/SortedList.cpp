@@ -81,7 +81,7 @@ void removeElement(int element, SortedList &list)
 
 		if (positionToDelete == list.capacity)
 		{
-			printf("%d нет в списке!\n", element);
+			printf("%d РЅРµС‚ РІ СЃРїРёСЃРєРµ!\n", element);
 			return;
 		}
 
@@ -89,7 +89,7 @@ void removeElement(int element, SortedList &list)
 		{
 			list.storage[i] = list.storage[i + 1];
 		}
-		printf("Удалён элемент %d!\n", element);
+		printf("РЈРґР°Р»С‘РЅ СЌР»РµРјРµРЅС‚ %d!\n", element);
 		--list.count;
 
 		if (list.count < list.capacity * 2 / 3)
@@ -103,11 +103,11 @@ void printSortedList(SortedList &list)
 {
 	if (list.count == 0)
 	{
-		printf("В списке ещё нет элементов!\n");
+		printf("Р’ СЃРїРёСЃРєРµ РµС‰С‘ РЅРµС‚ СЌР»РµРјРµРЅС‚РѕРІ!\n");
 	}
 	else
 	{
-		printf("Сортированный список:\n");
+		printf("РЎРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ СЃРїРёСЃРѕРє:\n");
 		for (int i = 0; i < list.count; ++i)
 		{
 			printf("%d ", list.storage[i]);
