@@ -4,17 +4,17 @@
 void printAll()
 {
 	Contact contactsList[BOOK_SIZE];
-	printf("РЎРѕРґРµСЂР¶РёРјРѕРµ СЃРїСЂР°РІРѕС‡РЅРёРєР°:\n");
+	printf("Содержимое справочника:\n");
 
 	int numberOfContacts = readFromFile(contactsList) / 2;
 
 	if (numberOfContacts == 0)
 	{
-		printf("РЎРїСЂР°РІРѕС‡РЅРёРє РїСѓСЃС‚.\n");
+		printf("Справочник пуст.\n");
 		return;
 	}
 
-	for(int i = 0; i < numberOfContacts; ++i)
+	for (int i = 0; i < numberOfContacts; ++i)
 	{
 		printf("%s %s\n", contactsList[i].name, contactsList[i].phone);
 	}
@@ -54,12 +54,12 @@ char* getName(char* phone)
 
 void saveData(Contact* buffer, int numberOfRecords)
 {
-	printf("РЎРѕС…СЂР°РЅРµРЅРѕ Р·Р°РїРёСЃРµР№: %d\n", numberOfRecords);
+	printf("Сохранено записей: %d\n", numberOfRecords);
 
 	for (int i = 0; i < numberOfRecords; ++i)
 	{
 		writeToFile(buffer[i].name, buffer[i].phone);
 	}
 
-	printf("Р”Р°РЅРЅС‹Рµ Р·Р°РїРёСЃР°РЅС‹!\n");
+	printf("Данные записаны!\n");
 }

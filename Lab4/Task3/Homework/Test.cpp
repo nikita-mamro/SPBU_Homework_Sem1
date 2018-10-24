@@ -2,13 +2,13 @@
 
 void askForTests()
 {
-	printf("Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ РїСЂРѕРІРѕРґРёС‚СЊ С‚РµСЃС‚С‹?\nРћРЅРё СЃС‚РёСЂР°СЋС‚ РґР°РЅРЅС‹Рµ РёР· С„Р°Р№Р»Р° СЃРїСЂР°РІРѕС‡РЅРёРєР°, РµСЃР»Рё Сѓ РІР°СЃ С‚Р°РєРѕРІРѕР№ РёРјРµРµС‚СЃСЏ.\n");
+	printf("Вы уверены, что хотите проводить тесты?\nОни стирают данные из файла справочника, если у вас таковой имеется.\n");
 	srand(time(nullptr));
 	int key = (rand() % 1000 + 1) * (rand() % 1000 + 1);
 	int input = 0;
-	printf("Р’РІРµРґРёС‚Рµ РєР»СЋС‡ %d РґР»СЏ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РЅР°С‡Р°Р»Р° С‚РµСЃС‚РѕРІ РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ\n", key);
-	printf("Р’РІРµРґРёС‚Рµ Р»СЋР±РѕРµ РґСЂСѓРіРѕРµ С‡РёСЃР»Рѕ РґР»СЏ Р·Р°РїСѓСЃРєР° Р±РµР· С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ\n");
-	printf("РћР¶РёРґР°РЅРёРµ РІРІРѕРґР°... ");
+	printf("Введите ключ %d для подтверждения начала тестов для тестирования\n", key);
+	printf("Введите любое другое число для запуска без тестирования\n");
+	printf("Ожидание ввода... ");
 	scanf("%d", &input);
 	if (input == key)
 	{
@@ -23,7 +23,7 @@ void askForTests()
 bool test()
 {
 	clearTextFile();
-	printf("РџСЂРѕРІРѕРґРёРј С‚РµСЃС‚С‹!\n");
+	printf("Проводим тесты!\n");
 
 	Contact contactsMenuBufferTest[BOOK_SIZE];
 	int addCounter = 0;
@@ -33,38 +33,38 @@ bool test()
 	strcpy(contactsMenuBufferTest[0].name, name);
 	strcpy(contactsMenuBufferTest[0].phone, phone);
 	saveData(contactsMenuBufferTest, 1);
-	printAll(); // РЅРµ СѓРїР°Р»Рѕ -> ok =)
+	printAll(); // не упало -> ok =)
 
 	Contact contactsFileBufferTest[BOOK_SIZE];
 	if (readFromFile(contactsFileBufferTest) != 2)
 	{
-		printf("РћС€РёР±РєР° РІ readFromFile()! РќРµРІРµСЂРЅРѕ СЃС‡РёС‚Р°СЋС‚СЃСЏ СЃС‚СЂРѕРєРё!\n");
-		printf("РћР¶РёРґР°Р»СЃСЏ РѕС‚РІРµС‚ 2, РїРѕР»СѓС‡РµРЅРЅС‹Р№: %d\n", readFromFile(contactsFileBufferTest));
+		printf("Ошибка в readFromFile()! Неверно считаются строки!\n");
+		printf("Ожидался ответ 2, полученный: %d\n", readFromFile(contactsFileBufferTest));
 		return false;
 	}
 	if (strcmp(contactsFileBufferTest[0].name, name) != 0 || strcmp(contactsFileBufferTest[0].phone, phone) != 0)
 	{
-		printf("РћС€РёР±РєР° РІ readFromFile()!\n");
-		printf("РћР¶РёРґР°Р»СЃСЏ РѕС‚РІРµС‚ name 8888, РїРѕР»СѓС‡РµРЅРЅС‹Р№: %s %s\n", contactsFileBufferTest[0].name, contactsFileBufferTest[0].phone);
+		printf("Ошибка в readFromFile()!\n");
+		printf("Ожидался ответ name 8888, полученный: %s %s\n", contactsFileBufferTest[0].name, contactsFileBufferTest[0].phone);
 		return false;
 	}
 
 	if (strcmp(getName(phone), name) != 0)
 	{
-		printf("РћС€РёР±РєР° РІ getName()!\n");
-		printf("РћР¶РёРґР°Р»СЃСЏ РѕС‚РІРµС‚ name, РїРѕР»СѓС‡РµРЅРЅС‹Р№: %s\n", getName(phone));
+		printf("Ошибка в getName()!\n");
+		printf("Ожидался ответ name, полученный: %s\n", getName(phone));
 		return false;
 	}
 
 	if (strcmp(getPhoneNumber(name), phone) != 0)
 	{
-		printf("РћС€РёР±РєР° РІ getPhoneNumber()!\n");
-		printf("РћР¶РёРґР°Р»СЃСЏ РѕС‚РІРµС‚ 8888, РїРѕР»СѓС‡РµРЅРЅС‹Р№: %s\n", getPhoneNumber(name));
+		printf("Ошибка в getPhoneNumber()!\n");
+		printf("Ожидался ответ 8888, полученный: %s\n", getPhoneNumber(name));
 		return false;
 	}
-	
+
 	system("cls");
-	printf("РўРµСЃС‚С‹ РїСЂРѕР№РґРµРЅС‹!\n");
+	printf("Тесты пройдены!\n");
 	clearTextFile();
 	return true;
 }

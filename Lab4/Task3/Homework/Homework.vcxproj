@@ -18,6 +18,21 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ContactStruct.hpp" />
+    <ClInclude Include="File.hpp" />
+    <ClInclude Include="Menu.hpp" />
+    <ClInclude Include="Phonebook.hpp" />
+    <ClInclude Include="stdafx.hpp" />
+    <ClInclude Include="Test.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Phonebook.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Test.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B73872BF-1885-43CD-BC02-86706F83735B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -141,21 +156,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="File.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Phonebook.cpp" />
-    <ClCompile Include="Source.cpp" />
-    <ClCompile Include="Test.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ContactStruct.hpp" />
-    <ClInclude Include="File.hpp" />
-    <ClInclude Include="Menu.hpp" />
-    <ClInclude Include="Phonebook.hpp" />
-    <ClInclude Include="stdafx.hpp" />
-    <ClInclude Include="Test.hpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

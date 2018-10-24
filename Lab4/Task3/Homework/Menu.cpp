@@ -5,65 +5,65 @@
 
 void printMenu()
 {
-	printf("РњР•РќР®\n");
+	printf("МЕНЮ\n");
 	printf("--------------------------------------\n");
-	printf("ESC - Р’С‹Р№С‚Рё\n");
-	printf("1 - Р”РѕР±Р°РІРёС‚СЊ Р·Р°РїРёСЃСЊ(РёРјСЏ Рё С‚РµР»РµС„РѕРЅ)\n");
-	printf("2 - Р Р°СЃРїРµС‡Р°С‚Р°С‚СЊ РІСЃРµ РёРјРµСЋС‰РёРµСЃСЏ Р·Р°РїРёСЃРё\n");
-	printf("3 - РќР°Р№С‚Рё С‚РµР»РµС„РѕРЅ РїРѕ РёРјРµРЅРё\n");
-	printf("4 - РќР°Р№С‚Рё РёРјСЏ РїРѕ С‚РµР»РµС„РѕРЅСѓ\n");
-	printf("5 - РЎРѕС…СЂР°РЅРёС‚СЊ С‚РµРєСѓС‰РёРµ РґР°РЅРЅС‹Рµ РІ С„Р°Р№Р»\n");
-	printf("6 - РћС‡РёСЃС‚РёС‚СЊ СЌРєСЂР°РЅ Рё РІС‹РІРµСЃС‚Рё РјРµРЅСЋ\n");
+	printf("ESC - Выйти\n");
+	printf("1 - Добавить запись(имя и телефон)\n");
+	printf("2 - Распечатать все имеющиеся записи\n");
+	printf("3 - Найти телефон по имени\n");
+	printf("4 - Найти имя по телефону\n");
+	printf("5 - Сохранить текущие данные в файл\n");
+	printf("6 - Очистить экран и вывести меню\n");
 	printf("--------------------------------------\n");
-	printf("РљРѕРЅС‚Р°РєС‚С‹ С…СЂР°РЅСЏС‚СЃСЏ РІ РІРёРґРµ:\n");
-	printf("РРњРЇ\n");
-	printf("РќРћРњР•Р \n");
-	printf("РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ РґР»РёРЅР° РРјРµРЅРё/РќРѕРјРµСЂР° : 30\n");
+	printf("Контакты хранятся в виде:\n");
+	printf("ИМЯ\n");
+	printf("НОМЕР\n");
+	printf("Максимальная длина Имени/Номера : 30\n");
 	printf("--------------------------------------\n");
 }
 
 
 void solveTask(int choice, Contact* contactsBuffer, int& addCounter)
 {
-	char* phoneNumber = new char[MAX_LENGTH]{};
-	char *name = new char[MAX_LENGTH]{};
+	char* phoneNumber = new char[MAX_LENGTH] {};
+	char *name = new char[MAX_LENGTH] {};
 	char *phone = new char[MAX_LENGTH] {};
 
-	switch (choice) 
+	switch (choice)
 	{
 	case 1:
-		printf("Р’РІРµРґРёС‚Рµ РёРјСЏ : ");
+		printf("Введите имя : ");
 		scanf("%s", contactsBuffer[addCounter].name);
-		printf("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° : ");
+		printf("Введите номер телефона : ");
 		scanf("%s", contactsBuffer[addCounter].phone);
 		addCounter++;
-		printf("Р—Р°РїРёСЃРµР№ Рє СЃРѕС…СЂР°РЅРµРЅРёСЋ : %d\n", addCounter);
+		printf("Записей к сохранению : %d\n", addCounter);
 		break;
 	case 2:
 		printAll();
 		break;
 	case 3:
-		printf("Р’РІРµРґРёС‚Рµ РёРјСЏ: ");
+		printf("Введите имя: ");
 		scanf("%s", name);
 		if (getPhoneNumber(name) != NULL)
 		{
-			printf("РќРѕРјРµСЂ: %s\n", getPhoneNumber(name));
+			printf("Номер: %s\n", getPhoneNumber(name));
 		}
 		else
 		{
-			printf("РќРµС‚ СЃРѕРІРїР°РґРµРЅРёР№, РїСЂРѕРІРµСЂСЊС‚Рµ РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РІРІРµРґС‘РЅРЅС‹С… РґР°РЅРЅС‹С….\n");
+			printf("Нет совпадений, проверьте правильность введённых данных.\n");
 		}
 		break;
 	case 4:
-		printf("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ: ");
+		printf("Введите номер: ");
 		scanf("%s", phone);
 		if (getName(phone) != NULL)
 		{
-			printf("РРјСЏ: %s\n", getName(phone));
+			printf("Имя: %s\n", getName(phone));
 		}
 		else
 		{
-			printf("РќРµС‚ СЃРѕРІРїР°РґРµРЅРёР№, РїСЂРѕРІРµСЂСЊС‚Рµ РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РІРІРµРґС‘РЅРЅС‹С… РґР°РЅРЅС‹С….\n");
+			printf("Нет совпадений, проверьте правильность введённых данных.\n");
 		}
 		break;
 	case 5:
@@ -75,7 +75,7 @@ void solveTask(int choice, Contact* contactsBuffer, int& addCounter)
 		printMenu();
 		break;
 	default:
-		printf("Р’С‹Р±РµСЂРёС‚Рµ РѕРїС†РёСЋ РѕС‚ 1 РґРѕ 6\n");
+		printf("Выберите опцию от 1 до 6\n");
 		break;
 	}
 
