@@ -4,7 +4,7 @@
 
 struct SortedList
 {
-	int *storage = new int[10]{0};
+	int *storage = new int[10]{ 0 };
 	int capacity = 10;
 	int count = 0;
 };

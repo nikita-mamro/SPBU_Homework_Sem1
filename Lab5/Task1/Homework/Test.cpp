@@ -58,7 +58,7 @@ void sort(int* array, int low, int high)
 
 bool test()
 {
-	printf("РџСЂРѕРІРѕРґРёРј С‚РµСЃС‚С‹!");
+	printf("Проводим тесты!");
 	srand(time(nullptr));
 
 	SortedList testList;
@@ -73,7 +73,7 @@ bool test()
 
 	if (testList.count != 100)
 	{
-		printf("РћС€РёР±РєР° РїРѕРґСЃС‡С‘С‚Р° СЌР»РµРјРµРЅС‚РѕРІ РІ СЃРїРёСЃРєРµ!\n");
+		printf("Ошибка подсчёта элементов в списке!\n");
 		return false;
 	}
 
@@ -83,7 +83,7 @@ bool test()
 	{
 		if (testElements[i] != testList.storage[i])
 		{
-			printf("РЎРїРёСЃРѕРє РќР• РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№!\n");
+			printf("Список НЕ отсортированный!\n");
 			return false;
 		}
 	}
@@ -94,11 +94,11 @@ bool test()
 	{
 		if (testElements[i] != testList.storage[i])
 		{
-			printf("РћС€РёР±РєР° РІ С„СѓРЅРєС†РёРё СѓРґР°Р»РµРЅРёСЏ!\n");
+			printf("Ошибка в функции удаления!\n");
 			return false;
 		}
 	}
 	system("cls");
-	printf("Р’ С…РѕРґРµ С‚РµСЃС‚РѕРІ РѕС€РёР±РєРё РЅРµ РІС‹СЏРІР»РµРЅС‹!\n");
+	printf("В ходе тестов ошибки не выявлены!\n");
 	return true;
 }

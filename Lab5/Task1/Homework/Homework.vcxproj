@@ -18,6 +18,18 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Menu.hpp" />
+    <ClInclude Include="SortedList.hpp" />
+    <ClInclude Include="stdafx.hpp" />
+    <ClInclude Include="Test.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="SortedList.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Test.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{32516962-6CD7-45FA-B762-8053B9621C2A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -141,18 +153,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="SortedList.cpp" />
-    <ClCompile Include="Source.cpp" />
-    <ClCompile Include="Test.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Menu.hpp" />
-    <ClInclude Include="SortedList.hpp" />
-    <ClInclude Include="stdafx.hpp" />
-    <ClInclude Include="Test.hpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
