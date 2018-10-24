@@ -89,7 +89,7 @@ bool test()
 	int* testArray = initArray(length);
 	printf("Initial array:\n");
 	printArray(testArray, length);
-	quickSort(testArray, 0, length - 1, length);
+	quickSort(testArray, 0, length - 1);
 	printArray(testArray, length);
 	return isSorted(testArray, length);
 }
