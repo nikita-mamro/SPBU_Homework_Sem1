@@ -91,12 +91,12 @@ int mostFrequentElement(int *theArray, int length)
 
 void test()
 {
-	printf("РўРµСЃС‚РёСЂСѓРµРј...\n\n");
-	int* testArray = new int[16] {100, 8123, 31, 8213, 52, 3, 8123, 3, 24803, 24803, 3, 1, 90, 90, 8123, 8123};
+	printf("Тестируем...\n\n");
+	int* testArray = new int[16]{ 100, 8123, 31, 8213, 52, 3, 8123, 3, 24803, 24803, 3, 1, 90, 90, 8123, 8123 };
 	printArray(testArray, 16);
 	int result = mostFrequentElement(testArray, 16);
-	printf("РџРѕРґСЃС‡РёС‚Р°РЅРЅС‹Р№ СЌР»РµРјРµРЅС‚: %d\n", result);
-	result == 8123 ? printf("РўРµСЃС‚ РїСЂРѕР№РґРµРЅ!\n\n") : printf("РўРµСЃС‚ РЅРµ РїСЂРѕР№РґРµРЅ, РѕС‚РІРµС‚ 8123\n\n");
+	printf("Подсчитанный элемент: %d\n", result);
+	result == 8123 ? printf("Тест пройден!\n\n") : printf("Тест не пройден, ответ 8123\n\n");
 }
 
 int main()
@@ -105,12 +105,12 @@ int main()
 	srand(time(nullptr));
 	test();
 	int length = 0;
-	printf("Р’РІРµРґРёС‚Рµ РґР»РёРЅСѓ РјР°СЃСЃРёРІР°: ");
+	printf("Введите длину массива: ");
 	scanf("%d", &length);
 	int *myArray = initArray(length);
-	printf("Р’Р°С€ РјР°СЃСЃРёРІ:");
+	printf("Ваш массив:");
 	printArray(myArray, length);
-	printf("РќР°РёР±РѕР»РµРµ С‡Р°СЃС‚Рѕ РІСЃС‚СЂРµС‡Р°СЋС‰РёР№СЃСЏ СЌР»РµРјРµРЅС‚ РІ РјР°СЃСЃРёРІРµ: %d", mostFrequentElement(myArray, length));
+	printf("Наиболее часто встречающийся элемент в массиве: %d", mostFrequentElement(myArray, length));
 	delete[] myArray;
 	return 0;
 }
