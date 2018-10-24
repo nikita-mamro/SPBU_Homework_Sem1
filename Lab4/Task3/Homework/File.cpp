@@ -2,7 +2,7 @@
 
 void writeToFile(char name[MAX_LENGTH], char phoneNumber[MAX_LENGTH])
 {
-	printf("ƒÓ·‡‚ÎˇÂÏ %s %s...\n", name, phoneNumber);
+	printf("–î–æ–±–∞–≤–ª—è–µ–º %s %s...\n", name, phoneNumber);
 	FILE *out = fopen("phonebook.txt", "a+");
 	fprintf(out, "%s\n%s\n", name, phoneNumber);
 	fclose(out);
@@ -16,9 +16,9 @@ int readFromFile(Contact* contactsList)
 	FILE *file;
 	if ((file = fopen("phonebook.txt", "r")) == NULL)
 	{
-		file = fopen("phonebook.txt", "a+");// is this  Œ—“€À‹? hm
-		fclose(file);						// is this  Œ—“€À‹? hm
-		file = fopen("phonebook.txt", "r");	// is this  Œ—“€À‹? hm
+		file = fopen("phonebook.txt", "a+");// is this –ö–û–°–¢–´–õ–¨? hm
+		fclose(file);			    // is this –ö–û–°–¢–´–õ–¨? hm
+		file = fopen("phonebook.txt", "r"); // is this –ö–û–°–¢–´–õ–¨? hm
 	}
 
 	while (!feof(file))
