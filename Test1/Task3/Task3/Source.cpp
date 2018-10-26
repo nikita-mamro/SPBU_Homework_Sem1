@@ -43,7 +43,7 @@ int main()
 		}
 		if (i < length - 1)
 		{
-			for (int j = i; i < length - 1; ++j)
+			for (int j = i; j < length - 1; ++j)
 			{
 				cout << line[j];
 			}
