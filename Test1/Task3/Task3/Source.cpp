@@ -1,53 +1,55 @@
-#include <conio.h>
-#include <fstream>
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <cstring>
+#include <vector>
 
 using namespace std;
-
-int* readFromFile()
-{
-	int *result = new int[101];
-	ifstream inf("ololo.txt");
-	int input = 0;
-	int i = 0, j = 0;
-	while (!inf.eof())
-	{
-		inf >> input;
-		if (input != ' ')
-		{
-			result[i] = input;
-			cout << input;
-			++j;
-		}
-		++i;
-	}
-	result[101] = j;
-	return result;
-}
-
-void writeToFile(int *data, int length)
-{
-	ofstream of("ololo.txt");
-	int *buffer = new int[length + 1];
-	int j = length - 1;
-	for (int i = 0; i < length; ++i)
-	{
-		//of << data[i] << ' ';
-		buffer[j] = data[i];
-		j--;
-	}
-	for (int i = 0; i < length; ++i)
-	{
-		of << buffer[i] << ' ';
-	}
-	//вылетаю за границы вроде, не успел исправить
-}
+//   В некоторых языках 
+//   программирования однострочные комментарии задаются не 
+//   //, как в С++, а символом ";" 
+//   (комментарий начинается с ; и заканчивается концом строки). 
+//   Задача - вывести на консоль все комментарии такого вида 
+//   из входного файла (вместе с символом ";"). До комментария в строке 
+//   может быть значимый 
+//   текст, его выводить не надо. Пустые строки выводить не надо.
 
 int main()
 {
-	int *data = readFromFile();
-	writeToFile(data, data[101]);
-	delete[] data;
-	system("PAUSE");
+	ifstream file("ololo.txt", ios::in);
+	if (!file.is_open())
+	{
+		cout << "File not found!" << endl;
+		return 1;
+	}
+
+	vector<string> data;
+
+	while (!file.eof()) {
+		string buffer;
+		file >> buffer;
+		data.push_back(buffer);
+	}
+
+	file.close();
+
+	for (string const &line : data)
+	{
+		int length = line.length();
+		int i = 0;
+		while (line[i] != ';' && i < length - 1)
+		{
+			++i;
+		}
+		if (i < length - 1)
+		{
+			for (int j = i; i < length - 1; ++j)
+			{
+				cout << line[j];
+			}
+			cout << endl;
+		}
+	}
+
 	return 0;
 }
