@@ -15,3 +15,4 @@ void expandList(SortedList&);
 void shrinkList(SortedList&);
 void addElement(int, SortedList&);
 void removeElement(int, SortedList&);
+void deleteList(SortedList&);
