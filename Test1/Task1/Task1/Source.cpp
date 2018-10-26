@@ -1,80 +1,122 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <locale.h>
-#include <time.h>
 #include <stdlib.h>
+#include <time.h>
 
-bool* initNumber(int size)
-{
-	bool* result = new bool[size];
-	for (int i = 0; i < size; ++i)
-	{
-		result[i] = rand() % 2;
-	}
-	return result;
-}
+//В массиве целых чисел найти число, сумма 
+//цифр которого была бы наибольшей. Если таких чисел несколько, 
+//вывести на экран все эти числа.
 
-void printNumber(bool *number, int size)
+void printArray(int *theArray, int length)
 {
-	for (int i = 0; i < size; ++i)
+	for (int i = 0; i < length; ++i)
 	{
-		printf("%d", number[i]);
+		printf("%d ", theArray[i]);
 	}
-}
-
-bool* findBigOne(bool *firstNumber, bool *secondNumber, int size)
-{
-	for (int i = 0; i < size; ++i)
-	{
-		if (firstNumber[i] > secondNumber[i])
-		{
-			return firstNumber;
-		}
-		if (firstNumber[i] < secondNumber[i])
-		{
-			return secondNumber;
-		}
-	}
-}
-
-void test()
-{
-	bool *first = new bool[32]{};
-	bool *second = new bool[32]{};
-	for (int i = 0; i < 32; ++i)
-	{
-		first[i] = 0;
-		second[i] = 0;
-	}
-	second[28] = 1;
-	for (int i = 29; i < 32; ++i)
-	{
-		first[i] = 1;
-	}
-	printf("Числа: \n");
-	printNumber(first, 32);
 	printf("\n");
-	printNumber(second, 32);
-	bool *result = findBigOne(first, second, 32);
-	printf("\nПосчитанное большее число: \n");
-	printNumber(result, 32);
-	result[30] == 1 ? printf("\nТест не пройден!\n\n") : printf("\nТест пройден!\n\n");
 }
 
+int sumOfDigits(int number)
+{
+	int res = 0;
+
+	while (number > 0)
+	{
+		res += number % 10;
+		number /= 10;
+	}
+
+	return res;
+}
+
+int *findAnswer(int *theArray, int length)
+{
+	int *tmp = new int[length] {};
+	int maxDigitsSum = -1;
+	int index = 0;
+	for (int i = 0; i < length; ++i)
+	{
+		if (sumOfDigits(theArray[i]) > maxDigitsSum)
+		{
+			for (int i = 0; i < length; ++i)
+			{
+				tmp[i] = 0;
+			}
+			index = 0;
+			maxDigitsSum = sumOfDigits(theArray[i]);
+			tmp[index] = theArray[i];
+		}
+		else if (sumOfDigits(theArray[i]) == maxDigitsSum)
+		{
+			++index;
+			tmp[index] = theArray[i];
+		}
+	}
+	int j = 0;
+	int resLength = 1;
+	while (sumOfDigits(tmp[j]) <= sumOfDigits(tmp[j + 1]) && j < length)
+	{
+		++resLength;
+		++j;
+	}
+	int *res = new int[length + 1] {};
+	res[length] = resLength;
+	for (int i = 0; i < resLength; ++i) 
+	{
+		res[i] = tmp[i];
+	}
+	delete[] tmp;
+	return res;
+}
+
+bool test()
+{
+	const int testLength = 10;
+	int *testArr1 = new int[testLength] { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
+	int *answer1 = findAnswer(testArr1, testLength);
+	for (int i = 0; i < 10; ++i)
+	{
+		if (answer1[i] != 10)
+		{
+			printf("Test 1 failed");
+			return false;
+		}
+	}
+	delete[] testArr1;
+	delete[] answer1;
+
+	int *testArr2 = new int[testLength] { 9998, 103, 11230, 10214, 113240, 8999, 10, 10, 10, 120 };
+	int *answer2 = findAnswer(testArr2, testLength);
+	if (answer2[0] != 9998 || answer2[1] != 8999)
+	{
+		printf("Test 2 failed");
+		return false;
+	}
+	delete[] testArr2;
+	delete[] answer2;
+	printf("Passed tests\n");
+	return true;
+}
 
 int main()
 {
-	setlocale(LC_ALL, "Russian");
+	srand(time(nullptr));
 	test();
-	const int size = 32;
-	bool *first = initNumber(size);
-	bool *second = initNumber(size);
-	printf("Ваши числа: \n");
-	printNumber(first, size);
-	printf("\n");
-	printNumber(second, size);
-	bool *result = findBigOne(first, second, size);
-	printf("\nБольшее число: \n");
-	printNumber(result, size);
+	const int length = 20;
+	int *theArray = new int[length]{};
+
+	for (int i = 0; i < length; ++i)
+	{
+		theArray[i] = rand() % 100 + 100;
+	}
+
+	printf("Your array:\n");
+	printArray(theArray, length);
+
+	printf("The answer is:\n");
+	int *answer = findAnswer(theArray, length);
+	printArray(answer, answer[length]);
+
+	delete[] theArray;
 	return 0;
 }
