@@ -101,5 +101,6 @@ bool test()
 	}
 	system("cls");
 	printf("В ходе тестов ошибки не выявлены!\n");
+	deleteSortedList(testList);
 	return true;
 }
