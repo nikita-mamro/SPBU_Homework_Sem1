@@ -50,6 +50,29 @@ void printBiNum(bool* num)
 bool test()
 {
 	printf("Running tests...\n\n");
+	int nonRandomNumber1 = 102;
+	int nonRandomNumber2 = 123;
+	printf("First number: %d\nSecond number: %d\n", nonRandomNumber1, nonRandomNumber2);
+	bool* nonRandomBitNumber1 = toBits(102);
+	bool* nonRandomBitNumber2 = toBits(123);
+	printBiNum(nonRandomBitNumber1);
+	printf("+\n");
+	printBiNum(nonRandomBitNumber2);
+	printf("--------------------------------\n");
+	printBiNum(sumNumbers(nonRandomBitNumber1, nonRandomBitNumber2));
+	int answer1 = toInt(sumNumbers(nonRandomBitNumber1, nonRandomBitNumber2));
+	delete[] nonRandomBitNumber1;
+	delete[] nonRandomBitNumber2;
+	printf("The answer is %d\n", answer1);
+	int sumResult1 = nonRandomNumber1 + nonRandomNumber2;
+	printf("Correct answer: %d\n\n", sumResult1);
+	bool test1Result = sumResult1 == answer1;
+	if (!test1Result)
+	{
+		printf("Test 1 failed!\n");
+		return false;
+	}
+
 	int firstNumber = rand() / 2;
 	int secondNumber = rand() / 2;
 	printf("First number: %d\nSecond number: %d\n", firstNumber, secondNumber);
@@ -60,23 +83,20 @@ bool test()
 	printBiNum(secondBiNumber);
 	printf("--------------------------------\n");
 	printBiNum(sumNumbers(firstBiNumber, secondBiNumber));
-	int answer = toInt(sumNumbers(firstBiNumber, secondBiNumber));
+	int answer2 = toInt(sumNumbers(firstBiNumber, secondBiNumber));
 	delete[] firstBiNumber;
 	delete[] secondBiNumber;
-	printf("The answer is %d\n", answer);
-	int sumResult = firstNumber + secondNumber;
-	printf("Correct answer: %d\n", sumResult);
-	bool testResult = sumResult == answer;
-	if (testResult)
+	printf("The answer is %d\n", answer2);
+	int sumResult2 = firstNumber + secondNumber;
+	printf("Correct answer: %d\n\n", sumResult2);
+	bool test2Result = sumResult2 == answer2;
+	if (!test2Result)
 	{
-		printf("Test passed!\n\n");
-		return true;
-	}
-	else
-	{
-		printf("Test failed!\n\n");
+		printf("Test 2 failed!\n");
 		return false;
 	}
+	printf("Passed tests!\n");
+	return true;
 }
 
 int main()
