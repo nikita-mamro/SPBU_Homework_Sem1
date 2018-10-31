@@ -143,11 +143,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp" />
+    <ClCompile Include="SortAndFind.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="TestModule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h" />
+    <ClInclude Include="SortAndFind.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="TestModule.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
