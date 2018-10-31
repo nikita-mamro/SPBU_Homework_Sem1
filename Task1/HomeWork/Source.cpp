@@ -45,6 +45,7 @@ void quickSort(int* arr, int firstIndex, int lastIndex)
 	if (lastIndex - firstIndex < 10) 
 	{
 		insertionSort(arr, firstIndex, lastIndex);
+		return;
 	}
 	else 
 	{
@@ -67,6 +68,11 @@ void quickSort(int* arr, int firstIndex, int lastIndex)
 	}
 }
 
+void deleteArray(int *arr)
+{
+	delete[] arr;
+}
+
 bool isSorted(int *arr, int length)
 {
 	for (int i = 0; i < length - 1; ++i)
@@ -74,31 +80,62 @@ bool isSorted(int *arr, int length)
 		if (arr[i] > arr[i + 1])
 		{
 			printf("Test failed!\n");
-			delete[] arr;
 			return false;
 		}
 	}
-	delete[] arr;
-	printf("Successfully passed the test!\n\n");
 	return true;
 }
 
 bool test()
 {
-	int length = rand() % 20 + 1;
-	int* testArray = initArray(length);
+	int* testArray1 = new int[10]{ 1, 3, 1, 5, 1204, 12, 124, 4, 1, 0 };
 	printf("Initial array:\n");
-	printArray(testArray, length);
-	quickSort(testArray, 0, length - 1);
-	printArray(testArray, length);
-	return isSorted(testArray, length);
+	printArray(testArray1, 10);
+	quickSort(testArray1, 0, 9);
+	printArray(testArray1, 10);
+	if (!isSorted(testArray1, 10))
+	{
+		printf("Test 1 failed\n");
+		delete[] testArray1;
+		return false;
+	}
+	delete[] testArray1;
+
+	int* testArray2 = new int[20]{ 132, 123, 123, 12, 3, 1425, 23, 6, 2, 634, 58, -23, 14, -1, 51, -2, 541, -4, 21, 10000 };
+	printf("Initial array:\n");
+	printArray(testArray2, 20);
+	quickSort(testArray2, 0, 19);
+	printArray(testArray2, 20);
+	if (!isSorted(testArray2, 20))
+	{
+		printf("Test 1 failed\n");
+		delete[] testArray2;
+		return false;
+	}
+	delete[] testArray2;
+
+	int length = rand() % 20 + 1;
+	int* testArray3 = initArray(length);
+	printf("Initial array:\n");
+	printArray(testArray3, length);
+	quickSort(testArray3, 0, length - 1);
+	printf("Sorted array:\n");
+	printArray(testArray3, length);
+	if (!isSorted(testArray3, length))
+	{
+		printf("Test 3 failed\n");
+		delete[] testArray3;
+		return false;
+	}
+	delete[] testArray3;
+	printf("Successfully passed the test!\n\n");
+	return true;
 }
 
 int main()
 {
-	srand(time(NULL));
+	srand(time(nullptr));
 	printf("Testing algorithm...\n");
-	test();
 	test();
 	int length = 0;
 	printf("Input the length of an array, please: ");
