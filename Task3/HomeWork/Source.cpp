@@ -110,7 +110,7 @@ int main()
 	int *myArray = initArray(length);
 	printf("Ваш массив:");
 	printArray(myArray, length);
-	printf("Наиболее часто встречающийся элемент в массиве: %d", mostFrequentElement(myArray, length));
+	printf("Наиболее часто встречающийся элемент в массиве: %d\n", mostFrequentElement(myArray, length));
 	delete[] myArray;
 	return 0;
 }
