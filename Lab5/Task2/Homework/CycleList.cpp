@@ -11,7 +11,7 @@ void printCycleList(CycleList &list)
 		ListElement *currentElement = list.head;
 		for (int i = 0; i < list.length; ++i)
 		{
-			printf("%d", currentElement->data);
+			printf("%d ", currentElement->data);
 			currentElement = currentElement->next;
 		}
 		printf("\n");
@@ -46,6 +46,7 @@ void kill(int pos, CycleList &list)
 		ListElement* tmpListElement = listElement->next;
 		listElement->next = tmpListElement->next;
 		delete tmpListElement;
+		--list.length;
 	}
 	list.head = listElement;
 	list.tail = listElement;
