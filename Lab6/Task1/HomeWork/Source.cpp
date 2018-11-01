@@ -1,11 +1,13 @@
 #include "Functions.hpp"
-
-using namespace std;
+#include "Test.hpp"
 
 int main()
 {
-	string str;
-	getline(cin, str);
-	
+	runTests();
+	printf("Input expression in postfix form: \n");
+	string input;
+	getline(cin, input);
+	int result = proceedTask(input);
+	cout << "The result is: " << result << endl;
 	return 0;
 }
