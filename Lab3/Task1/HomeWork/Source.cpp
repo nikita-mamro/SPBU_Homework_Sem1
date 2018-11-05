@@ -47,30 +47,26 @@ void quickSort(int* arr, int firstIndex, int lastIndex)
 		insertionSort(arr, firstIndex, lastIndex);
 		return;
 	}
-	else 
+
+	int index = firstIndex;
+	int element = arr[firstIndex];
+
+	for (int i = firstIndex; i <= lastIndex; ++i)
 	{
-		int index = firstIndex;
-		int element = arr[firstIndex];
-		for (int i = firstIndex; i <= lastIndex; ++i)
+		if (arr[i] < element)
 		{
-			if (arr[i] < element)
-			{
-				swap(arr[i], arr[index]);
-				++index;
-			}
-		}
-		if (index == firstIndex)
-		{
+			swap(arr[i], arr[index]);
 			++index;
 		}
-		quickSort(arr, firstIndex, index - 1);
-		quickSort(arr, index, lastIndex);
 	}
-}
 
-void deleteArray(int *arr)
-{
-	delete[] arr;
+	if (index == firstIndex)
+	{
+		++index;
+	}
+
+	quickSort(arr, firstIndex, index - 1);
+	quickSort(arr, index, lastIndex);
 }
 
 bool isSorted(int *arr, int length)
