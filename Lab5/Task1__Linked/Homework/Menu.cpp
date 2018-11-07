@@ -1,4 +1,9 @@
 #pragma once
+#ifdef _WIN32
+#define CLEAR "cls"
+#else
+#define CLEAR "clear"
+#endif
 
 #include "Menu.hpp"
 
@@ -13,7 +18,6 @@ void printMenu()
 	printf("4 - Очистить лог\n");
 	printf("--------------------------------------\n");
 }
-
 
 void solveTask(int choice, SortedList &list)
 {
@@ -39,7 +43,7 @@ void solveTask(int choice, SortedList &list)
 		printSortedList(list);
 		break;
 	case 4:
-		system("cls");
+		system(CLEAR);
 		printMenu();
 		break;
 	default:
@@ -49,12 +53,12 @@ void solveTask(int choice, SortedList &list)
 
 void proceedTask()
 {
-	SortedList list;
-	char c;
+	SortedList *list = new SortedList;
+	char c = ' ';
 	printMenu();
 	do {
 		c = getch();
-		solveTask(c - '0', list);
+		solveTask(c - '0', *list);
 	} while (c != 27);
-	deleteSortedList(list);
+	deleteSortedList(*list);
 }

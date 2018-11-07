@@ -1,4 +1,9 @@
 #include "Test.hpp"
+#ifdef _WIN32
+#define CLEAR "cls"
+#else
+#define CLEAR "clear"
+#endif
 
 void swap(int& a, int& b)
 {
@@ -43,11 +48,13 @@ void merge(int* array, int low, int high, int mid)
 	for (i = low; i <= high; i++) {
 		array[i] = temp[i - low];
 	}
+
+	delete[] temp;
 }
 
 void sort(int* array, int low, int high)
 {
-	int mid;
+	int mid = 0;
 	if (low < high) {
 		mid = (low + high) / 2;
 		sort(array, low, mid);
@@ -99,8 +106,9 @@ bool test()
 		}
 		currentElement = currentElement->next;
 	}
-	system("cls");
+	system(CLEAR);
 	printf("В ходе тестов ошибки не выявлены!\n");
+	delete[] testElements;
 	deleteSortedList(testList);
 	return true;
 }

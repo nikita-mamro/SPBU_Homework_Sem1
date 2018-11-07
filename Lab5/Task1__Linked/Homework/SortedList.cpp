@@ -3,16 +3,6 @@
 bool isContained(int element, SortedList &list)
 {
 	ListElement *currentElement = list.head;
-
-	if (list.head == nullptr)
-	{
-		return false;
-	}
-
-	if (currentElement->next == nullptr && currentElement->data == element)
-	{
-		return true;
-	}
 	
 	while (currentElement != nullptr)
 	{
@@ -122,10 +112,9 @@ void printSortedList(SortedList &list)
 
 void deleteSortedList(SortedList &list)
 {
-	ListElement *currentElement;
-	
 	while (list.head != nullptr)
 	{
+		ListElement *currentElement = new ListElement;
 		currentElement = list.head;
 		list.head = currentElement->next;
 		delete currentElement;
