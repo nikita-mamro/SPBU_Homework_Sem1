@@ -1,6 +1,7 @@
 #include "CycleList.hpp"
+#include "stdafx.hpp"
 
-void printCycleList(CycleList &list)
+void printCycleList(const CycleList &list)
 {
 	if (list.length == 0)
 	{
@@ -71,4 +72,6 @@ void deleteList(CycleList &list)
 		list.head = list.head->next;
 		delete element;
 	}
+	list.tail = nullptr;
+	list.head = nullptr;
 }

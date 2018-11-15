@@ -1,7 +1,5 @@
 #pragma once
 
-#include "stdafx.hpp"
-
 struct ListElement
 {
 	int data = 0;
@@ -15,8 +13,8 @@ struct CycleList
 	int length = 0;
 };
 
-void printCycleList(CycleList&);
-void addElement(int, CycleList&);
-void kill(int, CycleList&);
-void deleteList(CycleList&);
-ListElement *newElement(int, ListElement*);
+void printCycleList(const CycleList &list);
+void addElement(int data, CycleList &list);
+void kill(int pos, CycleList &list);
+void deleteList(CycleList &list);
+ListElement *newElement(int data, ListElement *element);

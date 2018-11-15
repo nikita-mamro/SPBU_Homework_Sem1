@@ -1,4 +1,6 @@
 #include "Test.hpp"
+#include "CycleList.hpp"
+#include "stdafx.hpp"
 
 bool test(int n, int m, int correctAnswer)
 {
@@ -18,5 +20,6 @@ bool test(int n, int m, int correctAnswer)
 		return false;
 	}
 	printf("Passed test!\n");
+	deleteList(testList);
 	return true;
 }
