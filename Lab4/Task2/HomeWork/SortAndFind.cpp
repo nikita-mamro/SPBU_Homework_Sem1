@@ -1,4 +1,5 @@
 #include "SortAndFind.hpp"
+#include "stdafx.hpp"
 
 void swap(int &a, int&b)
 {

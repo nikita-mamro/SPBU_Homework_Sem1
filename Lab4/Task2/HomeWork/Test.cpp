@@ -1,4 +1,5 @@
 #include "Test.hpp"
+#include "stdafx.hpp"
 #include "ArrayFunctions.hpp"
 #include "SortAndFind.hpp"
 
