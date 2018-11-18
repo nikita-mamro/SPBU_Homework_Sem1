@@ -2,7 +2,7 @@
 
 #include "Functions.hpp"
 
-bool test(const string &, int);
+bool test(const string & input, int correctAnswer);
 bool success();
-bool failure(int, int);
+bool failure(int wrongAnswer, int correctAnswer);
 bool runTests();

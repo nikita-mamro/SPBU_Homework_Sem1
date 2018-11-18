@@ -3,8 +3,8 @@
 #include "Stack.hpp"
 #include "stdafx.hpp"
 
-bool isDigit(char);
-bool isOperand(char);
-int charToDigit(char);
-int proceedOperand(int, int, char);
+bool isDigit(char c);
+bool isOperand(char c);
+int charToDigit(char c);
+int proceedOperand(int a, int b, char operand);
 int proceedTask(const string &);

@@ -34,7 +34,7 @@ int proceedOperand(int a, int b, char operand)
 int proceedTask(const string &input)
 {
 	int length = input.length();
-	Stack stack;
+	Stack *stack = createStack();
 	for (int i = 0; i < length; ++i)
 	{
 		if (input[i] == ' ')
