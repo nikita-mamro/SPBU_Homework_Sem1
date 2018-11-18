@@ -4,4 +4,3 @@
 
 void printMenu();
 void proceedTask();
-void solveTask(int, Contact*, int&);

@@ -1,4 +1,8 @@
 #include "Test.hpp"
+#include "stdafx.hpp"
+#include "File.hpp"
+#include "Menu.hpp"
+#include "Phonebook.hpp"
 
 void askForTests()
 {
@@ -33,7 +37,7 @@ bool test()
 	strcpy(contactsMenuBufferTest[0].name, name);
 	strcpy(contactsMenuBufferTest[0].phone, phone);
 	saveData(contactsMenuBufferTest, 1);
-	printAll(); // не упало -> ok =)
+	printAll(contactsMenuBufferTest, 1); // не упало -> ok =)
 
 	Contact contactsFileBufferTest[BOOK_SIZE];
 	if (readFromFile(contactsFileBufferTest) != 2)
@@ -49,17 +53,17 @@ bool test()
 		return false;
 	}
 
-	if (strcmp(getName(phone), name) != 0)
+	if (strcmp(getName(phone, contactsMenuBufferTest, 0), name) != 0)
 	{
 		printf("ќшибка в getName()!\n");
-		printf("ќжидалс€ ответ name, полученный: %s\n", getName(phone));
+		printf("ќжидалс€ ответ name, полученный: %s\n", getName(phone, contactsMenuBufferTest, 0));
 		return false;
 	}
 
-	if (strcmp(getPhoneNumber(name), phone) != 0)
+	if (strcmp(getPhoneNumber(name, contactsMenuBufferTest, 0), phone) != 0)
 	{
 		printf("ќшибка в getPhoneNumber()!\n");
-		printf("ќжидалс€ ответ 8888, полученный: %s\n", getPhoneNumber(name));
+		printf("ќжидалс€ ответ 8888, полученный: %s\n", getPhoneNumber(name, contactsMenuBufferTest, 0));
 		return false;
 	}
 

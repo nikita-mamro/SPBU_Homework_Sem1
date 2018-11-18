@@ -25,7 +25,6 @@ void printMenu()
 
 void solveTask(int choice, Contact* contactsBuffer, int& addCounter)
 {
-	char* phoneNumber = new char[MAX_LENGTH] {};
 	char *name = new char[MAX_LENGTH] {};
 	char *phone = new char[MAX_LENGTH] {};
 
@@ -40,14 +39,14 @@ void solveTask(int choice, Contact* contactsBuffer, int& addCounter)
 		printf("Записей к сохранению : %d\n", addCounter);
 		break;
 	case 2:
-		printAll();
+		printAll(contactsBuffer, addCounter);
 		break;
 	case 3:
 		printf("Введите имя: ");
 		scanf("%s", name);
-		if (getPhoneNumber(name) != NULL)
+		if (getPhoneNumber(name, contactsBuffer, addCounter) != NULL)
 		{
-			printf("Номер: %s\n", getPhoneNumber(name));
+			printf("Номер: %s\n", getPhoneNumber(name, contactsBuffer, addCounter));
 		}
 		else
 		{
@@ -57,9 +56,9 @@ void solveTask(int choice, Contact* contactsBuffer, int& addCounter)
 	case 4:
 		printf("Введите номер: ");
 		scanf("%s", phone);
-		if (getName(phone) != NULL)
+		if (getName(phone, contactsBuffer, addCounter) != NULL)
 		{
-			printf("Имя: %s\n", getName(phone));
+			printf("Имя: %s\n", getName(phone, contactsBuffer, addCounter));
 		}
 		else
 		{
@@ -86,7 +85,7 @@ void solveTask(int choice, Contact* contactsBuffer, int& addCounter)
 void proceedTask()
 {
 	Contact contactsBuffer[BOOK_SIZE];
-	char c;
+	char c = ' ';
 	int addCounter = 0;
 	printMenu();
 	do {
