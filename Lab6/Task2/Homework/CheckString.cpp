@@ -1,27 +1,24 @@
 #include "CheckString.hpp"
+#include "stdafx.hpp"
 
 bool isOpeningBracket(const char c)
 {
-	return c == '(' || c == '[' || c == '{' ? true : false;
+	return c == '(' || c == '[' || c == '{';
 }
 
 bool isClosingBracket(const char c)
 {
-	return c == ')' || c == ']' || c == '}' ? true : false;
+	return c == ')' || c == ']' || c == '}';
 }
 
-bool isPair(const char fBr, const char sBr)
+bool isPair(const char firstBracket, const char secondBracket)
 {
-	if (fBr == '(' && sBr == ')' || fBr == '{' && sBr == '}' || fBr == '[' && sBr == ']')
-	{
-		return true;
-	}
-	return false;
+	return (firstBracket == '(' && secondBracket == ')' || firstBracket == '{' && secondBracket == '}' || firstBracket == '[' && secondBracket == ']');
 }
 
 bool checkString(const string str)
 {
-	Stack stack;
+	Stack *stack = createStack();
 	int length = str.length();
 	
 	for (int i = 0; i < length; ++i)
