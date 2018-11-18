@@ -1,18 +1,12 @@
 #pragma once
 
-struct StackElement
-{
-	char data = 0;
-	StackElement *next = nullptr;
-};
+struct StackElement;
 
-struct Stack
-{
-	StackElement *head = nullptr;
-};
+struct Stack;
 
-void push(Stack&, char);
-char pop(Stack&);
-char top(Stack&);
-bool isEmpty(Stack);
-void deleteStack(Stack &stack);
+Stack* createStack();
+void push(Stack *stack, char data);
+char pop(Stack *stack);
+char top(Stack *stack);
+bool isEmpty(Stack *stack);
+void deleteStack(Stack *stack);

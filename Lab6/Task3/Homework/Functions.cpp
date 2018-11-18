@@ -1,4 +1,5 @@
 #include "Functions.hpp"
+#include "stdafx.hpp"
 
 bool isDigit(char c)
 {
@@ -58,7 +59,7 @@ int operandPriority(char operand)
 
 string infixToPostfix(const string &input)
 {
-	Stack stack;
+	Stack *stack = createStack();
 	const int length = input.length();
 	string result;
 

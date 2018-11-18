@@ -1,13 +1,13 @@
 #pragma once
 
-#include "stdafx.hpp"
 #include "Stack.hpp"
+#include "stdafx.hpp"
 
-bool isDigit(char);
-bool isOperand(char);
-int charToDigit(char);
-bool isOpeningBracket(char);
-bool isClosingBracket(char);
-int operandPriority(char);
-int proceedOperand(int, int, char);
-string infixToPostfix(const string&);
+bool isDigit(char c);
+bool isOperand(char c);
+int charToDigit(char c);
+bool isOpeningBracket(char c);
+bool isClosingBracket(char c);
+int operandPriority(char operand);
+int proceedOperand(int a, int b, char operand);
+string infixToPostfix(const string &input);
