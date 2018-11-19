@@ -1,6 +1,7 @@
 #include "stdafx.hpp"
 #include "Menu.hpp"
 #include "ContactStruct.hpp"
+#include "MergeSort.hpp"
 
 void printMenu()
 {
@@ -22,13 +23,19 @@ void solveTask(int choice, List *list)
 		printList(list);
 		break;
 	case 2:
-		
+		//mergeSort(list, 0);
+		//printList(list);
 		break;
 	case 3:
-		
+		//mergeSort(list, 1);
+		//printList(list);
 		break;
 	default:
 		printf("Choose option from 1 to 3\n");
+		List *half1 = firstHalf(list);
+		printList(half1);
+		List *half2 = secondHalf(list);
+		printList(half2);
 		break;
 	}
 }

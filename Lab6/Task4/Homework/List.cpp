@@ -1,5 +1,7 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "List.hpp"
 #include "ContactStruct.hpp"
+#include <vector>
 
 struct Node
 {
@@ -37,13 +39,41 @@ void add(List *list, Node *node)
 		list->head = node;
 
 		list->tail = node;
-
-		list->length++;
 	}
 
 	list->tail->next = node;
 	list->tail = node;
 	list->length++;
+}
+
+void appendList(List * listA, List * listB)
+{
+	if (listB == nullptr)
+	{
+		return;
+	}
+
+	listA->tail->next = listB->head;
+	listA->tail = listB->tail;
+	listA->length += listB->length;
+	listB->head = nullptr;
+	listB->tail = nullptr;
+	listB->length = 0;
+}
+
+void extractHead(List * list)
+{
+	if (list->head->next != nullptr)
+	{
+		Node *tmp = list->head;
+		list->head = list->head->next;
+		delete tmp;
+		--list->length;
+	}
+	else
+	{
+		deleteList(list);
+	}
 }
 
 Node * cmpNames(Node * nodeA, Node * nodeB)
@@ -62,11 +92,13 @@ Node * cmpPhoneNumbers(Node * nodeA, Node * nodeB)
 
 void printList(List *list)
 {
-	if (list->head == nullptr || list == nullptr)
+	if (isEmpty(list))
 	{
 		cout << "The list is empty." << endl;
 		return;
 	}
+
+	cout << "The list:" << endl << endl;
 
 	Node *tmp = list->head;
 
@@ -75,24 +107,92 @@ void printList(List *list)
 		cout << tmp->contact.name << " - " << tmp->contact.phone << endl;
 		tmp = tmp->next;
 	}
+
+	cout << endl << endl;
+}
+
+bool isEmpty(List *list)
+{
+	return list->head == nullptr;
 }
 
 void deleteList(List *list)
 {
-	if (list->head == nullptr)
+	while (!isEmpty(list))
 	{
-		return;
+		Node* tmp = list->head;
+		list->head = list->head->next;
+		delete tmp;
+	}
+}
+
+int getLength(List *list)
+{
+	return list->length;
+}
+
+List *firstHalf(List *list)
+{
+	List *res = createList();
+	int length = list->length / 2;
+	
+	Node *current = list->head;
+	vector <Contact*> contacts;
+	char name[20] = " ";
+	char phone[20] = " ";
+	
+	for (int i = 0; i < length; ++i)
+	{
+		strcpy(name, current->contact.name);
+		strcpy(phone, current->contact.phone);
+		Contact *contact = new Contact();
+		strcpy(contact->name, name);
+		strcpy(contact->phone, phone);
+		contacts.push_back(contact);
+		current = current->next;
 	}
 
-	Node *tmp = list->head;
-
-	while (tmp != nullptr) 
+	for (int i = 0; i < length; ++i)
 	{
-		Node *ttmp = tmp;
-		tmp = tmp->next;
-		delete ttmp;
+		Node *node = createNode(*contacts[i]);
+		add(res, node);
+	}
+	
+	return res;
+}
+
+List *secondHalf(List *list)
+{
+	List *res = createList();
+	int length = list->length / 2;
+
+	Node *current = list->head;
+
+	for (int i = 0; i < length; ++i)
+	{
+		current = current->next;
 	}
 
-	delete list;
-	list = nullptr;
+	vector <Contact*> contacts;
+	char name[20] = " ";
+	char phone[20] = " ";
+
+	while (current != nullptr)
+	{
+		strcpy(name, current->contact.name);
+		strcpy(phone, current->contact.phone);
+		Contact *contact = new Contact();
+		strcpy(contact->name, name);
+		strcpy(contact->phone, phone);
+		contacts.push_back(contact);
+		current = current->next;
+	}
+
+	for (int i = 0; i < list->length - length; ++i)
+	{
+		Node *node = createNode(*contacts[i]);
+		add(res, node);
+	}
+
+	return res;
 }
