@@ -23,12 +23,12 @@ void solveTask(int choice, List *list)
 		printList(list);
 		break;
 	case 2:
-		//mergeSort(list, 0);
-		//printList(list);
+		mergeSort(list, 0);
+		printList(list);
 		break;
 	case 3:
-		//mergeSort(list, 1);
-		//printList(list);
+		mergeSort(list, 1);
+		printList(list);
 		break;
 	default:
 		printf("Choose option from 1 to 3\n");

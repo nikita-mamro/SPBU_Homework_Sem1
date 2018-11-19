@@ -80,14 +80,14 @@ Node * cmpNames(Node * nodeA, Node * nodeB)
 {
 	string nameA = nodeA->contact.name;
 	string nameB = nodeB->contact.name;
-	return nameA >= nameB ? nodeA : nodeB;
+	return nameA <= nameB ? nodeA : nodeB;
 }
 
 Node * cmpPhoneNumbers(Node * nodeA, Node * nodeB)
 {
 	string phoneA = nodeA->contact.phone;
 	string phoneB = nodeB->contact.phone;
-	return phoneA >= phoneB ? nodeA : nodeB;
+	return phoneA <= phoneB ? nodeA : nodeB;
 }
 
 void printList(List *list)
@@ -195,4 +195,26 @@ List *secondHalf(List *list)
 	}
 
 	return res;
+}
+
+Contact *priotityNameContact(Node *nodeA, Node *nodeB)
+{
+	Node *res = cmpNames(nodeA, nodeB);
+	return &res->contact;
+}
+
+Contact *priotityPhoneContact(Node *nodeA, Node *nodeB)
+{
+	Node *res = cmpPhoneNumbers(nodeA, nodeB);
+	return &res->contact;
+}
+
+Node *head(List *list)
+{
+	return list->head;
+}
+
+Contact *headContact(List *list)
+{
+	return &list->head->contact;
 }

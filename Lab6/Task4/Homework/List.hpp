@@ -16,9 +16,9 @@ void add(List *list, Node *node);
 void appendList(List *listA, List *listB);
 //Удаление первого элемента из списка.
 void extractHead(List *list);
-//Вернуть ноду, в которой содержится имя, идущее 2ым в алфавитном порядке.
+//Вернуть ноду, в которой содержится имя, идущее 1ым в алфавитном порядке.
 Node *cmpNames(Node *nodeA, Node *nodeB);
-//Вернуть ноду, в которой содержится номер, идущий 2ым в порядке сравнения.
+//Вернуть ноду, в которой содержится номер, идущий 1ым в порядке сравнения.
 Node *cmpPhoneNumbers(Node *nodeA, Node *nodeB);
 //Печать списка.
 void printList(List * list);
@@ -31,3 +31,10 @@ int getLength(List *list);
 //Получить 2 половины.
 List *firstHalf(List *list);
 List *secondHalf(List *list);
+//Получить данные из ноды, которая после сортировки будет приоритетнее
+Contact *priotityNameContact(Node *nodeA, Node *nodeB);
+Contact *priotityPhoneContact(Node *nodeA, Node *nodeB);
+//Получить голову
+Node *head(List *list);
+//Получить контакт из головы
+Contact *headContact(List *list);
