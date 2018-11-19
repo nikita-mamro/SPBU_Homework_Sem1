@@ -14,7 +14,7 @@ struct List
 	int length;
 };
 
-Node *createNode(Contact contact, Node *next = nullptr)
+Node *createNode(Contact contact, Node *next)
 {
 	return new Node{ contact , next };
 }
@@ -24,7 +24,7 @@ List *createList()
 	return new List{ nullptr, nullptr, 0 };
 }
 
-void addElement(List *list, Node *node)
+void add(List *list, Node *node)
 {
 	if (node == nullptr)
 	{
@@ -41,9 +41,22 @@ void addElement(List *list, Node *node)
 		list->length++;
 	}
 
-	list->tail->next = node;
 	list->tail = node;
 	list->length++;
+}
+
+Node * cmpNames(Node * nodeA, Node * nodeB)
+{
+	string nameA = nodeA->contact.name;
+	string nameB = nodeB->contact.name;
+	return nameA >= nameB ? nodeA : nodeB;
+}
+
+Node * cmpPhoneNumbers(Node * nodeA, Node * nodeB)
+{
+	string phoneA = nodeA->contact.phone;
+	string phoneB = nodeB->contact.phone;
+	return phoneA >= phoneB ? nodeA : nodeB;
 }
 
 void printList(List *list)

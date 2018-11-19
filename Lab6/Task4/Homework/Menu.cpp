@@ -1,6 +1,5 @@
 #include "stdafx.hpp"
 #include "Menu.hpp"
-#include "File.hpp"
 #include "ContactStruct.hpp"
 
 void printMenu()
@@ -15,12 +14,12 @@ void printMenu()
 }
 
 
-void solveTask(int choice)
+void solveTask(int choice, List *list)
 {
 	switch (choice)
 	{
 	case 1:
-
+		printList(list);
 		break;
 	case 2:
 
@@ -28,22 +27,19 @@ void solveTask(int choice)
 	case 3:
 		
 		break;
-	case 4:
-		system("cls");
-		break;
 	default:
-		printf("Choose option from 1 to 4\n");
+		printf("Choose option from 1 to 3\n");
 		break;
 	}
 }
 
-void proceedTask()
+void proceedTask(List *list)
 {
 	char c = ' ';
 	int addCounter = 0;
 	printMenu();
 	do {
-		c = getch();
-		solveTask(c - '0');
+		c = _getch();
+		solveTask(c - '0', list);
 	} while (c != 27);
 }

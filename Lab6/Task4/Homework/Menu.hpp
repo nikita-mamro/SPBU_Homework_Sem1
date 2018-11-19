@@ -1,4 +1,5 @@
 #pragma once
+#include "List.hpp"
 
 void printMenu();
-void proceedTask();
+void proceedTask(List *list);

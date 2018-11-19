@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.hpp"
 #include "ContactStruct.hpp"
+#include "List.hpp"
 
-int readFromFile(Contact* contactList);
+void readFromFile(List *list);
