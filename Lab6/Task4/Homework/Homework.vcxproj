@@ -32,8 +32,8 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="File.cpp" />
-    <None Include="MergeSort.cpp" />
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="MergeSort.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

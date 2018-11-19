@@ -22,7 +22,7 @@ void solveTask(int choice, List *list)
 		printList(list);
 		break;
 	case 2:
-
+		
 		break;
 	case 3:
 		

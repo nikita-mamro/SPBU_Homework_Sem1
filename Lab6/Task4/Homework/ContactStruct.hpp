@@ -3,6 +3,6 @@
 
 struct Contact
 {
-	string name;
-	string phone;
+	char name[20];
+	char phone[20];
 };

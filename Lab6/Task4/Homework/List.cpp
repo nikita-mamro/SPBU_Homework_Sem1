@@ -41,6 +41,7 @@ void add(List *list, Node *node)
 		list->length++;
 	}
 
+	list->tail->next = node;
 	list->tail = node;
 	list->length++;
 }
