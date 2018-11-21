@@ -24,10 +24,12 @@ void solveTask(int choice, List *list)
 		break;
 	case 2:
 		mergeSort(list, 0);
+		printf("/n/n");
 		printList(list);
 		break;
 	case 3:
 		mergeSort(list, 1);
+		printf("/n/n");
 		printList(list);
 		break;
 	default:

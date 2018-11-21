@@ -1,17 +1,14 @@
 #include "MergeSort.hpp"
 #include "List.hpp"
 
-List* merge(List *list, bool sortBy)
+void merge(List *list, bool sortBy)
 {
 	List *res = createList();
 
 	List *left = firstHalf(list);
 	List *right = secondHalf(list);
 
-	char name[20];
-	char phone[20];
-
-	while (left != nullptr)
+	while (head(left) != nullptr && head(right) != nullptr)
 	{
 		if (sortBy == 0) // name
 		{
@@ -19,7 +16,7 @@ List* merge(List *list, bool sortBy)
 			Node *node = createNode(*contact);
 			add(res, node);
 
-			if (!strcmp(contact->name, headContact(left)->phone))
+			if (!strcmp(contact->name, headContact(left)->name))
 			{
 				extractHead(left);
 			}
@@ -34,7 +31,7 @@ List* merge(List *list, bool sortBy)
 			Node *node = createNode(*contact);
 			add(res, node);
 			
-			if (!strcmp(contact->name, headContact(left)->name))
+			if (!strcmp(contact->phone, headContact(left)->phone))
 			{
 				extractHead(left);
 			}
@@ -45,27 +42,38 @@ List* merge(List *list, bool sortBy)
 		}
 	}
 
-	if (getLength(right) != 0)
+	if (head(left) != nullptr)
 	{
-		Contact *contact = headContact(right);
-		Node *node = createNode(*contact);
-		add(res, node);
+		appendList(res, left);
+	}
+	if (head(right) != nullptr)
+	{
+		appendList(res, right);
 	}
 
-	delete[] name;
-	delete[] phone;
-	deleteList(left);
-	deleteList(right);
+	while (head(list) != nullptr)
+	{
+		extractHead(list);
+	}
 
-	return res;
+	appendList(list, res);
 }
 
 void mergeSort(List *list, bool sortBy)
 {
-	int length = getLength(list);
+	if (getLength(list) == 1)
+	{
+		return;
+	}
 
-		mergeSort(firstHalf(list), sortBy);
-		mergeSort(secondHalf(list), sortBy);
+	List *left = firstHalf(list);
+	List *right = secondHalf(list);
 
-	list = merge(list, sortBy);
+	mergeSort(left, sortBy);
+	mergeSort(right, sortBy);
+
+	merge(list, sortBy);
+
+	deleteList(left);
+	deleteList(right);
 }

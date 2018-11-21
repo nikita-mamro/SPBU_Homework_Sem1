@@ -43,36 +43,35 @@ void add(List *list, Node *node)
 
 	list->tail->next = node;
 	list->tail = node;
-	list->length++;
+	++list->length;
 }
 
 void appendList(List * listA, List * listB)
 {
-	if (listB == nullptr)
+	while (head(listB) != nullptr)
 	{
-		return;
+		Contact *contact = headContact(listB);
+		Node *node = createNode(*contact);
+		add(listA, node);
+		extractHead(listB);
 	}
-
-	listA->tail->next = listB->head;
-	listA->tail = listB->tail;
-	listA->length += listB->length;
-	listB->head = nullptr;
-	listB->tail = nullptr;
-	listB->length = 0;
 }
 
 void extractHead(List * list)
 {
-	if (list->head->next != nullptr)
+	if (list->length == 1)
+	{
+		list->head->next = nullptr;
+		list->head = nullptr;
+		list->tail = nullptr;
+		--list->length;
+	}
+	else
 	{
 		Node *tmp = list->head;
 		list->head = list->head->next;
 		delete tmp;
 		--list->length;
-	}
-	else
-	{
-		deleteList(list);
 	}
 }
 
@@ -211,6 +210,10 @@ Contact *priotityPhoneContact(Node *nodeA, Node *nodeB)
 
 Node *head(List *list)
 {
+	if (list == nullptr)
+	{
+		return nullptr;
+	}
 	return list->head;
 }
 
