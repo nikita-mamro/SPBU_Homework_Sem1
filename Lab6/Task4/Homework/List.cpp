@@ -1,7 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "List.hpp"
 #include "ContactStruct.hpp"
-#include <vector>
 
 struct Node
 {
@@ -54,7 +53,7 @@ void add(List *list, Node *node)
 
 void appendList(List * listA, List * listB)
 {
-	if (listB->head == nullptr)
+	if (listB == nullptr || listB->head == nullptr)
 	{
 		return;
 	}
@@ -194,25 +193,31 @@ List *merge(List *listA, List *listB, bool sortBy)
 		}
 	}
 
+	add(res, nodeA);
+	appendList(res, listA);
+	add(res, nodeB);
+	appendList(res, listB);
+	deleteList(listA);
+	deleteList(listB);
+
 	return res;
 }
 
 void mergeSort(List *list, bool sortBy)
 {
-	vector <List*> merged;
-
 	int length = list->length;
+	List **merged = new List*[length];
 
 	for (int i = 0; i < length; ++i)
 	{
-		merged.push_back(createList(extractHead(list)));
+		merged[i] = (createList(extractHead(list)));
 	}
 
 	deleteList(list);
 
 	while (length > 1)
 	{
-		for (int i = 0; i < length / 2; ++i)
+		for (int i = 0; i < length; i+=2)
 		{
 			List *listA = merged[i];
 			merged[i] = nullptr;
