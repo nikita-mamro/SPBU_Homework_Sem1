@@ -23,7 +23,6 @@
     <ClInclude Include="File.hpp" />
     <ClInclude Include="List.hpp" />
     <ClInclude Include="Menu.hpp" />
-    <ClInclude Include="MergeSort.hpp" />
     <ClInclude Include="stdafx.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -33,7 +32,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="File.cpp" />
-    <ClCompile Include="MergeSort.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

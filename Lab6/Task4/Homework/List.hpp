@@ -31,6 +31,8 @@ int getLength(List *list);
 //Получить 2 половины.
 List *firstHalf(List *list);
 List *secondHalf(List *list);
+//Разбиение на 2
+void divide(List *list, List *left, List *right);
 //Получить данные из ноды, которая после сортировки будет приоритетнее
 Contact *priotityNameContact(Node *nodeA, Node *nodeB);
 Contact *priotityPhoneContact(Node *nodeA, Node *nodeB);
@@ -38,3 +40,6 @@ Contact *priotityPhoneContact(Node *nodeA, Node *nodeB);
 Node *head(List *list);
 //Получить контакт из головы
 Contact *headContact(List *list);
+//Сортировка
+void merge(List *list, bool sortBy, List *left, List *right);
+void mergeSort(List *list, bool sortBy);

@@ -1,7 +1,6 @@
 #include "stdafx.hpp"
 #include "Menu.hpp"
 #include "ContactStruct.hpp"
-#include "MergeSort.hpp"
 
 void printMenu()
 {

@@ -35,7 +35,6 @@ void add(List *list, Node *node)
 
 	if (list->head == nullptr)
 	{
-		node->next = list->head;
 		list->head = node;
 
 		list->tail = node;
@@ -196,6 +195,35 @@ List *secondHalf(List *list)
 	return res;
 }
 
+void divide(List * list, List * left, List * right)
+{
+	Node *current = list->head;
+	char name[20] = " ";
+	char phone[20] = " ";
+
+	for (int i = 0; i < list->length; ++i)
+	{
+		strcpy(name, current->contact.name);
+		strcpy(phone, current->contact.phone);
+		Contact *contact = new Contact();
+		strcpy(contact->name, name);
+		strcpy(contact->phone, phone);
+
+		Node *node = createNode(*contact);
+
+		if (i < list->length / 2)
+		{
+			add(left, node);
+		}
+		else
+		{
+			add(right, node);
+		}
+
+		current = current->next;
+	}
+}
+
 Contact *priotityNameContact(Node *nodeA, Node *nodeB)
 {
 	Node *res = cmpNames(nodeA, nodeB);
@@ -220,4 +248,109 @@ Node *head(List *list)
 Contact *headContact(List *list)
 {
 	return &list->head->contact;
+}
+
+void merge(List *list, bool sortBy, List *left, List *right)
+{
+	Node *res = list->head;
+	Node *nodeLeft = left->head;
+	Node *nodeRight = right->head;
+
+	while (nodeLeft != nullptr || nodeRight != nullptr)
+	{
+		if (sortBy == 0) // name
+		{
+			if (nodeLeft == nullptr)
+			{
+				while (nodeRight != nullptr)
+				{
+					strcpy(res->contact.name, nodeRight->contact.name);
+					strcpy(res->contact.phone, nodeRight->contact.phone);
+					nodeRight = nodeRight->next;
+					res = res->next;
+				}
+			}
+
+			if (nodeRight == nullptr)
+			{
+				while (nodeLeft != nullptr)
+				{
+					strcpy(res->contact.name, nodeLeft->contact.name);
+					strcpy(res->contact.phone, nodeLeft->contact.phone);
+					nodeLeft = nodeLeft->next;
+					res = res->next;
+				}
+			}
+
+			Contact *contact = priotityNameContact(nodeLeft, nodeRight);
+			strcpy(res->contact.name, contact->name);
+			strcpy(res->contact.phone, contact->phone);
+
+			if (!strcmp(nodeLeft->contact.name, contact->name))
+			{
+				nodeLeft = nodeLeft->next;
+			}
+			else
+			{
+				nodeRight = nodeRight->next;
+			}
+			
+		}
+		else // phone
+		{
+			if (nodeLeft == nullptr)
+			{
+				while (nodeRight != nullptr)
+				{
+					strcpy(res->contact.name, nodeRight->contact.name);
+					strcpy(res->contact.phone, nodeRight->contact.phone);
+					nodeRight = nodeRight->next;
+					res = res->next;
+				}
+			}
+
+			if (nodeRight == nullptr)
+			{
+				while (nodeLeft != nullptr)
+				{
+					strcpy(res->contact.name, nodeLeft->contact.name);
+					strcpy(res->contact.phone, nodeLeft->contact.phone);
+					nodeLeft = nodeLeft->next;
+					res = res->next;
+				}
+			}
+
+			Contact *contact = priotityPhoneContact(nodeLeft, nodeRight);
+			strcpy(res->contact.name, contact->name);
+			strcpy(res->contact.phone, contact->phone);
+
+			if (!strcmp(nodeLeft->contact.name, contact->name))
+			{
+				nodeLeft = nodeLeft->next;
+			}
+			else
+			{
+				nodeRight = nodeRight->next;
+			}	
+		}
+		res = res->next;
+	}
+}
+
+void mergeSort(List *list, bool sortBy)
+{
+	if (list->length == 1)
+	{
+		return;
+	}
+
+	List left;
+	List right;
+
+	divide(list, &left, &right);
+
+	mergeSort(&left, sortBy);
+	mergeSort(&right, sortBy);
+
+	merge(list, sortBy, &left, &right);
 }

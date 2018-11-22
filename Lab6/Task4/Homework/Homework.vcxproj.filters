@@ -27,9 +27,6 @@
     <ClInclude Include="List.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="MergeSort.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Menu.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -44,13 +41,8 @@
     <ClCompile Include="Menu.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="File.cpp">
+    <ClCompile Include="File.cpp">
       <Filter>Исходные файлы</Filter>
-    </None>
-    <None Include="MergeSort.cpp">
-      <Filter>Исходные файлы</Filter>
-    </None>
+    </ClCompile>
   </ItemGroup>
 </Project>
