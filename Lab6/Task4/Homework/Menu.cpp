@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "stdafx.hpp"
 #include "Menu.hpp"
 #include "ContactStruct.hpp"
@@ -23,7 +24,7 @@ void solveTask(int choice, List *list)
 		break;
 	case 2:
 		mergeSort(list, 0);
-		printf("/n/n");
+		printf("\n\n");
 		printList(list);
 		break;
 	case 3:
@@ -33,10 +34,6 @@ void solveTask(int choice, List *list)
 		break;
 	default:
 		printf("Choose option from 1 to 3\n");
-		List *half1 = firstHalf(list);
-		printList(half1);
-		List *half2 = secondHalf(list);
-		printList(half2);
 		break;
 	}
 }

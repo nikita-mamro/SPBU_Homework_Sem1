@@ -10,12 +10,13 @@ struct List;
 Node *createNode(Contact contact, Node *next = nullptr);
 //Создание списка.
 List *createList();
+List *createList(Node *node);
 //Добавление ноды в список.
 void add(List *list, Node *node);
 //Склеивание списоков.
 void appendList(List *listA, List *listB);
 //Удаление первого элемента из списка.
-void extractHead(List *list);
+Node *extractHead(List *list);
 //Вернуть ноду, в которой содержится имя, идущее 1ым в алфавитном порядке.
 Node *cmpNames(Node *nodeA, Node *nodeB);
 //Вернуть ноду, в которой содержится номер, идущий 1ым в порядке сравнения.
@@ -26,20 +27,9 @@ void printList(List * list);
 bool isEmpty(List *list);
 //Удаление списка.
 void deleteList(List * list);
-//Получить длину.
-int getLength(List *list);
-//Получить 2 половины.
-List *firstHalf(List *list);
-List *secondHalf(List *list);
-//Разбиение на 2
-void divide(List *list, List *left, List *right);
 //Получить данные из ноды, которая после сортировки будет приоритетнее
 Contact *priotityNameContact(Node *nodeA, Node *nodeB);
 Contact *priotityPhoneContact(Node *nodeA, Node *nodeB);
-//Получить голову
-Node *head(List *list);
-//Получить контакт из головы
-Contact *headContact(List *list);
 //Сортировка
-void merge(List *list, bool sortBy, List *left, List *right);
+List *merge(List *listA, List *listB, bool sortBy);
 void mergeSort(List *list, bool sortBy);
