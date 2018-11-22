@@ -24,7 +24,7 @@
     <ClCompile Include="SortAndFind.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="ArrayFuntctions.cpp">
+    <ClCompile Include="ArrayFunctions.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
