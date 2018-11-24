@@ -30,3 +30,5 @@ void deleteList(List * list);
 //Сортировка
 List *merge(List *listA, List *listB, bool sortBy);
 void mergeSort(List *&list, bool sortBy);
+//Тест на отсортированность
+bool testSort(List *& list, bool sortBy);

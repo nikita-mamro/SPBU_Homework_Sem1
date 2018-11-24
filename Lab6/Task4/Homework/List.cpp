@@ -216,3 +216,32 @@ void mergeSort(List *&list, bool sortBy)
 	delete[] merged;
 	list = res;
  }
+
+bool testSort(List *&list, bool sortBy)
+{
+	mergeSort(list, sortBy);
+	Node *current = list->head;
+
+	while (current->next!= nullptr)
+	{
+		if (sortBy == 0) // names
+		{
+			if (cmpNames(current, current->next) > 0)
+			{
+				return false;
+			}
+		}
+
+		else // phones
+		{
+			if (cmpPhoneNumbers(current, current->next) > 0)
+			{
+				return false;
+			}
+		}
+
+		current = current->next;
+	}
+	
+	return true;
+}
