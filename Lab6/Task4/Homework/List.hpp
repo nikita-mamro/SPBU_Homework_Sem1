@@ -18,18 +18,15 @@ void appendList(List *listA, List *listB);
 //Удаление первого элемента из списка.
 Node *extractHead(List *list);
 //Вернуть ноду, в которой содержится имя, идущее 1ым в алфавитном порядке.
-Node *cmpNames(Node *nodeA, Node *nodeB);
+int cmpNames(Node *nodeA, Node *nodeB);
 //Вернуть ноду, в которой содержится номер, идущий 1ым в порядке сравнения.
-Node *cmpPhoneNumbers(Node *nodeA, Node *nodeB);
+int cmpPhoneNumbers(Node *nodeA, Node *nodeB);
 //Печать списка.
 void printList(List * list);
 //Проверка, пустой ли список.
 bool isEmpty(List *list);
 //Удаление списка.
 void deleteList(List * list);
-//Получить данные из ноды, которая после сортировки будет приоритетнее
-Contact *priotityNameContact(Node *nodeA, Node *nodeB);
-Contact *priotityPhoneContact(Node *nodeA, Node *nodeB);
 //Сортировка
 List *merge(List *listA, List *listB, bool sortBy);
-void mergeSort(List *list, bool sortBy);
+void mergeSort(List *&list, bool sortBy);

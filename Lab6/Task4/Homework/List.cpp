@@ -43,6 +43,8 @@ void add(List *list, Node *node)
 
 		list->tail = node;
 
+		++list->length;
+
 		return;
 	}
 
@@ -84,18 +86,14 @@ Node *extractHead(List * list)
 	return res;
 }
 
-Node *cmpNames(Node *nodeA, Node *nodeB)
+int cmpNames(Node *nodeA, Node *nodeB)
 {
-	string nameA = nodeA->contact.name;
-	string nameB = nodeB->contact.name;
-	return nameA <= nameB ? nodeA : nodeB;
+	return strcmp(nodeA->contact.name, nodeB->contact.name);
 }
 
-Node *cmpPhoneNumbers(Node *nodeA, Node *nodeB)
+int cmpPhoneNumbers(Node *nodeA, Node *nodeB)
 {
-	string phoneA = nodeA->contact.phone;
-	string phoneB = nodeB->contact.phone;
-	return phoneA <= phoneB ? nodeA : nodeB;
+	return strcmp(nodeA->contact.phone, nodeB->contact.phone);
 }
 
 void printList(List *list)
@@ -134,62 +132,33 @@ void deleteList(List *list)
 	}
 }
 
-Contact *priotityNameContact(Node *nodeA, Node *nodeB)
-{
-	Node *res = cmpNames(nodeA, nodeB);
-	return &res->contact;
-}
-
-Contact *priotityPhoneContact(Node *nodeA, Node *nodeB)
-{
-	Node *res = cmpPhoneNumbers(nodeA, nodeB);
-	return &res->contact;
-}
-
 List *merge(List *listA, List *listB, bool sortBy)
 {
-	List *res = createList();
+	List* res = createList();
 
-	Node *nodeA = extractHead(listA);
-	Node *nodeB = extractHead(listB);
+	Node* nodeA = extractHead(listA);
+	Node* nodeB = extractHead(listB);
 
-	while (nodeA != nullptr && nodeB != nullptr)
+	while (nodeA != nullptr && nodeB != nullptr) 
 	{
-		if (sortBy == 0) // name
-		{
-			Node *tmp = cmpNames(nodeA, nodeB);
-			Contact *contact = new Contact();
-			strcpy(contact->name, tmp->contact.name);
-			strcpy(contact->name, tmp->contact.name);
-			Node *node = createNode(*contact);
-			add(res, node);
+		int cmp = (sortBy == 0 ? cmpNames(nodeA, nodeB) : cmpPhoneNumbers(nodeA, nodeB));
 
-			if (!strcmp(nodeA->contact.name, node->contact.name))
-			{
-				nodeA = extractHead(listA);
-			}
-			else
-			{
-				nodeB = extractHead(listB);
-			}
+		if (cmp < 0) 
+		{
+			add(res, nodeA);
+			nodeA = extractHead(listA);
+		}
+		else if (cmp > 0)
+		{
+			add(res, nodeB);
+			nodeB = extractHead(listB);
 		}
 		else
 		{
-			Node *tmp = cmpPhoneNumbers(nodeA, nodeB);
-			Contact *contact = new Contact();
-			strcpy(contact->phone, tmp->contact.phone);
-			strcpy(contact->phone, tmp->contact.phone);
-			Node *node = createNode(*contact);
-			add(res, node);
-
-			if (!strcmp(nodeA->contact.phone, node->contact.phone))
-			{
-				nodeA = extractHead(listA);
-			}
-			else
-			{
-				nodeB = extractHead(listB);
-			}
+			add(res, nodeA);
+			add(res, nodeB);
+			nodeA = extractHead(listA);
+			nodeB = extractHead(listB);
 		}
 	}
 
@@ -199,25 +168,24 @@ List *merge(List *listA, List *listB, bool sortBy)
 	appendList(res, listB);
 	deleteList(listA);
 	deleteList(listB);
-
 	return res;
 }
 
-void mergeSort(List *list, bool sortBy)
+void mergeSort(List *&list, bool sortBy)
 {
 	int length = list->length;
 	List **merged = new List*[length];
 
 	for (int i = 0; i < length; ++i)
 	{
-		merged[i] = (createList(extractHead(list)));
+		merged[i] = createList(extractHead(list));
 	}
 
 	deleteList(list);
 
 	while (length > 1)
 	{
-		for (int i = 0; i < length; i+=2)
+		for (int i = 0; i < length; i += 2)
 		{
 			List *listA = merged[i];
 			merged[i] = nullptr;
@@ -235,7 +203,9 @@ void mergeSort(List *list, bool sortBy)
 		length = length / 2 + length % 2;
 	}
 
-	List *res = merged[0];
+	List *res = createList();
+
+	res = merged[0];
 	merged[0] = nullptr;
 
 	for (int i = 0; i < length; ++i)
@@ -243,5 +213,6 @@ void mergeSort(List *list, bool sortBy)
 		deleteList(merged[i]);
 	}
 
+	delete[] merged;
 	list = res;
 }
