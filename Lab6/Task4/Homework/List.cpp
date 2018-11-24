@@ -215,4 +215,4 @@ void mergeSort(List *&list, bool sortBy)
 
 	delete[] merged;
 	list = res;
-}
+ }

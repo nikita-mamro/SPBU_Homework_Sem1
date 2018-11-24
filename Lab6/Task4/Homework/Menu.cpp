@@ -15,7 +15,7 @@ void printMenu()
 }
 
 
-void solveTask(int choice, List *list)
+void solveTask(int choice, List *&list)
 {
 	switch (choice)
 	{
@@ -38,7 +38,7 @@ void solveTask(int choice, List *list)
 	}
 }
 
-void proceedTask(List *list)
+void proceedTask(List *&list)
 {
 	char c = ' ';
 	int addCounter = 0;

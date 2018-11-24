@@ -2,4 +2,4 @@
 #include "List.hpp"
 
 void printMenu();
-void proceedTask(List *list);
+void proceedTask(List *&list);
