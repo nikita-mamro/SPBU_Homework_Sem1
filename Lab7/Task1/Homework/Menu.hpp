@@ -1,5 +1,5 @@
-#pragma oncee
-#include "BTree.hpp"
+#pragma once
+#include "Set.hpp"
 
 void printMenu();
 void proceedTask();

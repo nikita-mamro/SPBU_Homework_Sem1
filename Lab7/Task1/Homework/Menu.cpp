@@ -10,9 +10,11 @@ void printMenu()
 	printf("MENU\n");
 	printf("--------------------------------------\n");
 	printf("ESC - Exit\n");
-	printf("1 - Print list\n");
-	printf("2 - Print sorted by name\n");
-	printf("3 - Print sorted by number\n");
+	printf("1 - Add element\n");
+	printf("2 - Delete element\n");
+	printf("3 - Check if contained\n");
+	printf("4 - Print ascending\n");
+	printf("5 - Print descending\n");
 	printf("--------------------------------------\n");
 }
 
@@ -30,8 +32,15 @@ void solveTask(int choice)
 	case 3:
 		
 		break;
-	default:
+	case 4:
 		
+		break;
+	case 5:
+
+		break;
+
+	default:
+		cout << "Choose an option between 1 and 5" << endl;
 		break;
 	}
 }
