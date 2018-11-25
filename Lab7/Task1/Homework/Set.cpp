@@ -2,6 +2,17 @@
 #include <iostream>
 using namespace std;
 
+struct Node
+{
+	int value = 0;
+	Node *left;
+	Node *right;
+};
+
+struct Set
+{
+	Node *root;
+};
 
 Node *createNode(int value, Node *left = nullptr, Node *right = nullptr)
 {

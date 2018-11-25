@@ -1,17 +1,9 @@
 #pragma once
 #include <vector>
 
-struct Node
-{
-	int value = 0;
-	Node *left;
-	Node *right;
-};
+struct Node;
 
-struct Set
-{
-	Node *root;
-};
+struct Set;
 
 //Создание множества
 Set *createSet();
