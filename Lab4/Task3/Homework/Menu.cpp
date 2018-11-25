@@ -44,7 +44,7 @@ void solveTask(int choice, Contact* contactsBuffer, int& addCounter)
 	case 3:
 		printf("Введите имя: ");
 		scanf("%s", name);
-		if (getPhoneNumber(name, contactsBuffer, addCounter) != NULL)
+		if (getPhoneNumber(name, contactsBuffer, addCounter) != nullptr)
 		{
 			printf("Номер: %s\n", getPhoneNumber(name, contactsBuffer, addCounter));
 		}
@@ -56,7 +56,7 @@ void solveTask(int choice, Contact* contactsBuffer, int& addCounter)
 	case 4:
 		printf("Введите номер: ");
 		scanf("%s", phone);
-		if (getName(phone, contactsBuffer, addCounter) != NULL)
+		if (getName(phone, contactsBuffer, addCounter) != nullptr)
 		{
 			printf("Имя: %s\n", getName(phone, contactsBuffer, addCounter));
 		}

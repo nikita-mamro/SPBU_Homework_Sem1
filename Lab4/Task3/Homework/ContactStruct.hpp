@@ -1,5 +1,6 @@
 #pragma once
-#include "stdafx.hpp"
+#define MAX_LENGTH 30
+#define BOOK_SIZE 100
 
 struct Contact
 {

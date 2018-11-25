@@ -1,4 +1,5 @@
 #include "File.hpp"
+#include "stdafx.hpp"
 
 int readFromFile(Contact* contactsList)
 {
