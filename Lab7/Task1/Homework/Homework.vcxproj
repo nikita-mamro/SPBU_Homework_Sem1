@@ -22,10 +22,12 @@
     <ClCompile Include="Set.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Set.hpp" />
     <ClInclude Include="Menu.hpp" />
+    <ClInclude Include="Test.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

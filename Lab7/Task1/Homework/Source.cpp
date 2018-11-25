@@ -1,18 +1,26 @@
 #include "Menu.hpp"
+#include "Test.hpp"
+#include <iostream>
+#include <string>
 
 int main()
 {
-	Set *set = createSet();
-	add(set, 5);
-	add(set, 2);
-	add(set, 8);
-	add(set, 1);
-	add(set, 3);
-	add(set, 6);
-	add(set, 10);
-	add(set, 7);
-	add(set, 9);
-	remove(set, 8);
-	test(set);
-	return 0;
+	std::vector<std::string> result;
+
+	if (!test(result))
+	{
+		std::cout << "Tests failed!" << std::endl;
+		for (int i = 0; i < result.size(); ++i)
+		{
+			std::cout << result[i] << std::endl;
+		}
+		return EXIT_FAILURE;
+	}
+	else
+	{
+		std::cout << "Tests passed!" << std::endl;
+	}
+
+	proceedTask();
+	return EXIT_SUCCESS;
 }

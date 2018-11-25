@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 struct Node
 {
@@ -19,16 +20,16 @@ void deleteSet(Set * set);
 //Добавление элемента
 void add(Set *set, int element);
 //Удаление
-int remove(Set *set, int element);
+bool remove(Set *set, int element);
+void remove(Node *&node, int element);
 //Содержится ли элемент
 bool exists(Set *set, int element);
 //Крайние ноды
 Node *mostLeft(Node *node);
 Node *mostRight(Node *node);
+//Элементы множества в массив
+void fillArrayAscDesc(std::vector<int> &res, Node *node, bool asc);
 //Вывод по возрастанию/убыванию
-void printAsc(Set *set);
-void printDesc(Set *set);
-
-//Минитесты для себя
-
-void test(Set *set);
+void printAscDesc(Set *set, bool asc);
+//Вернуть корень (для тестов)
+Node *root(Set *set);

@@ -38,6 +38,10 @@ void deleteSet(Set * set)
 
 void add(Set * set, int element)
 {
+	if (exists(set, element))
+	{
+		return;
+	}
 	if (set->root == nullptr)
 	{
 		set->root = createNode(element);
@@ -78,133 +82,90 @@ void add(Set * set, int element)
 	}
 }
 
-int remove(Set * set, int element)
+bool remove(Set * set, int element)
 {
 	if (!exists(set, element))
 	{
-		cout << "Element not found :(" << endl;
-		return EXIT_FAILURE;
-	}
-
-	if (set->root == nullptr)
-	{
-		return EXIT_FAILURE;
+		return false;
 	}
 	
-	Node *current = set->root;
+	remove(set->root, element);
 
-	if (current->value != element)
+	return true;
+}
+
+void remove(Node *& node, int element)
+{
+	if (element < node->value)
 	{
-		while (1)
-		{
-			if (element < current->value)
-			{
-				if (element < current->left->value)
-				{
-					current = current->left;
-				}
-				else
-				{
-					break;
-				}
-			}
-			if (element > current->value)
-			{
-				if (element > current->right->value)
-				{
-					current = current->right;
-				}
-				else
-				{
-					break;
-				}
-			}
-		}
+		remove(node->left, element);
 	}
-
-	if (current->left->value == element)
+	else if (element > node->value)
 	{
-		if (current->left->left == nullptr && current->left->right == nullptr)
-		{
-			Node *tmp = current->left;
-			current->left = nullptr;
-			delete tmp;
-			return element;
-		}
-
-		if (current->left->left == nullptr && current->left->right != nullptr)
-		{
-			Node *tmp = current->left;
-			current->left = tmp->right;
-			delete tmp;
-			return element;
-		}
-
-		if (current->left->left != nullptr && current->left->right == nullptr)
-		{
-			Node *tmp = current->left;
-			current->left = tmp->left;
-			delete tmp;
-			return element;
-		}
-
-		if (current->left->left != nullptr && current->left->right != nullptr)
-		{
-			Node *tmp = current->left;
-			Node *bottom = mostLeft(current->left->right);
-			bottom->left = tmp->left;
-			current->left = tmp->right;
-			delete tmp;
-			return element;
-		}
+		remove(node->right, element);
 	}
-
-	if (current->right->value == element)
+	else
 	{
-		if (current->right->left == nullptr && current->right->right == nullptr)
+		if (node->left == nullptr && node->right == nullptr)
 		{
-			Node *tmp = current->right;
-			current->right = nullptr;
-			delete tmp;
-			return element;
+			node = nullptr;
 		}
-
-		if (current->right->left == nullptr && current->right->right != nullptr)
+		else if (node->left != nullptr && node->right == nullptr)
 		{
-			Node *tmp = current->right;
-			current->right = tmp->right;
-			delete tmp;
-			return element;
+			node = node->left;
 		}
-
-		if (current->right->left != nullptr && current->right->right == nullptr)
+		else if (node->left == nullptr && node->right != nullptr)
 		{
-			Node *tmp = current->right;
-			current->right = tmp->left;
-			delete tmp;
-			return element;
+			node = node->right;
 		}
-
-		if (current->right->left != nullptr && current->right->right != nullptr)
+		else if (node->left != nullptr && node->right != nullptr)
 		{
-			Node *tmp = current->right;
-			Node *bottom = mostLeft(current->right);
-			bottom->left = tmp->left;
-			current->right = tmp->right;
-			delete tmp;
-			return element;
+			node->value = mostRight(node->left)->value;
+			remove(node->left, node->value);
 		}
 	}
 }
 
 bool exists(Set * set, int element)
 {
+	if (!set->root)
+	{
+		return false;
+	}
+
+	Node *current = set->root;
+
+	while (1)
+	{
+		if (element == current->value)
+		{
+			return true;
+		}
+		else if (element < current->value)
+		{
+			if (current->left != nullptr)
+			{
+				current = current->left;
+				continue;
+			}
+			return false;
+		}
+		else
+		{
+			if (current->right != nullptr)
+			{
+				current = current->right;
+				continue;
+			}
+			return false;
+		}
+	}
 	return true;
 }
 
 Node *mostLeft(Node *node)
 {
-	Node *res = node;
+	Node *res = node->left;
 
 	while (res->left != nullptr)
 	{
@@ -216,7 +177,7 @@ Node *mostLeft(Node *node)
 
 Node *mostRight(Node *node)
 {
-	Node *res = node;
+	Node *res = node->right;
 
 	while (res->right != nullptr)
 	{
@@ -226,20 +187,58 @@ Node *mostRight(Node *node)
 	return res;
 }
 
-void printAsc(Set * set)
+void fillArrayAscDesc(std::vector<int>& res, Node * node, bool asc)
 {
-
-}
-
-void printDesc(Set * set)
-{
-
-}
-
-void test(Set *set)
-{
-	Node *node = set->root;
+	if (node == nullptr)
+	{
+		return;
+	}
 	
-	cout << node->value << node->right->value << node->right->left->value;
+	if (asc)
+	{
+		fillArrayAscDesc(res, node->left, asc);
+	}
+	else
+	{
+		fillArrayAscDesc(res, node->right, asc);
+	}
+
+	res.push_back(node->value);
+
+	if (asc)
+	{
+		fillArrayAscDesc(res, node->right, asc);
+	}
+	else
+	{
+		fillArrayAscDesc(res, node->left, asc);
+	}
 }
 
+void printAscDesc(Set * set, bool asc)
+{
+	cout << "------------------------------" << endl;
+	if (set->root == nullptr)
+	{
+		cout << "EMPTY" << endl;
+	}
+	else
+	{
+		vector <int> ascElements;
+
+		fillArrayAscDesc(ascElements, set->root, asc);
+
+		for (int i = 0; i < ascElements.size(); ++i)
+		{
+			cout << ascElements[i] << " ";
+		}
+
+		cout << endl;
+	}
+	cout << "------------------------------" << endl;
+}
+
+Node * root(Set * set)
+{
+	return set->root;
+}
