@@ -16,6 +16,24 @@ Node * createNode()
 	return res;
 }
 
+void deleteNode(Node * node)
+{
+	if (!node->left)
+	{
+		deleteNode(node->left);
+	}
+	else if (!node->right)
+	{
+		deleteNode(node->right);
+	}
+	delete node;
+}
+
+void deleteTree(Node * root)
+{
+	deleteNode(root);
+}
+
 unsigned char height(Node * node)
 {
 	return node ? node->height : 0;
@@ -37,7 +55,7 @@ Node * rotateRight(Node * p)
 {
 	Node *q = p->left;
 	p->left = q->right;
-	p->right = q;
+	q->right = p;
 	fixHeight(p);
 	fixHeight(q);
 	return q;
@@ -47,7 +65,7 @@ Node * rotateLeft(Node * p)
 {
 	Node *q = p->right;
 	p->right = q->left;
-	q->left = p;
+	p->left = q;
 	fixHeight(p);
 	fixHeight(q);
 	return q;
@@ -138,4 +156,3 @@ Node * remove(Node * root, int key)
 	}
 	return balance(root);
 }
-

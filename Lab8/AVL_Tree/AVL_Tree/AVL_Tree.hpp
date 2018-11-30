@@ -5,7 +5,10 @@ using namespace std;
 
 struct Node;
 
+// Создание и удаление
 Node *createNode();
+void deleteNode(Node *node);
+void deleteTree(Node *root);
 // Высота и баланс-фактор
 unsigned char height(Node *node);
 int balanceFactor(Node *node);
@@ -19,7 +22,7 @@ Node * balance(Node * p);
 // Добавление ключа
 Node * add(Node * root, int key, string str);
 // Поиск узла с минимальным ключом
-Node *findMin(Node *root);
+Node * findMin(Node *root);
 // Удаление
-Node *removeMin(Node *root);
-Node *remove(Node *root, int key);
+Node * removeMin(Node *root);
+Node * remove(Node *root, int key);

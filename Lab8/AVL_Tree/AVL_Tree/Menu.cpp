@@ -19,13 +19,22 @@ void printMenu()
 }
 
 
-void solveTask(int choice, Node *node)
+void solveTask(int choice, Node *&root)
 {
+	int key = 0;
+	string str;
 	switch (choice)
 	{
 	case 1:
+		cout << "Enter the key: ";
+		cin >> key;
+		cout << "Enter the string: ";
+		cin >> str;
+		root = add(root, key, str);
 		break;
 	case 2:
+		cout << "Enter the key: ";
+		cin >> key;
 		break;
 	case 3:
 		break;
@@ -46,6 +55,8 @@ void proceedTask()
 
 	do {
 		c = _getch();
-		solveTask(c - '0', root);
+		solveTask(c - '0', *&root);
 	} while (c != 27);
+
+	deleteTree(root);
 }
