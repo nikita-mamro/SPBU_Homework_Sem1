@@ -22,3 +22,5 @@ void writeToFile(List *list);
 void appendList(List * listA, List * listB);
 
 List *proceedTask(List *list, int a, int b);
+
+bool testListFunc(List *list, int a, int b);

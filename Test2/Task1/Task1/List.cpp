@@ -180,3 +180,31 @@ List *proceedTask(List *list, int a, int b)
 
 	return res;
 }
+
+bool testListFunc(List * list, int a, int b)
+{
+	Node *current = list->head;
+
+	while (current->data < a && current != nullptr)
+	{
+		current = current->next;
+	}
+	while (current->data < b && current != nullptr)
+	{
+		if (current->data < a)
+		{
+			return false;
+		}
+		current = current->next;
+	}
+	while (current != nullptr)
+	{
+		if (current->data < b)
+		{
+			return false;
+		}
+		current = current->next;
+	}
+
+	return true;
+}

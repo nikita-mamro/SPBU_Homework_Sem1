@@ -6,17 +6,17 @@ using namespace std;
 
 int main()
 {
-	//cout << "Running tests..." << endl;
-	//
-	//if (!test())
-	//{
-	//	cout << "Tests failed!" << endl;
-	//	return EXIT_FAILURE;
-	//}
-	//else
-	//{
-	//	cout << "Tests passed!" << endl;
-	//}
+	cout << "Running tests..." << endl;
+	
+	if (!test())
+	{
+		cout << "Tests failed!" << endl;
+		return EXIT_FAILURE;
+	}
+	else
+	{
+		cout << "Tests passed!" << endl;
+	}
 
 	int a = 0;
 	int b = 0;
