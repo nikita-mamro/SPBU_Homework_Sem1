@@ -214,3 +214,23 @@ string getValue(Node * root, int key)
 		return getValue(root->right, key);
 	}
 }
+
+int getKey(Node * node)
+{
+	return node ? node->key : -666; // В тестах не будем давать ключ -666
+}
+
+Node * getLeft(Node * node)
+{
+	return node->left;
+}
+
+Node * getRight(Node * node)
+{
+	return node->right;
+}
+
+string getValue(Node * node)
+{
+	return node ? node->value : "ERR";
+}

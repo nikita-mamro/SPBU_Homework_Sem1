@@ -30,3 +30,8 @@ Node * remove(Node *root, int key);
 bool exists(Node *root, int key);
 // Получить значение по ключу
 string getValue(Node *root, int key);
+// Функции для того, чтобы вынести тесты в отдельный модуль
+int getKey(Node *node);
+Node *getLeft(Node *node);
+Node *getRight(Node *node);
+string getValue(Node *node);
