@@ -98,6 +98,23 @@ Node * balance(Node * p)
 
 Node * add(Node * root, int key, string str)
 {
+	if (exists(root, key))
+	{
+		Node *current = root;
+		while (current->key != key)
+		{
+			if (current->key < key)
+			{
+				current = current->right;
+			}
+			else
+			{
+				current = current->left;
+			}
+		}
+		current->value = str;
+		return root;
+	}
 	if (!root)
 	{
 		Node *res = new Node(key, str);
@@ -131,6 +148,10 @@ Node * removeMin(Node * root)
 
 Node * remove(Node * root, int key)
 {
+	if (!exists(root, key))
+	{
+		return balance(root);
+	}
 	if (!root)
 	{
 		return nullptr;
@@ -147,12 +168,49 @@ Node * remove(Node * root, int key)
 	{
 		Node* p = root->left;
 		Node* q = root->right;
-		delete p;
+		delete root;
 		if (!q) return p;
-		Node* min = findMin(root);
+		Node* min = findMin(q);
 		min->right = removeMin(q);
 		min->left = p;
 		return balance(min);
 	}
 	return balance(root);
+}
+
+bool exists(Node * root, int key)
+{
+	if (root != nullptr && root->key == key)
+	{
+		return true;
+	}
+	if (root != nullptr && root->key > key)
+	{
+		return exists(root->left, key);
+	}
+	if (root != nullptr && root->key < key)
+	{
+		return exists(root->right, key);
+	}
+	return false;
+}
+
+string getValue(Node * root, int key)
+{
+	if (!exists(root, key))
+	{
+		return string();
+	}
+	if (root != nullptr && root->key == key)
+	{
+		return root->value;
+	}
+	if (root != nullptr && root->key > key)
+	{
+		return getValue(root->left, key);
+	}
+	if (root != nullptr && root->key < key)
+	{
+		return getValue(root->right, key);
+	}
 }

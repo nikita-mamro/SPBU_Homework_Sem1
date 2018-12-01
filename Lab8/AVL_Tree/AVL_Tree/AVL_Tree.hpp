@@ -26,3 +26,7 @@ Node * findMin(Node *root);
 // Удаление
 Node * removeMin(Node *root);
 Node * remove(Node *root, int key);
+// Проверить ключ на существование
+bool exists(Node *root, int key);
+// Получить значение по ключу
+string getValue(Node *root, int key);

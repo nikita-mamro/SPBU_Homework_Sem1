@@ -35,10 +35,18 @@ void solveTask(int choice, Node *&root)
 	case 2:
 		cout << "Enter the key: ";
 		cin >> key;
+		cout << "String with key " << key << ": ";
+		cout << getValue(root, key) << "." << endl;
 		break;
 	case 3:
+		cout << "Enter the key: ";
+		cin >> key;
+		cout << key << (exists(root, key) ? " does " : " does NOT ") << "exist." << endl;
 		break;
 	case 4:
+		cout << "Enter the key: ";
+		cin >> key;
+		root = remove(root, key);
 		break;
 	default:
 		cout << "Choose an option between 1 and 4" << endl;
