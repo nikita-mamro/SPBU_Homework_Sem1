@@ -14,3 +14,6 @@ Test.o: CheckString.hpp Test.cpp Test.hpp
 
 Source.o: Test.hpp Source.cpp
 	g++ -c Source.cpp
+
+clean:
+	rm -rf *.o bracket_balance
