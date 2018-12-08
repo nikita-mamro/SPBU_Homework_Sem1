@@ -1,14 +1,26 @@
 #pragma once
 #include <string>
 #include <cstring>
-#include <vector>
-#include <list>
+#include <fstream>
 
 using namespace std;
 
 struct HashTable;
 
-void add(const string &word, HashTable &table);
-bool exists(const string &word, const HashTable &table);
+//Создание таблицы
+HashTable *createHashTable();
+HashTable *readFromFile(ifstream &input);
+// Добавление строки в таблицу
+void add(const string &word, HashTable *table);
+// Проверка на существование строки в таблице
+bool exists(const string &word, const HashTable *table);
+// Хеш-функция
 int hashFunction(const string &word);
-void printWordsFrequency(HashTable &table);
+// Рачпечать слова из таблицы с частотой их вхождения в текст
+void printWordsFrequency(HashTable *table);
+// Коэффициент заполнения
+double loadCoefficient(const HashTable *table);
+// Максимальная длина списка в сегменте
+int maxLenghtInSegment(const HashTable *table);
+// Средняя длина списка в сегменте
+double averageLengthInSegment(const HashTable *table);
