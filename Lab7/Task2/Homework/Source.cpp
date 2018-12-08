@@ -33,6 +33,7 @@ int main()
 	else
 	{
 		Tree *tree = createTree(input);
+		input.close();
 		cout << "Expression from input.txt: ";
 		printExpression(tree);
 		deleteTree(tree);

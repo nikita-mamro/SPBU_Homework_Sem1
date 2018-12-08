@@ -24,5 +24,7 @@ bool test(vector<string>& result)
 		res = false;
 	}
 
+	input.close();
+
 	return res;
 }
