@@ -9,6 +9,7 @@ struct Node
 {
 	string word;
 	int counter;
+	bool isRehashed;
 	Node *next;
 };
 
@@ -19,9 +20,9 @@ struct List
 	int length;
 };
 
-Node *createNode(const string & word, Node *next)
+Node *createNode(const string & word, int counter, Node *next)
 {
-	return new Node{ word, 0, next };
+	return new Node{ word, counter, false, next };
 }
 
 List *createList()
@@ -40,6 +41,10 @@ void add(List *list, Node *node)
 	{
 		return;
 	}
+	if (exists(list, node->word))
+	{
+		return;
+	}
 
 	if (list->head == nullptr)
 	{
@@ -55,6 +60,54 @@ void add(List *list, Node *node)
 	list->tail->next = node;
 	list->tail = node;
 	++list->length;
+}
+
+void remove(List * list, Node * node)
+{
+	if (!list || !exists(list, node->word))
+	{
+		--list->length;
+		return;
+	}
+
+	if (list->head->word == node->word)
+	{
+		Node *tmp = list->head;
+		list->head = tmp->next;
+		delete tmp;
+		--list->length;
+		return;
+	}
+
+	Node *before = list->head;
+
+	while (before->next != node)
+	{
+		before = before->next;
+	}
+
+	Node *tmp = before->next;
+
+	before->next = tmp->next;
+	--list->length;
+	delete tmp;
+}
+
+void setCounter(List * list, const string & word, int newValue)
+{
+	if (!exists(list, word))
+	{
+		return;
+	}
+
+	Node *current = list->head;
+
+	while (current->word != word)
+	{
+		current = current->next;
+	}
+
+	current->counter = newValue;
 }
 
 void changeCounter(List * list, const string & word, int delta)
@@ -76,6 +129,11 @@ void changeCounter(List * list, const string & word, int delta)
 
 bool exists(List * list, const string & word)
 {
+	if (list == nullptr)
+	{
+		return false;
+	}
+
 	Node *current = list->head;
 
 	while (current != nullptr)
@@ -105,17 +163,37 @@ void deleteList(List *list)
 	}
 }
 
+int getCounter(Node * node)
+{
+	return node->counter;
+}
+
 int getLength(List * list)
 {
 	return list->length;
 }
 
-void printList(List * list)
+string getWord(Node * node)
 {
-	Node *current = list->head;
-	
-	while (current != nullptr)
-	{
-		printf("%s - %d\n", current->word, current->counter);
-	}
+	return node->word;
+}
+
+bool isRehashed(Node * node)
+{
+	return node->isRehashed;
+}
+
+Node * getHead(List * list)
+{
+	return list ? list->head : nullptr;
+}
+
+Node * next(Node * node)
+{
+	return node->next;
+}
+
+void setIsRehashed(Node * node, bool newValue)
+{
+	node->isRehashed = newValue;
 }
