@@ -5,21 +5,18 @@
 
 int main()
 {
-	vector <string> result;
+	vector <string> testResult;
 
-	if (!test(result))
+	if (!test(testResult))
 	{
 		cout << "Tests failed!" << endl;
-		for (int i = 0; i < result.size(); ++i)
+		for (int i = 0; i < testResult.size(); ++i)
 		{
-			cout << result[i] << endl;
+			cout << testResult[i] << endl;
 		}
 		return EXIT_FAILURE;
 	}
-	else
-	{
-		cout << "Passed all tests!" << endl;
-	}
+	cout << "Passed all tests!" << endl;
 
 	ifstream input("input.txt", ios::in);
 	
@@ -28,19 +25,17 @@ int main()
 		cout << "Cannot open input.txt file!" << endl;
 		return EXIT_FAILURE;
 	}
-	else
-	{
-		HashTable *table = readFromFile(input);
 
-		vector<Element*> res;
-		fillArray(table, res);
+	HashTable *table = readFromFile(input);
 
-		cout << "WORD - FREQUENCY:" << endl;
-		printWordsFrequency(res);
-		cout << endl << "Load coefficient: " << loadCoefficient(table) << endl;
-		cout << endl << "Average list length: " << averageLengthInSegment(table) << endl;
-		cout << endl << "MAX list length: " << maxLenghtInSegment(table) << endl;
-	}
+	vector<Element*> res;
+	fillArray(table, res);
+
+	cout << "WORD - FREQUENCY:" << endl;
+	printWordsFrequency(res);
+	cout << endl << "Load coefficient: " << loadCoefficient(table) << endl;
+	cout << endl << "Average list length: " << averageLengthInSegment(table) << endl;
+	cout << endl << "MAX list length: " << maxLenghtInSegment(table) << endl;
 
 	input.close();
 
