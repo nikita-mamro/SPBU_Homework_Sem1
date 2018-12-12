@@ -11,10 +11,8 @@ int main()
 		cout << "Failed tests!" << endl;
 		return EXIT_FAILURE;
 	}
-	else
-	{
-		cout << "Passed tests!" << endl;
-	}
+	
+	cout << "Passed tests!" << endl;
 
 	List *list = createList();
 	readFromFile(list);
