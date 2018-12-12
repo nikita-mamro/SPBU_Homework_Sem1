@@ -8,22 +8,19 @@ using namespace std;
 
 int main()
 {
-	vector<string> result;
+	vector<string> testResult;
 
-	if (!test(result))
+	if (!test(testResult))
 	{
 		cout << "Tests failed!" << endl;
-		for (unsigned int i = 0; i < result.size(); ++i)
+		for (unsigned int i = 0; i < testResult.size(); ++i)
 		{
-			cout << result[i] << endl;
+			cout << testResult[i] << endl;
 		}
 		return EXIT_FAILURE;
 	}
-	else
-	{
-		cout << "Tests passed!" << endl;
-	}
 
+	cout << "Tests passed!" << endl;
 	proceedTask();
 	return EXIT_SUCCESS;
 }
