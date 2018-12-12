@@ -7,21 +7,18 @@ using namespace std;
 
 int main()
 {
-	vector <string> result;
+	vector <string> testResult;
 
-	if (!test(result))
+	if (!test(testResult))
 	{
 		cout << "Tests failed!" << endl;
-		for (int i = 0; i < result.size(); ++i)
+		for (int i = 0; i < testResult.size(); ++i)
 		{
-			cout << result[i] << endl;
+			cout << testResult[i] << endl;
 		}
 		return EXIT_FAILURE;
 	}
-	else
-	{
-		cout << "Passed all tests!" << endl;
-	}
+	cout << "Passed all tests!" << endl;
 
 	ifstream input("input.txt", ios::in);
 
@@ -30,15 +27,13 @@ int main()
 		cout << "Cannot open input.txt file!" << endl;
 		return EXIT_FAILURE;
 	}
-	else
-	{
-		Tree *tree = createTree(input);
-		input.close();
-		cout << "Expression from input.txt: ";
-		printExpression(tree);
-		deleteTree(tree);
-		cout << endl << "Answer: " << getExpressionValue(tree);
-	}
+
+	Tree *tree = createTree(input);
+	input.close();
+	cout << "Expression from input.txt: ";
+	printExpression(tree);
+	deleteTree(tree);
+	cout << endl << "Answer: " << getExpressionValue(tree);
 
 	return EXIT_SUCCESS;
 }
