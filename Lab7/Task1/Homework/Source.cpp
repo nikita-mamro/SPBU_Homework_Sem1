@@ -5,21 +5,18 @@
 
 int main()
 {
-	std::vector<std::string> result;
+	std::vector<std::string> testResult;
 
-	if (!test(result))
+	if (!test(testResult))
 	{
 		std::cout << "Tests failed!" << std::endl;
-		for (int i = 0; i < result.size(); ++i)
+		for (int i = 0; i < testResult.size(); ++i)
 		{
-			std::cout << result[i] << std::endl;
+			std::cout << testResult[i] << std::endl;
 		}
 		return EXIT_FAILURE;
 	}
-	else
-	{
-		std::cout << "Tests passed!" << std::endl;
-	}
+	std::cout << "Tests passed!" << std::endl;
 
 	proceedTask();
 	return EXIT_SUCCESS;
