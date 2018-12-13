@@ -29,11 +29,29 @@ int main()
 		return EXIT_FAILURE;
 	}
 
-	string checkReadFromFile = readFromFile(input);
-
-	cout << checkReadFromFile << endl;
+	string text = readFromFile(input);
 
 	input.close();
+
+	cout << "Text from file:" << endl << endl;
+
+	cout << text << endl << endl;
+
+	cout << "Enter pattern:" << endl << endl;
+
+	string pattern = string();
+
+	getline(cin, pattern);
+
+	int answer = firstPatternMatchKMP(text, pattern);
+
+	if (answer < 0)
+	{
+		cout << "Pattern not found!" << endl;
+		return EXIT_SUCCESS;
+	}
+
+	cout << "Your pattern occurs in text in position " << answer << endl;
 
 	return EXIT_SUCCESS;
 }
