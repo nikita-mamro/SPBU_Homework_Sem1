@@ -56,8 +56,8 @@ vector<Point*> findPoints(vector<vector<int>> &matrix, int height, int width)
 		if (isMin(tmp, matrix[j]))
 		{
 			Point *point = new Point();
-			point->x = i;
-			point->y = j;
+			point->x = j;
+			point->y = i;
 			res.push_back(point);
 		}
 	}
@@ -113,7 +113,7 @@ int main()
 	}
 
 	vector<Point*> answer = findPoints(matrix, height, width);
-
+	// well it seems adequate but does'nt work ???
 	cout << "Answer:" << endl;
 
 	for (int i = 0; i < answer.size(); ++i)
