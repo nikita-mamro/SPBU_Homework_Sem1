@@ -130,6 +130,8 @@ void deleteList(List *list)
 		list->head = list->head->next;
 		delete tmp;
 	}
+	delete list;
+	list = nullptr;
 }
 
 List *merge(List *listA, List *listB, bool sortBy)

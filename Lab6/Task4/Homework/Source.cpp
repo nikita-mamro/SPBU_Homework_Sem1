@@ -17,6 +17,7 @@ int main()
 	List *list = createList();
 	readFromFile(list);
 	proceedTask(list);
+	deleteList(list);
 
 	return EXIT_SUCCESS;
 }

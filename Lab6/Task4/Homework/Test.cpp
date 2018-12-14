@@ -31,7 +31,6 @@ bool test()
 	{
 		cout << "Name sort error!" << endl;
 		deleteList(testList);
-		delete[] testContacts;
 		return false;
 	}
 
@@ -39,7 +38,6 @@ bool test()
 	{
 		cout << "Number sort error!" << endl;
 		deleteList(testList);
-		delete[] testContacts;
 		return false;
 	}
 
