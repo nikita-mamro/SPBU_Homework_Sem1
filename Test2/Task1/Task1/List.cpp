@@ -3,6 +3,7 @@
 #include "List.hpp"
 #include <fstream>
 #include <iostream>
+#include <vector> // for tests
 
 using namespace std;
 
@@ -85,6 +86,8 @@ void deleteList(List *list)
 		list->head = list->head->next;
 		delete tmp;
 	}
+	delete list;
+	list = nullptr;
 }
 
 void readFromFile(List *list)
@@ -103,103 +106,58 @@ void readFromFile(List *list)
 	fin.close();
 }
 
-void writeToFile(List *list)
+void cpyList(List *& listA, List *& listB)
 {
-	ofstream fout;
-	fout.open("output.txt");
-
-	Node *current = list->head;
+	Node *current = listA->head;
 
 	while (current != nullptr)
 	{
-		fout << current->data << " ";
+		add(listB, createNode(current->data));
 		current = current->next;
 	}
-
-	fout.close();
 }
 
-void appendList(List * listA, List * listB)
+List *reverseList(List * list)
 {
-	if (listB == nullptr || listB->head == nullptr)
-	{
-		return;
-	}
-	listA->tail->next = listB->head;
-	listA->tail = listB->tail;
-	listA->length += listB->length;
-	listB->head = nullptr;
-	listB->tail = nullptr;
-	listB->length = 0;
-}
-
-List *proceedTask(List *list, int a, int b)
-{
-	List *lessThanA = createList();
-	List *fromAtoB = createList();
-	List *moreThanB = createList();
-
-	Node *current = list->head;
-
-	while (current != nullptr)
-	{
-		if (current->data < a)
-		{
-			add(lessThanA, createNode(current->data));
-		}
-		current = current->next;
-	}
-
-	current = list->head;
-
-	while (current != nullptr)
-	{
-		if (current->data >= a && current->data <= b)
-		{
-			add(fromAtoB, createNode(current->data));
-		}
-		current = current->next;
-	}
-
-	current = list->head;
-
-	while (current != nullptr)
-	{
-		if (current->data > b)
-		{
-			add(moreThanB, createNode(current->data));
-		}
-		current = current->next;
-	}
-
 	List *res = createList();
 
-	res = lessThanA;
-	appendList(res, fromAtoB);
-	appendList(res, moreThanB);
+	cpyList(list, res);
+
+	Node *current = res->head;
+	Node *previous  = nullptr;
+	Node *next = nullptr;
+
+
+	while (current != nullptr)
+	{ 
+		next = current->next;
+		current->next = previous;
+		previous = current;
+		current = next;
+	}
+
+	res->head = previous;
 
 	return res;
 }
 
-bool testListFunc(List * list, int a, int b)
+bool checkReverse(List * listA, List * listB)
 {
-	Node *current = list->head;
+	const int length = listA->length;
+	vector <int> listAElements;
+	Node *current = listA->head;
 
-	while (current->data < a && current != nullptr)
-	{
-		current = current->next;
-	}
-	while (current->data < b && current != nullptr)
-	{
-		if (current->data < a)
-		{
-			return false;
-		}
-		current = current->next;
-	}
 	while (current != nullptr)
 	{
-		if (current->data < b)
+		listAElements.push_back(current->data);
+		current = current->next;
+	}
+
+	current = listB->head;
+
+	for (int i = length - 1; i >= 0; --i)
+	{
+		if (current->data != listAElements[i])
 		{
 			return false;
 		}

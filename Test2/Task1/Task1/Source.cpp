@@ -18,29 +18,17 @@ int main()
 		cout << "Tests passed!" << endl;
 	}
 
-	int a = 0;
-	int b = 0;
-
-	cout << "Enter A: ";
-	cin >> a;
-	cout << "Enter B: ";
-	cin >> b;
-
 	List *list = createList();
 
 	readFromFile(list);
 
 	printList(list);
 
-	List *answer = createList();
-
-	answer = proceedTask(list, a, b);
+	List *answer = reverseList(list);
 
 	cout << "Result: " << endl;
 
 	printList(answer);
-
-	writeToFile(answer);
 
 	deleteList(list);
 	deleteList(answer);

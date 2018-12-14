@@ -5,22 +5,20 @@ struct Node;
 struct List;
 
 List *createList();
-Node *createNode(int data, Node *next = nullptr);
+Node *createNode(int data, Node * next = nullptr);
 
-void add(List *list, Node *node);
+void add(List * list, Node * node);
 
-bool isEmpty(List *list);
+bool isEmpty(List * list);
 
-void printList(List *list);
+void printList(List * list);
 
-void deleteList(List *list);
+void deleteList(List * list);
 
-void readFromFile(List *list);
+void readFromFile(List * list);
 
-void writeToFile(List *list);
-
-void appendList(List * listA, List * listB);
-
-List *proceedTask(List *list, int a, int b);
-
-bool testListFunc(List *list, int a, int b);
+List * reverseList(List * list);
+// Copy listA to listB
+void cpyList(List *& listA, List *& listB);
+// Check if B is reversed A (for tests)
+bool checkReverse(List *listA, List * listB);

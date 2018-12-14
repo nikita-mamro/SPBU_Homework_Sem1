@@ -4,7 +4,6 @@
 bool test()
 {
 	List *testList = createList();
-	List *answer = createList();
 
 	add(testList, createNode(2));
 	add(testList, createNode(5));
@@ -16,12 +15,9 @@ bool test()
 	add(testList, createNode(7));
 	add(testList, createNode(65));
 
-	int a = 10;
-	int b = 30;
+	List *answer = reverseList(testList);
 
-	answer = proceedTask(testList, a, b);
-
-	if (!(testListFunc(answer, a, b)))
+	if (!checkReverse(testList, answer))
 	{
 		deleteList(testList);
 		deleteList(answer);
