@@ -26,7 +26,7 @@ void solveTask(int choice, Node *&root)
 	switch (choice)
 	{
 	case 1:
-		cout << "Enter the key: ";
+		cout << "Enter the key to be added: ";
 		cin >> key;
 		cout << "Enter the string: ";
 		cin >> str;
@@ -39,12 +39,12 @@ void solveTask(int choice, Node *&root)
 		cout << getValue(root, key) << "." << endl;
 		break;
 	case 3:
-		cout << "Enter the key: ";
+		cout << "Enter the key to check if it exists: ";
 		cin >> key;
 		cout << key << (exists(root, key) ? " does " : " does NOT ") << "exist." << endl;
 		break;
 	case 4:
-		cout << "Enter the key: ";
+		cout << "Enter the key to be deleted: ";
 		cin >> key;
 		root = remove(root, key);
 		break;

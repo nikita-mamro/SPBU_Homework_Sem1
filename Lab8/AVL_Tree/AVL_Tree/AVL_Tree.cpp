@@ -73,6 +73,11 @@ Node * rotateLeft(Node * p)
 
 Node * balance(Node * p)
 {
+	if (p == nullptr)
+	{
+		return p;
+	}
+
 	fixHeight(p);
 
 	if (balanceFactor(p) == 2)
