@@ -42,7 +42,7 @@ vector<Point*> findPoints(vector<vector<int>> &matrix, int height, int width)
 	vector<Point*> res;
 	int tmp = 0;
 
-	for (int i = 0; i < width; ++i)
+	for (int i = 0; i < height; ++i)
 	{
 		tmp = maxInVector(matrix[i]);
 		
@@ -107,7 +107,7 @@ int main()
 	{
 		for (int j = 0; j < width; ++j)
 		{
-			cout << matrix[i][j] << " ";
+			cout << matrix[j][i] << " ";
 		}
 		cout << endl;
 	}
