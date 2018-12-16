@@ -31,6 +31,8 @@ bool test(vector <string> &result)
 
 	string testText1 = readFromFile(input);
 
+	input.close();
+
 	if (!testText1.compare("TEstIng the AlgoRiThm ! The KMP is being tested !!!!!"))
 	{
 		res = false;
