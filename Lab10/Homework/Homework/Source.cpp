@@ -13,7 +13,7 @@ int main()
 	if (!test(testResult))
 	{
 		cout << "Tests failed!" << endl;
-		for (int i = 0; i < testResult.size(); ++i)
+		for (unsigned int i = 0; i < testResult.size(); ++i)
 		{
 			cout << testResult[i] << endl;
 		}
@@ -31,6 +31,8 @@ int main()
 	}
 
 	vector<vector<int>> answer = solveTask(input);
+
+	input.close();
 	
 	char c = 'A';
 

@@ -18,6 +18,8 @@ bool test(vector<string>& result)
 
 	vector<vector<int>> testAnswer = solveTask(testInput);
 
+	testInput.close();
+
 	if (testAnswer.size() != 3)
 	{
 		res = false;
