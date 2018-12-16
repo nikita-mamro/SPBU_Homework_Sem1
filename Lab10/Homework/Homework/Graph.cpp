@@ -17,7 +17,7 @@ void refreshIsVisited(Node *node)
 {
 	node->isVisited = false;
 
-	for (int i = 0; i < node->neighbours.size(); ++i)
+	for (unsigned int i = 0; i < node->neighbours.size(); ++i)
 	{
 		if (node->neighbours[i]->isVisited)
 		{
@@ -86,15 +86,19 @@ bool differentCapitals(vector<Node*> &capitalNodes, int cityA, int cityB)
 	{
 		if (findCity(capitalNodes[i], cityA) != nullptr)
 		{
+			for (unsigned int k = 0; k < capitalNodes.size(); ++k)
+			{
+				refreshIsVisited(capitalNodes[k]);
+			}
 			for (unsigned int j = 0; j < capitalNodes.size(); ++j)
 			{
 				if (findCity(capitalNodes[j], cityB) != nullptr)
 				{
 					if (i != j)
 					{
-						for (unsigned int i = 0; i < capitalNodes.size(); ++i)
+						for (unsigned int k = 0; k < capitalNodes.size(); ++k)
 						{
-							refreshIsVisited(capitalNodes[i]);
+							refreshIsVisited(capitalNodes[k]);
 						}
 						return true;
 					}
@@ -124,12 +128,14 @@ vector<Node*> getCapitalNodes(vector<int> &capitals, vector<InputElement*> &trip
 
 	int i = 0;
 
+	vector<InputElement*> tmpTriplets;
+
 	while (!triplets.empty())
 	{
 		int j = 0;
 		Node *current = capitalNodes[i % capitals.size()];
 
-		vector<InputElement*> tmpTriplets = triplets;
+		tmpTriplets = triplets;
 
 		for (InputElement * elem : tmpTriplets)
 		{
@@ -138,8 +144,8 @@ vector<Node*> getCapitalNodes(vector<int> &capitals, vector<InputElement*> &trip
 
 			if (differentCapitals(capitalNodes, cityFrom, cityTo))
 			{
-				triplets.erase(triplets.begin() + j);
-				continue;
+				tmpTriplets.erase(tmpTriplets.begin() + j);
+				break;
 			}
 
 			Node *from = findCity(current, cityFrom);
@@ -152,16 +158,24 @@ vector<Node*> getCapitalNodes(vector<int> &capitals, vector<InputElement*> &trip
 				if (to != nullptr)
 				{
 					addExistingNeighbour(from, to);
-					triplets.erase(triplets.begin() + j);
+					tmpTriplets.erase(tmpTriplets.begin() + j);
 					break;
 				}
 				addNewNeighbour(from, cityTo);
-				triplets.erase(triplets.begin() + j);
+				tmpTriplets.erase(tmpTriplets.begin() + j);
+				break;
+			}
+
+			if (from == nullptr && to != nullptr)
+			{
+				addNewNeighbour(to, cityFrom);
+				tmpTriplets.erase(tmpTriplets.begin() + j);
 				break;
 			}
 
 			++j;
 		}
+		triplets = tmpTriplets;
 
 		++i;
 	}

@@ -8,7 +8,19 @@ using namespace std;
 
 int main()
 {
-	//***TESTS***
+	vector <string> testResult;
+	
+	if (!test(testResult))
+	{
+		cout << "Tests failed!" << endl;
+		for (int i = 0; i < testResult.size(); ++i)
+		{
+			cout << testResult[i] << endl;
+		}
+		return EXIT_FAILURE;
+	}
+
+	cout << "Tests passed!" << endl;
 
 	ifstream input("input.txt", ios::in);
 
@@ -19,11 +31,12 @@ int main()
 	}
 
 	vector<vector<int>> answer = solveTask(input);
+	
 	char c = 'A';
 
 	for (vector<int> country : answer)
 	{
-		cout << c << " - ";
+		cout << "Country " << c << " : ";
 		for (int city : country)
 		{
 			cout << city << " ";
