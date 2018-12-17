@@ -144,7 +144,7 @@ List *reverseList(List * list)
 bool checkReverse(List * listA, List * listB)
 {
 	const int length = listA->length;
-	vector <int> listAElements;
+	vector<int> listAElements;
 	Node *current = listA->head;
 
 	while (current != nullptr)
