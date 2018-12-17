@@ -4,4 +4,4 @@
 
 using namespace std;
 
-bool test(vector <string> &result);
+bool test(vector<string> &result);
