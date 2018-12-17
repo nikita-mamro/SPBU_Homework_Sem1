@@ -8,7 +8,7 @@ using namespace std;
 
 struct HashTable
 {
-	vector <List*> buckets;
+	vector<List*> buckets;
 };
 
 HashTable * createHashTable()
