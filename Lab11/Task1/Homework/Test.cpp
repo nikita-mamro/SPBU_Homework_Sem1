@@ -16,7 +16,7 @@ void errTemplateKMP(string &error, string text, string pattern, string func, int
 	error += to_string(found);
 }
 
-bool test(vector <string> &result)
+bool test(vector<string> &result)
 {
 	bool res = true;
 

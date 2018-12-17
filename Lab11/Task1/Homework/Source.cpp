@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-	vector <string> testResult;
+	vector<string> testResult;
 
 	if (!test(testResult))
 	{

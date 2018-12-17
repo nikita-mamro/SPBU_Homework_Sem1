@@ -4,7 +4,7 @@ int *prefixFunction(const string & str)
 {
 	int *res = new int[str.size()]{ 0 };
 
-	for (int i = 1, k = 0; i < str.size(); ++i)
+	for (unsigned int i = 1, k = 0; i < str.size(); ++i)
 	{
 		while (k && str[k] != str[i])
 		{
@@ -29,7 +29,7 @@ int firstPatternMatchKMP(const string & text, const string & pattern)
 
 	int *prefixFunc = prefixFunction(pattern);
 
-	for (int i = 0, k = 0; i < text.size(); ++i)
+	for (unsigned int i = 0, k = 0; i < text.size(); ++i)
 	{
 		while (k && pattern[k] != text[i])
 		{
