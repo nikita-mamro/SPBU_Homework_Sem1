@@ -235,7 +235,7 @@ void printAscDesc(Set * set, bool asc)
 	}
 	else
 	{
-		vector <int> ascElements;
+		vector<int> ascElements;
 
 		fillArrayAscDesc(ascElements, set->root, asc);
 
