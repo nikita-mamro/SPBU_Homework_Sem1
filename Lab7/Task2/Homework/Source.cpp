@@ -7,12 +7,12 @@ using namespace std;
 
 int main()
 {
-	vector <string> testResult;
+	vector<string> testResult;
 
 	if (!test(testResult))
 	{
 		cout << "Tests failed!" << endl;
-		for (int i = 0; i < testResult.size(); ++i)
+		for (unsigned int i = 0; i < testResult.size(); ++i)
 		{
 			cout << testResult[i] << endl;
 		}
