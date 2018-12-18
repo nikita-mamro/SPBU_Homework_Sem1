@@ -2,6 +2,4 @@
 #include <string>
 #include <fstream>
 
-using namespace std;
-
-string readFromFile(ifstream &input);
+std::string readFromFile(std::ifstream &input);

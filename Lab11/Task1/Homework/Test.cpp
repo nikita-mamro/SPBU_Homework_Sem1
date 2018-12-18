@@ -10,7 +10,7 @@ void errTemplateKMP(string &error, string text, string pattern, string func, int
 {
 	error += "\nText: " + text;
 	error += "\nPattern: " + pattern;
-	error += "\nExpeced answer: ";
+	error += "\nExpected answer: ";
 	error += to_string(expected);
 	error += "\nGot answer: ";
 	error += to_string(found);
