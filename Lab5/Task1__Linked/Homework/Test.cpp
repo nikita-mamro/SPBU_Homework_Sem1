@@ -1,4 +1,9 @@
 #include "Test.hpp"
+#include "SortedList.hpp"
+#include <cstdlib>
+#include <locale.h>
+#include <time.h>
+#include <stdio.h>
 #ifdef _WIN32
 #define CLEAR "cls"
 #else
@@ -14,38 +19,44 @@ void swap(int& a, int& b)
 
 void merge(int* array, int low, int high, int mid)
 {
-	int i, j, k;
-	int *temp = new int[high - low + 1];
-	i = low;
-	k = 0;
-	j = mid + 1;
+	int i = low;
+	int k = 0;
+	int j = mid + 1;
 
-	while (i <= mid && j <= high) {
-		if (array[i] < array[j]) {
+	int *temp = new int[high - low + 1];
+
+	while (i <= mid && j <= high) 
+	{
+		if (array[i] < array[j]) 
+		{
 			temp[k] = array[i];
 			k++;
 			i++;
 		}
-		else {
+		else 
+		{
 			temp[k] = array[j];
 			k++;
 			j++;
 		}
 	}
 
-	while (i <= mid) {
+	while (i <= mid) 
+	{
 		temp[k] = array[i];
 		k++;
 		i++;
 	}
 
-	while (j <= high) {
+	while (j <= high) 
+	{
 		temp[k] = array[j];
 		k++;
 		j++;
 	}
 
-	for (i = low; i <= high; i++) {
+	for (i = low; i <= high; i++) 
+	{
 		array[i] = temp[i - low];
 	}
 
@@ -54,9 +65,9 @@ void merge(int* array, int low, int high, int mid)
 
 void sort(int* array, int low, int high)
 {
-	int mid = 0;
-	if (low < high) {
-		mid = (low + high) / 2;
+	if (low < high) 
+	{
+		const int mid = (low + high) / 2;
 		sort(array, low, mid);
 		sort(array, mid + 1, high);
 		merge(array, low, high, mid);
@@ -89,6 +100,8 @@ bool test()
 		if (testElements[i] != getElementData(currentElement))
 		{
 			printf("Список НЕ отсортированный!\n");
+			deleteSortedList(testList);
+			delete[] testElements;
 			return false;
 		}
 		currentElement = getNext(currentElement);
@@ -102,6 +115,8 @@ bool test()
 		if (testElements[i] != getElementData(currentElement))
 		{
 			printf("Ошибка в функции удаления!\n");
+			deleteSortedList(testList);
+			delete[] testElements;
 			return false;
 		}
 		currentElement = getNext(currentElement);
@@ -109,6 +124,6 @@ bool test()
 	system(CLEAR);
 	printf("В ходе тестов ошибки не выявлены!\n");
 	delete[] testElements;
-	deleteSortedList(*testList);
+	deleteSortedList(testList);
 	return true;
 }

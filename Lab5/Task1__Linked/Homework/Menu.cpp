@@ -1,5 +1,4 @@
 #pragma once
-#define _
 #ifdef _WIN32
 #define CLEAR "cls"
 #else
@@ -61,5 +60,5 @@ void proceedTask()
 		c = getch();
 		solveTask(c - '0', *list);
 	} while (c != 27);
-	deleteSortedList(*list);
+	deleteSortedList(list);
 }

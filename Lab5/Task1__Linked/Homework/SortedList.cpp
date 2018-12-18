@@ -1,9 +1,11 @@
 #include "SortedList.hpp"
 
+#include <stdio.h>
+
 struct ListElement
 {
-int data;
-ListElement *next = nullptr;
+	int data;
+	ListElement *next = nullptr;
 };
 
 struct SortedList
@@ -151,12 +153,13 @@ void printSortedList(const SortedList &list)
 	}
 }
 
-void deleteSortedList(SortedList &list)
+void deleteSortedList(SortedList *&list)
 {
-	while (!isEmpty(list))
+	while (!isEmpty(*list))
 	{
-		ListElement *currentElement = list.head;
-		list.head = currentElement->next;
+		ListElement *currentElement = list->head;
+		list->head = currentElement->next;
 		delete currentElement;
 	}
+	delete list;
 }
