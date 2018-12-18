@@ -1,6 +1,8 @@
 #include "PrimMST.hpp"
 #include <fstream>
 
+using namespace std;
+
 void readFromFile(vector<vector<int>> & graph, ifstream & input)
 {
 	int current = 0;

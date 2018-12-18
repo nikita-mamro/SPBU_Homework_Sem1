@@ -109,12 +109,14 @@ void deleteNode(Node * node)
 			deleteNode(child);
 		}
 	}
+	node = nullptr;
 	delete node;
 }
 
 void deleteTree(Tree * tree)
 {
 	deleteNode(tree->root);
+	tree = nullptr;
 	delete tree;
 }
 
