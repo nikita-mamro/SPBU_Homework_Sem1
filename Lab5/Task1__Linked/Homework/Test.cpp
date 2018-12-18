@@ -68,47 +68,47 @@ bool test()
 	printf("Проводим тесты!");
 	srand(time(nullptr));
 
-	SortedList testList;
-	removeElement(1, testList);
+	SortedList *testList = createList();
+	removeElement(1, *testList);
 
 	int *testElements = new int[100]{};
 	for (int i = 0; i < 99; ++i)
 	{
 		testElements[i] = rand() % 1000 - 500;
-		addElement(testElements[i], testList);
+		addElement(testElements[i], *testList);
 	}
 
 	testElements[99] = 1000;
-	addElement(1000, testList);
+	addElement(1000, *testList);
 
 	sort(testElements, 0, 99);
-	ListElement *currentElement = testList.head;
+	ListElement *currentElement = getHead(*testList);
 
 	for (int i = 0; i < 100; ++i)
 	{
-		if (testElements[i] != currentElement->data)
+		if (testElements[i] != getElementData(currentElement))
 		{
 			printf("Список НЕ отсортированный!\n");
 			return false;
 		}
-		currentElement = currentElement->next;
+		currentElement = getNext(currentElement);
 	}
 
-	removeElement(testElements[99], testList);
-	currentElement = testList.head;
+	removeElement(testElements[99], *testList);
+	currentElement = getHead(*testList);
 
 	for (int i = 0; i < 99; ++i)
 	{
-		if (testElements[i] != currentElement->data)
+		if (testElements[i] != getElementData(currentElement))
 		{
 			printf("Ошибка в функции удаления!\n");
 			return false;
 		}
-		currentElement = currentElement->next;
+		currentElement = getNext(currentElement);
 	}
 	system(CLEAR);
 	printf("В ходе тестов ошибки не выявлены!\n");
 	delete[] testElements;
-	deleteSortedList(testList);
+	deleteSortedList(*testList);
 	return true;
 }

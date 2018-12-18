@@ -1,4 +1,5 @@
 #pragma once
+#define _
 #ifdef _WIN32
 #define CLEAR "cls"
 #else
@@ -30,7 +31,7 @@ void solveTask(int choice, SortedList &list)
 		addElement(element, list);
 		break;
 	case 2:
-		if (list.head == nullptr)
+		if (getHead(list) == nullptr)
 		{
 			printf("Нечего удалять, список пуст!\n");
 			break;
@@ -53,12 +54,12 @@ void solveTask(int choice, SortedList &list)
 
 void proceedTask()
 {
-	SortedList list;
+	SortedList *list = createList();
 	char c = ' ';
 	printMenu();
 	do {
 		c = getch();
-		solveTask(c - '0', list);
+		solveTask(c - '0', *list);
 	} while (c != 27);
-	deleteSortedList(list);
+	deleteSortedList(*list);
 }

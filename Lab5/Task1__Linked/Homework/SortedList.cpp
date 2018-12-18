@@ -1,6 +1,17 @@
 #include "SortedList.hpp"
 
-bool isContained(int element, SortedList &list)
+struct ListElement
+{
+int data;
+ListElement *next = nullptr;
+};
+
+struct SortedList
+{
+	ListElement *head = nullptr;
+};
+
+bool isContained(int element, const SortedList &list)
 {
 	ListElement *currentElement = list.head;
 	
@@ -16,7 +27,32 @@ bool isContained(int element, SortedList &list)
 	return false;
 }
 
-bool isEmpty(SortedList &list)
+ListElement * getHead(const SortedList & list)
+{
+	return list.head;
+}
+
+int getElementData(const ListElement * element)
+{
+	return element->data;
+}
+
+ListElement * getNext(const ListElement * element)
+{
+	return element->next;
+}
+
+int getElementData(const ListElement & element)
+{
+	return element.data;
+}
+
+SortedList * createList()
+{
+	return new SortedList;
+}
+
+bool isEmpty(const SortedList &list)
 {
 	return list.head == nullptr;
 }
@@ -29,7 +65,7 @@ ListElement *newListElement(int data, ListElement *nextElement)
 	return result;
 }
 
-ListElement* lastLessThanCurrent(int element, SortedList &list)
+ListElement* lastLessThanCurrent(int element, const SortedList &list)
 {
 	if (list.head == nullptr || list.head->data >= element)
 	{
@@ -77,7 +113,7 @@ void removeElement(int element, SortedList &list)
 
 	if (previousElement == nullptr)
 	{
-		while (list.head->data == element && list.head != nullptr)
+		while (list.head != nullptr && list.head->data == element)
 		{
 			ListElement *tmp = list.head;
 			list.head = list.head->next;
@@ -96,7 +132,7 @@ void removeElement(int element, SortedList &list)
 	printf("Удалён элемент %d!\n", element);
 }
 
-void printSortedList(SortedList &list)
+void printSortedList(const SortedList &list)
 {
 	ListElement *currentElement = list.head;
 
