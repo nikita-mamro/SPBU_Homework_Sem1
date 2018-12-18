@@ -2,6 +2,8 @@
 #include "Graph.hpp"
 #include <fstream>
 
+using namespace std;
+
 struct InputElement
 {
 	int cityFrom;
@@ -12,6 +14,12 @@ struct InputElement
 InputElement *createInputElement(int cityFrom, int cityTo, int roadLength)
 {
 	return new InputElement{ cityFrom, cityTo, roadLength };
+}
+
+void deleteInputElement(InputElement * element)
+{
+	element = nullptr;
+	delete element;
 }
 
 int getRoadLength(InputElement * element)
@@ -58,3 +66,4 @@ void readFromFile(vector<int>& capitals, vector<InputElement*>& triplets, ifstre
 		capitals.push_back(capital);
 	}
 }
+

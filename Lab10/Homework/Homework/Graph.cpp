@@ -113,6 +113,18 @@ bool differentCapitals(vector<Node*> &capitalNodes, int cityA, int cityB)
 	return false;
 }
 
+void deleteCountry(Node * capital)
+{
+	vector<Node*> cities;
+	fillArray(capital, cities);
+	
+	for (auto * city : cities)
+	{
+		city = nullptr;
+		delete city;
+	}
+}
+
 vector<Node*> getCapitalNodes(vector<int> &capitals, vector<InputElement*> &triplets)
 {
 	vector<Node*> capitalNodes;
@@ -207,6 +219,16 @@ vector<vector<int>>  solveTask(ifstream & input)
 		}
 
 		res.push_back(tmp);
+	}
+
+	for (auto *current : capitalNodes)
+	{
+		deleteCountry(current);
+	}
+
+	for (auto *current : triplets)
+	{
+		deleteInputElement(current);
 	}
 
 	return res;

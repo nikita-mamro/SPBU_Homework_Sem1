@@ -3,6 +3,8 @@
 #include <fstream>
 #include <iostream>
 
+using namespace std;
+
 bool test(vector<string>& result)
 {
 	bool res = true;
