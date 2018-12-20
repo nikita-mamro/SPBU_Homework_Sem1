@@ -16,10 +16,8 @@ HashTable * createHashTable()
 	return new HashTable;
 }
 
-HashTable * readFromFile(ifstream & input)
+void readFromFile(HashTable * table, ifstream & input)
 {
-	HashTable *table = createHashTable();
-
 	table->buckets.resize(100);
 
 	string word;
@@ -29,8 +27,6 @@ HashTable * readFromFile(ifstream & input)
 		input >> word;
 		add(word, table);
 	}
-
-	return table;
 }
 
 void deleteTable(HashTable *& table)
@@ -51,7 +47,7 @@ void add(const string & word, HashTable *table)
 		expand(table);
 	}
 
-	int hash = hashFunction(word) % table->buckets.size();
+	const unsigned int hash = hashFunction(word) % table->buckets.size();
 
 	if (table->buckets[hash] == nullptr)
 	{
@@ -68,13 +64,13 @@ void add(const string & word, HashTable *table)
 	}
 }
 
-bool exists(const string & word, HashTable const *table)
+bool exists(const string & word, const HashTable * table)
 {
-	int hash = hashFunction(word) % table->buckets.size();
+	const unsigned int hash = hashFunction(word) % table->buckets.size();
 	return exists(table->buckets[hash], word);
 }
 
-long int hashFunction(const string & word)
+unsigned long int hashFunction(const string & word)
 {
 	long int sum = 0;
 
@@ -108,14 +104,14 @@ void expand(HashTable * table)
 				continue;
 			}
 
-			int hash = hashFunction(getWord(current)) % table->buckets.size();
+			const unsigned int hash = hashFunction(getWord(current)) % table->buckets.size();
 			List *targetList = table->buckets[hash];
 			string word = getWord(current);
 			int counter = getCounter(current);
 
 			add(table->buckets[hash], createNode(word, counter));
-			
-			
+
+
 			setIsRehashed(current, true);
 
 			Node *tmp = current;
@@ -139,7 +135,7 @@ double loadCoefficient(const HashTable * table)
 
 	int segmentsCount = table->buckets.size();
 
-	return (double) elementsCount / (double) segmentsCount;
+	return (double)elementsCount / (double)segmentsCount;
 }
 
 int maxLenghtInSegment(const HashTable * table)
@@ -174,7 +170,7 @@ double averageLengthInSegment(const HashTable * table)
 		}
 	}
 
-	return (double) lengthsSum / (double) lengthsCounter;
+	return (double)lengthsSum / (double)lengthsCounter;
 }
 
 struct Element

@@ -12,7 +12,7 @@ struct Element;
 
 //Создание таблицы
 HashTable *createHashTable();
-HashTable *readFromFile(ifstream &input);
+void readFromFile(HashTable * table, ifstream &input);
 // Удаление таблицы
 void deleteTable(HashTable *&table);
 // Добавление строки в таблицу
@@ -20,7 +20,7 @@ void add(const string &word, HashTable *table);
 // Проверка на существование строки в таблице
 bool exists(const string &word, const HashTable *table);
 // Хеш-функция
-long int hashFunction(const string &word);
+unsigned long int hashFunction(const string &word);
 // Расширение таблицы
 void expand(HashTable *table);
 // Коэффициент заполнения

@@ -38,7 +38,8 @@ bool test(vector<string>& result)
 		return false;
 	}
 
-	HashTable *testTable = readFromFile(input);
+	HashTable *testTable = createHashTable();
+	readFromFile(testTable, input);
 
 	vector<Element*> testRes;
 	fillArray(testTable, testRes);

@@ -26,7 +26,8 @@ int main()
 		return EXIT_FAILURE;
 	}
 
-	HashTable *table = readFromFile(input);
+	HashTable *table = createHashTable();
+	readFromFile(table, input);
 
 	vector<Element*> res;
 	fillArray(table, res);
