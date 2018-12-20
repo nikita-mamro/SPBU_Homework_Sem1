@@ -1,5 +1,7 @@
 #include "Test.hpp"
 
+using namespace std;
+
 bool success()
 {
 	cout << "Passed test!" << endl;

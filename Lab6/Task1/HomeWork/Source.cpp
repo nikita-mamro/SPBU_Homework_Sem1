@@ -1,6 +1,8 @@
 #include "Functions.hpp"
 #include "Test.hpp"
 
+using namespace std;
+
 int main()
 {
 	runTests();
