@@ -41,10 +41,10 @@ bool test(std::vector<std::string> &result)
 
 	std::vector<int> testFillArrayAsc;
 	std::vector<int> testFillArrayDesc;
-
+	
 	fillArrayAscDesc(testFillArrayAsc, root(testSet), true);
 	fillArrayAscDesc(testFillArrayDesc, root(testSet), false);
-
+	
 	for (int i = 0; i < testFillArrayAsc.size() - 1; ++i)
 	{
 		if (testFillArrayAsc[i] > testFillArrayAsc[i + 1])
@@ -54,7 +54,7 @@ bool test(std::vector<std::string> &result)
 			break;
 		}
 	}
-
+	
 	for (int i = 0; i < testFillArrayDesc.size() - 1; ++i)
 	{
 		if (testFillArrayDesc[i] < testFillArrayDesc[i + 1])

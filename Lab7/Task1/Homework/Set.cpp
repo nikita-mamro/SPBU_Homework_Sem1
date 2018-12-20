@@ -42,9 +42,8 @@ void deleteSet(Set * set)
 	if (set->root != nullptr)
 	{
 		deleteNode(set->root);
-		delete set;
-		set = nullptr;
 	}
+	delete set;
 }
 
 void add(Set * set, int element)
@@ -61,7 +60,7 @@ void add(Set * set, int element)
 	{
 		Node *current = set->root;
 
-		while (1)
+		while (true)
 		{
 			if (current->value > element)
 			{
@@ -119,15 +118,21 @@ void remove(Node *& node, int element)
 	{
 		if (node->left == nullptr && node->right == nullptr)
 		{
+			Node *tmp = node;
 			node = nullptr;
+			delete tmp;
 		}
 		else if (node->left != nullptr && node->right == nullptr)
 		{
+			Node *tmp = node;
 			node = node->left;
+			delete tmp;
 		}
 		else if (node->left == nullptr && node->right != nullptr)
 		{
+			Node *tmp = node;
 			node = node->right;
+			delete tmp;
 		}
 		else if (node->left != nullptr && node->right != nullptr)
 		{
