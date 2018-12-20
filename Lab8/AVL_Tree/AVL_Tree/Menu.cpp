@@ -36,7 +36,12 @@ void solveTask(int choice, Node *&root)
 		cout << "Enter the key: ";
 		cin >> key;
 		cout << "String with key " << key << ": ";
-		cout << getValue(root, key) << "." << endl;
+		if (getValue(root, key).empty())
+		{
+			cout << "String not found by key " << key << endl;
+			break;
+		}
+		cout << getValue(root, key) << endl;
 		break;
 	case 3:
 		cout << "Enter the key to check if it exists: ";

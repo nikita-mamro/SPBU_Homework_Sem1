@@ -20,11 +20,11 @@ Node * createNode()
 
 void deleteNode(Node * node)
 {
-	if (!node->left)
+	if (node->left != nullptr)
 	{
 		deleteNode(node->left);
 	}
-	else if (!node->right)
+	else if (node->right != nullptr)
 	{
 		deleteNode(node->right);
 	}
@@ -122,7 +122,7 @@ Node * add(Node * root, int key, string str)
 		current->value = str;
 		return root;
 	}
-	if (!root)
+	if (root == nullptr)
 	{
 		Node *res = new Node(key, str);
 		return res;
@@ -159,7 +159,7 @@ Node * remove(Node * root, int key)
 	{
 		return balance(root);
 	}
-	if (!root)
+	if (root == nullptr)
 	{
 		return nullptr;
 	}
@@ -176,7 +176,7 @@ Node * remove(Node * root, int key)
 		Node* p = root->left;
 		Node* q = root->right;
 		delete root;
-		if (!q) return p;
+		if (q == nullptr) return p;
 		Node* min = findMin(q);
 		min->right = removeMin(q);
 		min->left = p;

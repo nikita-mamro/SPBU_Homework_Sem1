@@ -88,5 +88,7 @@ bool test(vector<string>& result)
 		res = false;
 	}
 
+	deleteTree(testRoot);
+
 	return res;
 }
