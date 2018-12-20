@@ -1,4 +1,5 @@
 #include "Functions.hpp"
+#include "stdafx.hpp"
 
 using namespace std;
 

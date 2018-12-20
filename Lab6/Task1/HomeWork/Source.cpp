@@ -1,6 +1,8 @@
 #include "Functions.hpp"
 #include "Test.hpp"
 
+#include "stdafx.hpp"
+
 using namespace std;
 
 int main()

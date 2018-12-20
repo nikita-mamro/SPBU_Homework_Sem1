@@ -28,7 +28,7 @@ char pop(Stack *stack)
 {
 	if (stack->head == nullptr)
 	{
-		return -1;
+		return '\0';
 	}
 	StackElement *temp = stack->head;
 	stack->head = stack->head->next;
