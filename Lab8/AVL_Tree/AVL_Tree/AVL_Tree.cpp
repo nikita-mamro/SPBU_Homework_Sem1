@@ -1,5 +1,7 @@
 #include "AVL_Tree.hpp"
 
+using namespace std;
+
 struct Node
 {
 	string value;

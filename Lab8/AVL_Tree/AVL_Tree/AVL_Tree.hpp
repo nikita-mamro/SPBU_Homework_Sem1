@@ -1,8 +1,6 @@
 #pragma once
 #include <string>
 
-using namespace std;
-
 struct Node;
 
 // Создание и удаление
@@ -20,7 +18,7 @@ Node * rotateLeft(Node * p);
 // Балансировка узла p
 Node * balance(Node * p);
 // Добавление ключа
-Node * add(Node * root, int key, string str);
+Node * add(Node * root, int key, std::string str);
 // Поиск узла с минимальным ключом
 Node * findMin(Node *root);
 // Удаление
@@ -29,9 +27,9 @@ Node * remove(Node *root, int key);
 // Проверить ключ на существование
 bool exists(Node *root, int key);
 // Получить значение по ключу
-string getValue(Node *root, int key);
+std::string getValue(Node *root, int key);
 // Функции для того, чтобы вынести тесты в отдельный модуль
 int getKey(Node *node);
 Node *getLeft(Node *node);
 Node *getRight(Node *node);
-string getValue(Node *node);
+std::string getValue(Node *node);

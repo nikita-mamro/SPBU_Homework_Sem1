@@ -1,6 +1,8 @@
 #include "Test.hpp"
 #include "AVL_Tree.hpp"
 
+using namespace std;
+
 void fillTree(Node *&root)
 {
 	root = add(root, 10, "Ten");
