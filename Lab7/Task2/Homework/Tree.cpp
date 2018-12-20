@@ -1,6 +1,8 @@
 #include "Tree.hpp"
 #include <cctype>
 
+using namespace std;
+
 struct Node
 {
 	int data;

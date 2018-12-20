@@ -1,6 +1,8 @@
 #include "Test.hpp"
 #include "Tree.hpp"
 
+using namespace std;
+
 bool test(vector<string>& result)
 {
 	bool res = true;

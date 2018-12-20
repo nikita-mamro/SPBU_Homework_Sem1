@@ -2,13 +2,11 @@
 #include <iostream>
 #include <fstream>
 
-using namespace std;
-
 struct Tree;
 struct Node;
 // Creating Node + Tree
-Node *createNode(ifstream &input);
-Tree *createTree(ifstream &input);
+Node *createNode(std::ifstream &input);
+Tree *createTree(std::ifstream &input);
 // Deleting Node + Tree
 void deleteNode(Node *node);
 void deleteTree(Tree *tree);
