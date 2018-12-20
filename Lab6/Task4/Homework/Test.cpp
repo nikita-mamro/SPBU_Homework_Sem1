@@ -3,8 +3,17 @@
 #include "List.hpp"
 #include <iostream>
 #include <vector>
+#include "ContactStruct.hpp"
 
 using namespace std;
+
+void deleteTestContacts(Contact *testContacts[], const int length)
+{
+	for (int i = 0; i < length; ++i)
+	{
+		delete testContacts[i];
+	}
+}
 
 bool test()
 {
@@ -12,8 +21,7 @@ bool test()
 	List *testList = createList();
 	Contact *testContacts[testLength];
 
-	char c[1];
-	c[0] = 'a';
+	char c[] = { 'a', '\0' };
 
 	for (int i = 0; i < testLength; ++i)
 	{
@@ -33,6 +41,7 @@ bool test()
 	{
 		cout << "Name sort error!" << endl;
 		deleteList(testList);
+		deleteTestContacts(testContacts, testLength);
 		return false;
 	}
 
@@ -40,10 +49,12 @@ bool test()
 	{
 		cout << "Number sort error!" << endl;
 		deleteList(testList);
+		deleteTestContacts(testContacts, testLength);
 		return false;
 	}
 
 	deleteList(testList);
+	deleteTestContacts(testContacts, testLength);
 
 	return true;
 }

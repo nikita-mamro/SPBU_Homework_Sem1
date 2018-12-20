@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "List.hpp"
 #include "ContactStruct.hpp"
+#include <iostream>
 
 struct Node
 {
@@ -17,7 +18,7 @@ struct List
 
 Node *createNode(Contact contact, Node *next)
 {
-	return new Node{ contact , next };
+	return new Node{ contact, next };
 }
 
 List *createList()
@@ -122,7 +123,7 @@ bool isEmpty(List *list)
 	return list == nullptr || list->head == nullptr;
 }
 
-void deleteList(List *list)
+void deleteList(List *& list)
 {
 	while (!isEmpty(list))
 	{
@@ -191,7 +192,7 @@ void mergeSort(List *&list, bool sortBy)
 		{
 			List *listA = merged[i];
 			merged[i] = nullptr;
-			List *listB = createList();
+			List *listB = nullptr;
 
 			if (i + 1 < length)
 			{
@@ -205,7 +206,7 @@ void mergeSort(List *&list, bool sortBy)
 		length = length / 2 + length % 2;
 	}
 
-	List *res = createList();
+	List *res = nullptr;
 
 	res = merged[0];
 	merged[0] = nullptr;

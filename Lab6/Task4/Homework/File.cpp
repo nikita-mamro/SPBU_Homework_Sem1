@@ -5,13 +5,15 @@ void readFromFile(List *list)
 {
 	FILE *file = fopen("phonebook.txt", "r");
 
+	Contact *contact = new Contact();
+
 	while (!feof(file))
 	{
-		Contact *contact = new Contact();
 		fscanf(file, "%s - %s", contact->name, contact->phone);
 		add(list, createNode(*contact));
-		delete contact;
 	}
+
+	delete contact;
 
 	fclose(file);
 }

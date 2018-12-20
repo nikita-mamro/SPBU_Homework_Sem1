@@ -26,7 +26,7 @@ void printList(List * list);
 //Проверка, пустой ли список.
 bool isEmpty(List *list);
 //Удаление списка.
-void deleteList(List * list);
+void deleteList(List *& list);
 //Сортировка
 List *merge(List *listA, List *listB, bool sortBy);
 void mergeSort(List *&list, bool sortBy);
