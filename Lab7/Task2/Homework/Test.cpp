@@ -26,6 +26,8 @@ bool test(vector<string>& result)
 		res = false;
 	}
 
+	deleteTree(testTree);
+
 	input.close();
 
 	return res;

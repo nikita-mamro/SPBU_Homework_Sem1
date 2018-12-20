@@ -47,11 +47,11 @@ Tree * createTree(ifstream & input)
 
 void deleteNode(Node * node)
 {
-	if (!node->left)
+	if (node->left != nullptr)
 	{
 		deleteNode(node->left);
 	}
-	else if (!node->right)
+	else if (node->right != nullptr)
 	{
 		deleteNode(node->right);
 	}
@@ -60,7 +60,7 @@ void deleteNode(Node * node)
 
 void deleteTree(Tree * tree)
 {
-	if (!tree->root)
+	if (tree->root != nullptr)
 	{
 		deleteNode(tree->root);
 		delete tree;
