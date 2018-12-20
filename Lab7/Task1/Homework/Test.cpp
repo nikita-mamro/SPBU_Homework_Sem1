@@ -1,8 +1,6 @@
 #include "Test.hpp"
 #include "Set.hpp"
 
-
-
 void fillSet(Set *set)
 {
 	add(set, 6);

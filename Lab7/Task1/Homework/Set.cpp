@@ -19,13 +19,13 @@ Node *createNode(int value, Node *left = nullptr, Node *right = nullptr)
 	return new Node{ value, left, right };
 }
 
-void deleteNode(Node *node)
+void deleteNode(Node * node)
 {
-	if (!node->left)
+	if (node->left != nullptr)
 	{
 		deleteNode(node->left);
 	}
-	else if (!node->right)
+	else if (node->right != nullptr)
 	{
 		deleteNode(node->right);
 	}
@@ -39,7 +39,7 @@ Set *createSet()
 
 void deleteSet(Set * set)
 {
-	if (!set->root)
+	if (set->root != nullptr)
 	{
 		deleteNode(set->root);
 		delete set;
@@ -139,7 +139,7 @@ void remove(Node *& node, int element)
 
 bool exists(Set * set, int element)
 {
-	if (!set->root)
+	if (set->root == nullptr)
 	{
 		return false;
 	}
