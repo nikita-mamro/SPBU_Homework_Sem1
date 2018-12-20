@@ -100,21 +100,21 @@ void printList(List *list)
 {
 	if (isEmpty(list))
 	{
-		cout << "The list is empty." << endl;
+		std::cout << "The list is empty." << std::endl;
 		return;
 	}
 
-	cout << "The list:" << endl << endl;
+	std::cout << "The list:" << std::endl << std::endl;
 
 	Node *tmp = list->head;
 
 	while (tmp != nullptr)
 	{
-		cout << tmp->contact.name << " - " << tmp->contact.phone << endl;
+		std::cout << tmp->contact.name << " - " << tmp->contact.phone << std::endl;
 		tmp = tmp->next;
 	}
 
-	cout << endl << endl;
+	std::cout << std::endl << std::endl;
 }
 
 bool isEmpty(List *list)

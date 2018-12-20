@@ -2,6 +2,8 @@
 #include "Test.hpp"
 #include "File.hpp"
 
+using namespace std;
+
 int main()
 {
 	cout << "Running tests..." << endl;
