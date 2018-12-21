@@ -5,7 +5,7 @@ using namespace std;
 
 int min(int a, int b)
 {
-	return a > b ? a : b;
+	return a < b ? a : b;
 }
 
 void readFromFile(vector<vector<int>>& matrix, ifstream & input)
@@ -21,6 +21,10 @@ void readFromFile(vector<vector<int>>& matrix, ifstream & input)
 		while (!input.eof() && input.peek() != '\n')
 		{
 			input >> current;
+			if (current == 1)
+			{
+				current = 999;
+			}
 			matrix[i].push_back(current);
 		}
 		input.get();
@@ -52,7 +56,7 @@ void findVerticles(vector<int> &verticles, ifstream & input)
 
 		for (int j = 0; j < matrix.size(); ++j)
 		{
-			if (matrix[i][j] == 0)
+			if (matrix[i][j] == 0 || matrix[i][j] == 999)
 			{
 				isAchieved = false;
 			}
