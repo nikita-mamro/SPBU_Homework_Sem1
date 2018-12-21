@@ -33,6 +33,7 @@ void findVerticles(vector<int> &verticles, ifstream & input)
 	vector<vector<int>> matrix;
 	readFromFile(matrix, input);
 
+
 	for (int k = 0; k < matrix.size(); ++k)
 	{
 		for (int i = 0; i < matrix.size(); ++i)
@@ -44,4 +45,22 @@ void findVerticles(vector<int> &verticles, ifstream & input)
 		}
 	}
 	// found shortest ways, need to check if != 0
+
+	for (int i = 0; i < matrix.size(); ++i)
+	{
+		bool isAchieved = true;
+
+		for (int j = 0; j < matrix.size(); ++j)
+		{
+			if (matrix[i][j] == 0)
+			{
+				isAchieved = false;
+			}
+		}
+
+		if (isAchieved)
+		{
+			verticles.push_back(i);
+		}
+	}
 }
