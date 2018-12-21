@@ -1,3 +1,5 @@
 #pragma once
+#include <vector>
+#include <string>
 
-bool test();
+bool test(std::vector<std::string> &errors);
