@@ -1,5 +1,6 @@
 #include "Set.hpp"
 #include <iostream>
+
 using namespace std;
 
 struct Node
@@ -151,7 +152,7 @@ bool exists(Set * set, int element)
 
 	Node *current = set->root;
 
-	while (1)
+	while (true)
 	{
 		if (element == current->value)
 		{
@@ -203,31 +204,31 @@ Node *mostRight(Node *node)
 	return res;
 }
 
-void fillArrayAscDesc(std::vector<int>& res, Node * node, bool asc)
+void fillArrayAscDesc(std::vector<int>& orderedElements, Node * node, bool isAscending)
 {
 	if (node == nullptr)
 	{
 		return;
 	}
 	
-	if (asc)
+	if (isAscending)
 	{
-		fillArrayAscDesc(res, node->left, asc);
+		fillArrayAscDesc(orderedElements, node->left, isAscending);
 	}
 	else
 	{
-		fillArrayAscDesc(res, node->right, asc);
+		fillArrayAscDesc(orderedElements, node->right, isAscending);
 	}
 
-	res.push_back(node->value);
+	orderedElements.push_back(node->value);
 
-	if (asc)
+	if (isAscending)
 	{
-		fillArrayAscDesc(res, node->right, asc);
+		fillArrayAscDesc(orderedElements, node->right, isAscending);
 	}
 	else
 	{
-		fillArrayAscDesc(res, node->left, asc);
+		fillArrayAscDesc(orderedElements, node->left, isAscending);
 	}
 }
 

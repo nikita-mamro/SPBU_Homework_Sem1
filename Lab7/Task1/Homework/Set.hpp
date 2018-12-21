@@ -26,7 +26,7 @@ Node *mostLeft(Node *node);
 Node *mostRight(Node *node);
 
 //Элементы множества в массив
-void fillArrayAscDesc(std::vector<int> &res, Node *node, bool asc);
+void fillArrayAscDesc(std::vector<int>& orderedElements, Node * node, bool isAscending);
 
 //Вывод по возрастанию/убыванию
 void printAscDesc(Set *set, bool asc);
