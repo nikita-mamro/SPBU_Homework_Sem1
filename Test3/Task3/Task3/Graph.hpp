@@ -2,4 +2,4 @@
 #include <vector>
 #include <fstream>
 
-void findVerticles(std::vector<int> &verticles, std::ifstream & input);
+void findVertexes(std::vector<int> &verticles, std::ifstream & input);

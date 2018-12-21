@@ -3,11 +3,6 @@
 
 using namespace std;
 
-int min(int a, int b)
-{
-	return a < b ? a : b;
-}
-
 void readFromFile(vector<vector<int>>& matrix, ifstream & input)
 {
 	int current = 0;
@@ -26,59 +21,77 @@ void readFromFile(vector<vector<int>>& matrix, ifstream & input)
 		input.get();
 		++i;
 	}
+}
 
+void refreshIsUsed(vector<bool> &isUsed)
+{
+	for (bool current : isUsed)
+	{
+		current = false;
+	}
+}
+
+bool isAchievedFromAll(vector<bool> &isUsed, vector<vector<int>> &matrix)
+{
 	for (int i = 0; i < matrix.size(); ++i)
 	{
-		matrix[i][i] = 0;
+		if (!isUsed[i])
+		{
+			return false;
+		}
 	}
 
+	return true;
+}
+
+int findNewVertex(vector<vector<int>> &matrix, int vertex)
+{
 	for (int i = 0; i < matrix.size(); ++i)
 	{
-		for (int j = 0; j < matrix.size(); ++j)
+		if (matrix[i][vertex] == 1)
 		{
-			if (matrix[i][j] == 0 && i != j || matrix[i][j] == -1)
+			return i;
+		}
+	}
+
+	return 0;
+}
+
+void findNewPaths(vector<vector<int>> &matrix, vector<bool> &isUsed, int index, int vertex)
+{
+	for (int i = 0; i < matrix[0].size(); ++i)
+	{
+		if (matrix[index][i] == -1)
+		{
+			int newVertex = findNewVertex(matrix, i);
+
+			if (!isUsed[newVertex])
 			{
-				matrix[i][j] = 999;
+				isUsed[newVertex] = true;
+				findNewPaths(matrix, isUsed, newVertex, vertex);
 			}
 		}
 	}
 }
 
-void findVerticles(vector<int> &verticles, ifstream & input)
+void findVertexes(vector<int> &vertexes, ifstream & input)
 {
 	vector<vector<int>> matrix;
 	readFromFile(matrix, input);
 
-
-	for (int k = 0; k < matrix.size(); ++k)
-	{
-		for (int i = 0; i < matrix.size(); ++i)
-		{
-			for (int j = 0; j < matrix.size(); ++j)
-			{
-				if (matrix[i][k] < 999 && matrix[k][j] < 999)
-				{
-					matrix[i][j] = min(matrix[i][j], matrix[i][k] + matrix[k][j]);
-				}
-			}
-		}
-	}
+	vector<bool> isUsed(matrix.size());
 
 	for (int i = 0; i < matrix.size(); ++i)
 	{
-		bool isAchieved = true;
+		refreshIsUsed(isUsed);
 
-		for (int j = 0; j < matrix.size(); ++j)
-		{
-			if (matrix[i][j] == 0 || matrix[i][j] == 999)
-			{
-				isAchieved = false;
-			}
-		}
+		findNewPaths(matrix, isUsed, i, i);
 
-		if (isAchieved)
+		isUsed[i] = true;
+
+		if (isAchievedFromAll(isUsed, matrix))
 		{
-			verticles.push_back(i);
+			vertexes.push_back(i);
 		}
 	}
 }

@@ -16,23 +16,23 @@ int main()
 		return EXIT_FAILURE;
 	}
 
-	vector<int> verticles;
+	vector<int> vertexes;
 
-	findVerticles(verticles, input);
+	findVertexes(vertexes, input);
 
 	input.close();
 
-	if (verticles.empty())
+	if (vertexes.empty())
 	{
-		cout << "No verticles found!" << endl;
+		cout << "No vertexes found!" << endl;
 		return EXIT_SUCCESS;
 	}
 
-	cout << "Verticles we were looking for:" << endl;
+	cout << "Vertexes we were looking for:" << endl;
 
-	for (int verticle : verticles)
+	for (int vertex : vertexes)
 	{
-		cout << verticle << " ";
+		cout << vertex << " ";
 	}
 
 	cout << endl;
