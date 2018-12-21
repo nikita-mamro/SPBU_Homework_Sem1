@@ -30,9 +30,9 @@ bool test(vector<string> &errors)
 	}
 
 	bool deqRes = true;
-	dequeue(pQueue, deqRes);
+	int popped = dequeue(pQueue, deqRes);
 
-	if (deqRes == false || getData(getHead(pQueue)) != 53)
+	if (popped != 12 || deqRes == false || getData(getHead(pQueue)) != 53)
 	{
 		res = false;
 		errors.push_back("Dequeue error!");
