@@ -21,14 +21,26 @@ void readFromFile(vector<vector<int>>& matrix, ifstream & input)
 		while (!input.eof() && input.peek() != '\n')
 		{
 			input >> current;
-			if (current == 1)
-			{
-				current = 999;
-			}
 			matrix[i].push_back(current);
 		}
 		input.get();
 		++i;
+	}
+
+	for (int i = 0; i < matrix.size(); ++i)
+	{
+		matrix[i][i] = 0;
+	}
+
+	for (int i = 0; i < matrix.size(); ++i)
+	{
+		for (int j = 0; j < matrix.size(); ++j)
+		{
+			if (matrix[i][j] == 0 && i != j || matrix[i][j] == -1)
+			{
+				matrix[i][j] = 999;
+			}
+		}
 	}
 }
 
