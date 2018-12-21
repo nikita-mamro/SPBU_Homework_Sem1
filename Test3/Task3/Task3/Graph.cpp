@@ -36,7 +36,7 @@ void readFromFile(vector<vector<int>>& matrix, ifstream & input)
 	{
 		for (int j = 0; j < matrix.size(); ++j)
 		{
-			if (matrix[i][j] == 0 && i != j || matrix[i][j] == -1)
+			if (matrix[i][j] == 0 && i != j || matrix[i][j] == 1)
 			{
 				matrix[i][j] = 999;
 			}
@@ -56,11 +56,13 @@ void findVerticles(vector<int> &verticles, ifstream & input)
 		{
 			for (int j = 0; j < matrix.size(); ++j)
 			{
-				matrix[i][j] = min(matrix[i][j], matrix[i][k] + matrix[k][j]);
+				if (matrix[i][k] < 999 && matrix[k][j] < 999)
+				{
+					matrix[i][j] = min(matrix[i][j], matrix[i][k] + matrix[k][j]);
+				}
 			}
 		}
 	}
-	// found shortest ways, need to check if != 0
 
 	for (int i = 0; i < matrix.size(); ++i)
 	{
