@@ -36,7 +36,7 @@ void readFromFile(vector<vector<int>>& matrix, ifstream & input)
 	{
 		for (int j = 0; j < matrix.size(); ++j)
 		{
-			if (matrix[i][j] == 0 && i != j || matrix[i][j] == 1)
+			if (matrix[i][j] == 0 && i != j || matrix[i][j] == -1)
 			{
 				matrix[i][j] = 999;
 			}
