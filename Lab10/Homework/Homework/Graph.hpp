@@ -1,6 +1,7 @@
 #pragma once
 #include "ReadFromFile.hpp"
 #include <vector>
+#include <fstream>
 
 struct Node;
 
