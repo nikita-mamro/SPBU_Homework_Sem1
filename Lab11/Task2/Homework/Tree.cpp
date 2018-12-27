@@ -104,7 +104,7 @@ void deleteNode(Node * node)
 {
 	for (Node * child : node->children)
 	{
-		if (!child)
+		if (child != nullptr)
 		{
 			deleteNode(child);
 		}
@@ -116,7 +116,6 @@ void deleteNode(Node * node)
 void deleteTree(Tree * tree)
 {
 	deleteNode(tree->root);
-	tree = nullptr;
 	delete tree;
 }
 

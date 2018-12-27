@@ -38,9 +38,7 @@ int main()
 		return EXIT_FAILURE;
 	}
 
-	vector<vector<int>> graph;
-
-	readFromFile(graph, input);
+	vector<vector<int>> graph = readFromFile(input);
 
 	vector<int> parents(graph.size());
 

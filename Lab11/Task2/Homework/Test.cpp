@@ -19,9 +19,7 @@ bool test(vector<string>& result)
 		return res;
 	}
 
-	vector<vector<int>> testGraph;
-
-	readFromFile(testGraph, testInput);
+	vector<vector<int>> testGraph = readFromFile(testInput);
 
 	vector<int> parents(testGraph.size());
 

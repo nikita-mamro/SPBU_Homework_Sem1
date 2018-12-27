@@ -3,8 +3,10 @@
 
 using namespace std;
 
-void readFromFile(vector<vector<int>> & graph, ifstream & input)
+vector<vector<int>> readFromFile(ifstream & input)
 {
+	vector<vector<int>> graph;
+
 	int current = 0;
 	int i = 0;
 	
@@ -21,16 +23,18 @@ void readFromFile(vector<vector<int>> & graph, ifstream & input)
 		input.get();
 		++i;
 	}
+
+	return graph;
 }
 
-int minKey(vector<int> &key, vector<bool> &set)
+int minKey(const vector<int> & key, const vector<bool> & set)
 {
 	int min = INF;
 	int res = 0;
 
 	for (int i = 0; i < set.size(); ++i)
 	{
-		if (set[i] == false && key[i] < min)
+		if (!set[i] && key[i] < min)
 		{
 			min = key[i];
 			res = i;
@@ -40,7 +44,7 @@ int minKey(vector<int> &key, vector<bool> &set)
 	return res;
 }
 
-void primMST(vector<int>& parents, vector<vector<int>>& graph)
+void primMST(vector<int> & parents, const vector<vector<int>> & graph)
 {
 	vector<int> key(graph.size());
 	// set to keep vetricles which haven't been added to spanning tree
