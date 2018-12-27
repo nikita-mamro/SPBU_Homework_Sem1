@@ -205,18 +205,8 @@ string getValue(Node * root, int key)
 	{
 		return string();
 	}
-	if (root != nullptr && root->key == key)
-	{
-		return root->value;
-	}
-	if (root != nullptr && root->key > key)
-	{
-		return getValue(root->left, key);
-	}
-	if (root != nullptr && root->key < key)
-	{
-		return getValue(root->right, key);
-	}
+	Node * res = getNodeBykey(root, key);
+	return res->value;
 }
 
 int getKey(Node * node)
