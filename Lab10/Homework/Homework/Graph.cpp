@@ -1,6 +1,8 @@
 #include "Graph.hpp"
 #include "ReadFromFile.hpp"
 
+using namespace std;
+
 struct Node
 {
 	int city;
@@ -60,12 +62,6 @@ void addNewNeighbour(Node *node, int neighbour)
 	node->neighbours.push_back(createNode(neighbour));
 }
 
-void addExistingNeighbour(Node *node, Node *neighbour)
-{
-	node->neighbours.push_back(neighbour);
-	neighbour->neighbours.push_back(node);
-}
-
 void sortTripletsByRoadLength(vector<InputElement*> &triplets)
 {
 	for (unsigned int i = 0; i < triplets.size() - 1; ++i)
@@ -80,7 +76,7 @@ void sortTripletsByRoadLength(vector<InputElement*> &triplets)
 	}
 }
 
-bool differentCapitals(vector<Node*> &capitalNodes, int cityA, int cityB)
+bool differentCapitals(const vector<Node*> &capitalNodes, int cityA, int cityB)
 {
 	for (unsigned int i = 0; i < capitalNodes.size(); ++i)
 	{
@@ -120,12 +116,11 @@ void deleteCountry(Node * capital)
 	
 	for (auto * city : cities)
 	{
-		city = nullptr;
 		delete city;
 	}
 }
 
-vector<Node*> getCapitalNodes(vector<int> &capitals, vector<InputElement*> &triplets)
+vector<Node*> getCountries(vector<int> &capitals, vector<InputElement*> &triplets)
 {
 	vector<Node*> capitalNodes;
 
@@ -169,7 +164,6 @@ vector<Node*> getCapitalNodes(vector<int> &capitals, vector<InputElement*> &trip
 			{
 				if (to != nullptr)
 				{
-					addExistingNeighbour(from, to);
 					tmpTriplets.erase(tmpTriplets.begin() + j);
 					break;
 				}
@@ -202,11 +196,11 @@ vector<vector<int>>  solveTask(ifstream & input)
 
 	readFromFile(capitals, triplets, input);
 
-	vector<Node*> capitalNodes = getCapitalNodes(capitals, triplets);
+	vector<Node*> countries = getCountries(capitals, triplets);
 
 	vector<vector<int>> res;
 
-	for (Node *capital : capitalNodes)
+	for (Node *capital : countries)
 	{
 		vector<Node*> cities;
 		fillArray(capital, cities);
@@ -221,7 +215,7 @@ vector<vector<int>>  solveTask(ifstream & input)
 		res.push_back(tmp);
 	}
 
-	for (auto *current : capitalNodes)
+	for (auto *current : countries)
 	{
 		deleteCountry(current);
 	}

@@ -18,7 +18,6 @@ InputElement *createInputElement(int cityFrom, int cityTo, int roadLength)
 
 void deleteInputElement(InputElement * element)
 {
-	element = nullptr;
 	delete element;
 }
 
