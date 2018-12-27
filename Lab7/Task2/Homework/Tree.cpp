@@ -65,7 +65,6 @@ void deleteTree(Tree * tree)
 		deleteNode(tree->root);
 	}
 	delete tree;
-	tree = nullptr;
 }
 
 void printExpression(Node * node)
