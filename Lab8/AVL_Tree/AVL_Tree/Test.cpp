@@ -51,7 +51,7 @@ bool testStructure(Node *root)
 bool test(vector<string>& result)
 {
 	bool res = true;
-	Node *testRoot = createNode();
+	Node *testRoot = nullptr;
 	fillTree(testRoot);
 
 	if (!testStructure(testRoot))

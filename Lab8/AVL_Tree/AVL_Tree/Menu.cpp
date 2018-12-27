@@ -61,7 +61,7 @@ void solveTask(int choice, Node *&root)
 
 void proceedTask()
 {
-	Node *root = createNode();
+	Node *root = nullptr;
 	char c = ' ';
 
 	printMenu();

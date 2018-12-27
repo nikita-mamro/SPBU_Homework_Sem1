@@ -12,12 +12,6 @@ struct Node
 	Node(int Key, string Str) { key = Key; left = right = nullptr; height = 1; value = Str; }
 };
 
-Node * createNode()
-{
-	Node *res = nullptr;
-	return res;
-}
-
 void deleteNode(Node * node)
 {
 	if (node->left != nullptr)
@@ -53,79 +47,90 @@ void fixHeight(Node * node)
 	node->height = (hLeft > hRight ? hLeft : hRight) + 1;
 }
 
-Node * rotateRight(Node * p)
+// Rotating around node which functions get as a parameter
+
+Node * rotateRight(Node * node)
 {
-	Node *q = p->left;
-	p->left = q->right;
-	q->right = p;
-	fixHeight(p);
-	fixHeight(q);
-	return q;
+	Node *nodeLeft = node->left;
+	node->left = nodeLeft->right;
+	nodeLeft->right = node;
+	fixHeight(node);
+	fixHeight(nodeLeft);
+	return nodeLeft;
 }
 
-Node * rotateLeft(Node * p)
+Node * rotateLeft(Node * node)
 {
-	Node *q = p->right;
-	p->right = q->left;
-	p->left = q;
-	fixHeight(p);
-	fixHeight(q);
-	return q;
+	Node *nodeRight = node->right;
+	node->right = nodeRight->left;
+	node->left = nodeRight;
+	fixHeight(node);
+	fixHeight(nodeRight);
+	return nodeRight;
 }
 
-Node * balance(Node * p)
+Node * balance(Node * node)
 {
-	if (p == nullptr)
+	if (node == nullptr)
 	{
-		return p;
+		return node;
 	}
 
-	fixHeight(p);
+	fixHeight(node);
 
-	if (balanceFactor(p) == 2)
+	if (balanceFactor(node) == 2)
 	{
-		if (balanceFactor(p->right) < 0)
+		if (balanceFactor(node->right) < 0)
 		{
-			p->right = rotateRight(p->right);
+			node->right = rotateRight(node->right);
 		}
-		return rotateLeft(p);
+		return rotateLeft(node);
 	}
 
-	if (balanceFactor(p) == -2)
+	if (balanceFactor(node) == -2)
 	{
-		if (balanceFactor(p->left) > 0)
+		if (balanceFactor(node->left) > 0)
 		{
-			p->left = rotateLeft(p->left);
+			node->left = rotateLeft(node->left);
 		}
-		return rotateRight(p);
+		return rotateRight(node);
 	}
 
-	return p;
+	return node;
 }
 
-Node * add(Node * root, int key, string str)
+Node * getNodeBykey(Node * root, int key)
+{
+	if (root == nullptr)
+	{
+		return root;
+	}
+	Node *current = root;
+	while (current != nullptr && current->key != key)
+	{
+		if (current->key < key)
+		{
+			current = current->right;
+		}
+		else
+		{
+			current = current->left;
+		}
+	}
+	return current;
+}
+
+Node * add(Node * root, int key, const string & str)
 {
 	if (exists(root, key))
 	{
-		Node *current = root;
-		while (current->key != key)
-		{
-			if (current->key < key)
-			{
-				current = current->right;
-			}
-			else
-			{
-				current = current->left;
-			}
-		}
+		Node *current = getNodeBykey(root, key);
 		current->value = str;
 		return root;
 	}
 	if (root == nullptr)
 	{
-		Node *res = new Node(key, str);
-		return res;
+		return new Node(key, str);
 	}
 	if (key < root->key)
 	{
@@ -147,7 +152,9 @@ Node * removeMin(Node * root)
 {
 	if (root->left == nullptr)
 	{
-		return root->right;
+		Node * res = root->right;
+		delete root;
+		return res;
 	}
 	root->left = removeMin(root->left);
 	return balance(root);
@@ -157,7 +164,7 @@ Node * remove(Node * root, int key)
 {
 	if (!exists(root, key))
 	{
-		return balance(root);
+		return root;
 	}
 	if (root == nullptr)
 	{
@@ -173,13 +180,14 @@ Node * remove(Node * root, int key)
 	}
 	else 
 	{
-		Node* p = root->left;
-		Node* q = root->right;
+		Node* left = root->left;
+		Node* right = root->right;
 		delete root;
-		if (q == nullptr) return p;
-		Node* min = findMin(q);
-		min->right = removeMin(q);
-		min->left = p;
+		if (right == nullptr) return left;
+
+		Node* min = findMin(right);
+		min->right = removeMin(right);
+		min->left = left;
 		return balance(min);
 	}
 	return balance(root);
@@ -187,19 +195,8 @@ Node * remove(Node * root, int key)
 
 bool exists(Node * root, int key)
 {
-	if (root != nullptr && root->key == key)
-	{
-		return true;
-	}
-	if (root != nullptr && root->key > key)
-	{
-		return exists(root->left, key);
-	}
-	if (root != nullptr && root->key < key)
-	{
-		return exists(root->right, key);
-	}
-	return false;
+	Node * node = getNodeBykey(root, key);
+	return node != nullptr;
 }
 
 string getValue(Node * root, int key)
