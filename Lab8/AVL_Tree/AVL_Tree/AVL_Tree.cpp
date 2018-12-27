@@ -9,7 +9,7 @@ struct Node
 	int key = 0;
 	Node *left = nullptr;
 	Node *right = nullptr;
-	Node(int Key, string Str) { key = Key; left = right = nullptr; height = 1; value = Str; }
+	Node(int key, string str) { this->key = key; left = right = nullptr; height = 1; value = str; }
 };
 
 void deleteNode(Node * node)
@@ -99,7 +99,7 @@ Node * balance(Node * node)
 	return node;
 }
 
-Node * getNodeBykey(Node * root, int key)
+Node * getNodeByKey(Node * root, int key)
 {
 	if (root == nullptr)
 	{
@@ -122,9 +122,10 @@ Node * getNodeBykey(Node * root, int key)
 
 Node * add(Node * root, int key, const string & str)
 {
-	if (exists(root, key))
+	Node *current = getNodeByKey(root, key);
+
+	if (current != nullptr)
 	{
-		Node *current = getNodeBykey(root, key);
 		current->value = str;
 		return root;
 	}
@@ -183,7 +184,10 @@ Node * remove(Node * root, int key)
 		Node* left = root->left;
 		Node* right = root->right;
 		delete root;
-		if (right == nullptr) return left;
+		if (right == nullptr)
+		{
+			return left;
+		}
 
 		Node* min = findMin(right);
 		min->right = removeMin(right);
@@ -195,18 +199,14 @@ Node * remove(Node * root, int key)
 
 bool exists(Node * root, int key)
 {
-	Node * node = getNodeBykey(root, key);
+	Node * node = getNodeByKey(root, key);
 	return node != nullptr;
 }
 
 string getValue(Node * root, int key)
 {
-	if (!exists(root, key))
-	{
-		return string();
-	}
-	Node * res = getNodeBykey(root, key);
-	return res->value;
+	Node * res = getNodeByKey(root, key);
+	return res != nullptr ? res->value : string();
 }
 
 int getKey(Node * node)
