@@ -5,15 +5,15 @@ using namespace std;
 
 struct Node
 {
-	int data;
+	int data = 0;
 	bool isDigit = false;
-	Node *left;
-	Node *right;
+	Node *left = nullptr;
+	Node *right = nullptr;
 };
 
 struct Tree
 {
-	Node *root;
+	Node *root = nullptr;
 };
 
 Node * createNode(ifstream & input)
@@ -63,9 +63,9 @@ void deleteTree(Tree * tree)
 	if (tree->root != nullptr)
 	{
 		deleteNode(tree->root);
-		delete tree;
-		tree = nullptr;
 	}
+	delete tree;
+	tree = nullptr;
 }
 
 void printExpression(Node * node)
@@ -88,9 +88,9 @@ void printExpression(Tree * tree)
 	printExpression(tree->root);
 }
 
-int proceedOpernad(int a, int b, char operand)
+int proceedOperator(int a, int b, char theOperator)
 {
-	switch (operand)
+	switch (theOperator)
 	{
 	case '+':
 		return a + b;
@@ -111,7 +111,7 @@ int getExpressionValue(Node * node)
 	{
 		return node->data;
 	}
-	return proceedOpernad(getExpressionValue(node->left), getExpressionValue(node->right), node->data);
+	return proceedOperator(getExpressionValue(node->left), getExpressionValue(node->right), node->data);
 }
 
 int getExpressionValue(Tree * tree)

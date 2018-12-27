@@ -32,8 +32,9 @@ int main()
 	input.close();
 	cout << "Expression from input.txt: ";
 	printExpression(tree);
-	deleteTree(tree);
 	cout << endl << "Answer: " << getExpressionValue(tree);
+
+	deleteTree(tree);
 
 	return EXIT_SUCCESS;
 }
