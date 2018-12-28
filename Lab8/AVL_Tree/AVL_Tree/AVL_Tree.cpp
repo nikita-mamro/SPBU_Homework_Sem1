@@ -153,9 +153,7 @@ Node * removeMin(Node * root)
 {
 	if (root->left == nullptr)
 	{
-		Node * res = root->right;
-		delete root;
-		return res;
+		return root->right;
 	}
 	root->left = removeMin(root->left);
 	return balance(root);
