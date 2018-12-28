@@ -21,9 +21,11 @@
   <ItemGroup>
     <ClCompile Include="AnalyzingData.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnalyzingData.hpp" />
+    <ClInclude Include="Test.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

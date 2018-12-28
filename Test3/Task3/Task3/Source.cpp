@@ -2,11 +2,20 @@
 #include <fstream>
 #include <vector>
 #include "AnalyzingData.hpp"
+#include "Test.hpp"
 
 using namespace std;
 
 int main()
 {
+	if (!test())
+	{
+		cout << "Failed tests!" << endl;
+		return EXIT_FAILURE;
+	}
+
+	cout << "Passed tests!" << endl;
+
 	ifstream input("input.txt", ios::in);
 
 	if (!input.is_open())
