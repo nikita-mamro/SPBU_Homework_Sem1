@@ -2,4 +2,4 @@
 #include <vector>
 #include <fstream>
 
-std::vector<int> mostPopularPeriod(std::ifstream & input);
+std::pair<int, int> mostPopularPeriod(std::ifstream & input);

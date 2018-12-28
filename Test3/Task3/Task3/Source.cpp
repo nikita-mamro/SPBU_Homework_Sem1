@@ -24,10 +24,10 @@ int main()
 		return EXIT_FAILURE;
 	}
 
-	vector<int> answer = mostPopularPeriod(input);
+	pair<int, int> answer = mostPopularPeriod(input);
 
 	cout << "Most popular hours:" << endl;
-	cout << "From " << answer[0] << " to " << answer[1] << endl;
+	cout << "From " << answer.first << " to " << answer.second << endl;
 
 	return EXIT_SUCCESS;
 }

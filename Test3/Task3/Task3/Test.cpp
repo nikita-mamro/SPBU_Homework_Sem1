@@ -13,9 +13,9 @@ bool test()
 		return false;
 	}
 
-	vector<int> answer = mostPopularPeriod(input);
+	pair<int, int> answer = mostPopularPeriod(input);
 
-	if (answer[0] != 15 || answer[1] != 18)
+	if (answer.first != 15 || answer.second != 18)
 	{
 		return false;
 	}

@@ -1,19 +1,11 @@
 #include "AnalyzingData.hpp"
-#include <vector>
-#include <fstream>
+#include <utility>
 
 using namespace std;
 
-struct Person
+vector<pair<int, int>> dataFromFile(ifstream & input)
 {
-	int timeFrom = 0;
-	int timeTo = 0;
-	Person(int from, int to) { timeFrom = from; timeTo = to;}
-};
-
-vector<Person*> dataFromFile(ifstream & input)
-{
-	vector<Person*> result;
+	vector<pair<int, int>> result;
 
 	int current = 0;
 
@@ -34,7 +26,9 @@ vector<Person*> dataFromFile(ifstream & input)
 		input >> current;
 		timeTo += current;
 
-		result.push_back(new Person(timeFrom, timeTo));
+		pair<int, int> pair(timeFrom, timeTo);
+
+		result.push_back(pair);
 
 		input.get();
 	}
@@ -42,65 +36,60 @@ vector<Person*> dataFromFile(ifstream & input)
 	return result;
 }
 
-vector<int> mostPopularPeriod(ifstream & input)
+pair<int, int> mostPopularPeriod(ifstream & input)
 {
-	vector<int> result(2);
+	pair<int, int> result;
 
-	vector<Person*> people = dataFromFile(input);
+	vector<pair<int, int>> visitors = dataFromFile(input);
 
 	int maxNumOfVisitors = 0;
 	int counter = 1;
 
-	vector<Person*> tmpPeople;
-	vector<Person*> peopleAtTimeWeNeed;
+	vector<pair<int, int>> tmpVisitors;
+	vector<pair<int, int>> visitorsAtTimeWeNeed;
 
-	peopleAtTimeWeNeed.push_back(people[0]);
+	visitorsAtTimeWeNeed.push_back(visitors[0]);
 
-	for (unsigned int i = 0; i < people.size() - 1; ++i)
+	for (unsigned int i = 0; i < visitors.size() - 1; ++i)
 	{
-		tmpPeople.clear();
-		tmpPeople.push_back(people[i]);
+		tmpVisitors.clear();
+		tmpVisitors.push_back(visitors[i]);
 
-		for (unsigned int j = i + 1; j < people.size() - 1; ++j)
+		for (unsigned int j = i + 1; j < visitors.size(); ++j)
 		{
-			if (people[i]->timeTo < people[j]->timeFrom)
+			if (visitors[i].second < visitors[j].first)
 			{
 				break;
 			}
 			++counter;
-			tmpPeople.push_back(people[j]);
+			tmpVisitors.push_back(visitors[j]);
 		}
 
 		if (counter > maxNumOfVisitors)
 		{
 			maxNumOfVisitors = counter;
 			counter = 0;
-			peopleAtTimeWeNeed = tmpPeople;
+			visitorsAtTimeWeNeed = tmpVisitors;
 		}
 	}
 
 	int timeFrom = 0;
 	int timeTo = 1441;
 
-	for (auto * person : peopleAtTimeWeNeed)
+	for (auto  visitor : visitorsAtTimeWeNeed)
 	{
-		if (person->timeFrom > timeFrom)
+		if (visitor.first > timeFrom)
 		{
-			timeFrom = person->timeFrom;
+			timeFrom = visitor.first;
 		}
-		if (person->timeTo < timeTo)
+		if (visitor.second < timeTo)
 		{
-			timeTo = person->timeTo;
+			timeTo = visitor.second;
 		}
 	}
 
-	for (auto * person : people)
-	{
-		delete person;
-	}
-
-	result[0] = timeFrom / 60;
-	result[1] = timeTo / 60;
+	result.first = timeFrom / 60;
+	result.second = timeTo / 60;
 
 	return result;
 }
