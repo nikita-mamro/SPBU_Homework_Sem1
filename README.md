@@ -40,7 +40,7 @@
     [Решение 2.4](https://github.com/zzzloba/SPBU_Homework_sem1/tree/master/Lab2/Task4)
   
   
-- ### Домашняя работа 3. 28.09.1
+- ### Домашняя работа 3. 28.09.18
   - Реализовать qsort, который для сортировки кусков массива размером меньше 10 использует сортировку вставкой.
   
     [Решение 3.1](https://github.com/zzzloba/SPBU_Homework_sem1/tree/master/Lab3/Task1)
